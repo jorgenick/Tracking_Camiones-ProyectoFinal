@@ -1,8 +1,17 @@
 package ar.edu.unju.fi.tracking.model;
+
+import org.springframework.stereotype.Component;
+
 /**
  * Clase que permite representar el objeto de tipo Usuario
  * @author Jorge Tolaba
  */
+/**
+ * Para que la Clase Usuario sea administrada por el
+ * contenedor de Spring agregamos la anotacion Component 
+ * @author Jorge Tolaba
+ */
+@Component
 public class Usuario {
 	/**
 	 * Atributo que representa el nombre del Usuario

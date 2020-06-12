@@ -1,8 +1,17 @@
 package ar.edu.unju.fi.tracking.model;
+
+import org.springframework.stereotype.Component;
+
 /**
  * Clase que permite representar el objeto de tipo Vehiculo
  * @author Jorge Tolaba
  */
+/**
+ * Para que la Clase Vehiculo sea administrada por el
+ * contenedor de Spring agregamos la anotacion Component 
+ * @author Jorge Tolaba
+ */
+@Component
 public class Vehiculo {
 /**
  * Atributo que representa la patente del vehiculo

@@ -2,10 +2,19 @@ package ar.edu.unju.fi.tracking.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 /**
  * Clase que permite representar el objeto de tipo RegistroTracking
  * @author Jorge Tolaba
  */
+/**
+ * Para que la Clase RegistroTracking sea administrada por el
+ * contenedor de Spring agregamos la anotacion Component 
+ * @author Jorge Tolaba
+ */
+@Component
 public class RegistroTracking {
 	/**
 	 * Atributo que representa la fecha y hora del Registro
@@ -14,14 +23,29 @@ public class RegistroTracking {
 	/**
 	 * Atributo que representa el vehiculo del Registro
 	 */
+	/**
+	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
+	 * dependencias
+	 */
+	@Autowired
 	private Vehiculo vehiculo;
 	/**
 	 * Atributo que representa el listado de tripulantes del Registro
 	 */
+	/**
+	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
+	 * dependencias
+	 */
+	@Autowired
 	private List<Tripulante> tripulantes;
 	/**
 	 * Atributo que representa la localidad del Registro
 	 */
+	/**
+	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
+	 * dependencias
+	 */
+	@Autowired
 	private Localidad localidad;
 	/**
 	 * Atributo que representa el detalle del Lugar del registro
@@ -103,7 +127,7 @@ public class RegistroTracking {
 		public void setDetalleLugarRegistro(String detalleLugarRegistro) {
 			this.detalleLugarRegistro = detalleLugarRegistro;
 		}
-//*********METODO TO STRING*****************
+		//*********METODO TO STRING*****************
 		@Override
 		public String toString() {
 			return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", tripulantes="
