@@ -9,5 +9,9 @@ public class TrackingCamionesProyectoFinalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TrackingCamionesProyectoFinalApplication.class, args);
 	}
+	
+	public void run(String... args) throws Exception{
+		
+	}
 
 }
