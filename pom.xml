@@ -47,12 +47,6 @@
 			<version>8.0.20</version>
 		</dependency>
 <!-- 	*************************************************************    -->
-
-
-		
-<!-- 		<dependency> -->
-<!-- 			<artifactId></artifactId> -->
-<!-- 		</dependency> -->
 		<!-- Dependencias para trabajar la vista -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -69,8 +63,15 @@
 			<artifactId>jquery</artifactId>
 			<version>3.5.1</version>
 		</dependency>
+<!-- 	*************************************************************    -->
+<!-- 		Dependencia para trabajar con el motor de Plantillas thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+<!-- 	*************************************************************    -->
 	</dependencies>
-	<!-- #################### -->
+
 
 	<build>
 		<plugins>

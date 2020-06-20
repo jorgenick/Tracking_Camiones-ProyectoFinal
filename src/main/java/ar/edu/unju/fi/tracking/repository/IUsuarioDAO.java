@@ -7,7 +7,7 @@ import ar.edu.unju.fi.tracking.model.Usuario;
  * entre capas y se definen metodos para luego utilizarlos
  * @author Toconas Ulises
  */
-public interface IUsuario {
+public interface IUsuarioDAO {
 	//metodo que permite guardar datos de tipo Usuario
 	public void guardar();
 	

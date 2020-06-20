@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
-import ar.edu.unju.fi.tracking.repository.ILocalidad;
+import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,7 +20,7 @@ public class LocalidadServicelmp implements ILocalidadService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private ILocalidad ilocalidad;
+	private ILocalidadDAO ilocalidad;
 	
 	/**
 	 * metodo que con la anotacion @Override invoca metodos 

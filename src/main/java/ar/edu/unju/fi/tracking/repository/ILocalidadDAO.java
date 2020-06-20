@@ -7,7 +7,7 @@ import ar.edu.unju.fi.tracking.model.Localidad;
  * entre capas y se definen metodos para luego utilizarlos
  * @author Toconas Ulises
  */
-public interface ILocalidad {
+public interface ILocalidadDAO {
 	//metodo que permite guardar datos de tipo Localidad
 	public void guardar();
 	

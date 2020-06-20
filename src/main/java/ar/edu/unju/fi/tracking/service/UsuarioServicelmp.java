@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Usuario;
-import ar.edu.unju.fi.tracking.repository.IUsuario;
+import ar.edu.unju.fi.tracking.repository.IUsuarioDAO;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,7 +20,7 @@ public class UsuarioServicelmp implements IUsuarioService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private IUsuario iusuario;
+	private IUsuarioDAO iusuario;
 	
 	/**
 	 * metodo que con la anotacion @Override invoca metodos 

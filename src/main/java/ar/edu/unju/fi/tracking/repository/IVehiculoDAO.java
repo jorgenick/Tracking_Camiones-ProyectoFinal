@@ -7,7 +7,7 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
  * entre capas y se definen metodos para luego utilizarlos
  * @author Toconas Ulises
  */
-public interface IVehiculo {
+public interface IVehiculoDAO {
 	//metodo que permite guardar datos de tipo Vehiculo
 	public void guardar();
 	

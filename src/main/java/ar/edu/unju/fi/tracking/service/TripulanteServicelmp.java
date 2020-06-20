@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Tripulante;
-import ar.edu.unju.fi.tracking.repository.ITripulante;
+import ar.edu.unju.fi.tracking.repository.ITripulanteDAO;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,7 +20,7 @@ public class TripulanteServicelmp implements ITripulanteService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private ITripulante itripulante;
+	private ITripulanteDAO itripulante;
 	
 	/**
 	 * metodo que con la anotacion @Override invoca metodos 

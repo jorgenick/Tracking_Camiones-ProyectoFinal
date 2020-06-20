@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Vehiculo;
-import ar.edu.unju.fi.tracking.repository.IVehiculo;
+import ar.edu.unju.fi.tracking.repository.IVehiculoDAO;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,7 +20,7 @@ public class VehiculoServicelmp implements IVehiculoService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private IVehiculo ivehiculo;
+	private IVehiculoDAO ivehiculo;
 	
 	/**
 	 * metodo que con la anotacion @Override invoca metodos 

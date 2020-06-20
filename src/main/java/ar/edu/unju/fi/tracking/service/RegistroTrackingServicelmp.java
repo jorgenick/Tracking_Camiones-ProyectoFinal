@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
-import ar.edu.unju.fi.tracking.repository.IRegistroTracking;
+import ar.edu.unju.fi.tracking.repository.IRegistroTrackingDAO;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,7 +20,7 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private IRegistroTracking iregistrotracking;
+	private IRegistroTrackingDAO iregistrotracking;
 	
 	/**
 	 * metodo que con la anotacion @Override invoca metodos 

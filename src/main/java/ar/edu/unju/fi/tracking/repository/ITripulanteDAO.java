@@ -7,7 +7,7 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
  * entre capas y se definen metodos para luego utilizarlos
  * @author Toconas Ulises
  */
-public interface ITripulante {
+public interface ITripulanteDAO {
 	//metodo que permite guardar datos de tipo Tripulante
 	public void guardar();
 	
