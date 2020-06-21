@@ -8,15 +8,15 @@ import ar.edu.unju.fi.tracking.model.Usuario;
  * @author Toconas Ulises
  */
 public interface IUsuarioService {
-	//metodo que permite guardar datos de tipo Usuario
-	public void guardar();
+	//metodo que permite crear un tipo de Usuario
+	public void crear(Usuario unUsuario);
 	
-	//metodo que muestra datos de tipo Usuario
-	public Usuario mostrar();
-	
-	//metodo que elimina datos de tipo Usuario
-	public void eliminar();
-	
-	//metodo que modifica datos de tipo Usuario
-	public Usuario modificar();
+//	//metodo que muestra datos de tipo Usuario
+//	public Usuario mostrar();
+//	
+//	//metodo que elimina datos de tipo Usuario
+//	public void eliminar();
+//	
+//	//metodo que modifica datos de tipo Usuario
+//	public Usuario modificar();
 }

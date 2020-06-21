@@ -1,5 +1,14 @@
 package ar.edu.unju.fi.tracking.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,26 +21,41 @@ import org.springframework.stereotype.Component;
  * @author Jorge Tolaba
  */
 @Component
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	private Long id;
 	/**
 	 * Atributo que representa el nombre del Usuario
 	 */
+	@Column
 	private String nombreUsuario;
 	/**
 	 * Atributo que representa la contraseña del Usuario
 	 */
+	@Column
 	private String password;
 	/**
 	 * Atributo que representa el nombre real del Usuario
 	 */
+	@Column
 	private String nombreReal;
 	/**
 	 * Atributo que representa el apellido real del Usuario
 	 */
+	@Column
 	private String apellidoReal;
 	/**
 	 * Atributo que representa el tipo de Usuario
 	 */
+	@Column
 	private String tipoUsuario;
 	
 //------------METODOS CONSTRUCTORES--------------
@@ -113,6 +137,15 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	//*********METODO TO STRING*************
 	@Override
 	public String toString() {
