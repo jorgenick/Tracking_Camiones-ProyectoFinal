@@ -1,6 +1,13 @@
 package ar.edu.unju.fi.tracking.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//import org.springframework.stereotype.Component;
 
 /**
  * Clase que permite representar el objeto de tipo Tripulante
@@ -11,24 +18,40 @@ import org.springframework.stereotype.Component;
  * contenedor de Spring agregamos la anotacion Component 
  * @author Jorge Tolaba
  */
-@Component
+//@Component
+@Entity
+@Table(name="tripulantes")
 public class Tripulante {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID")
+	private long id;
+	
 	/**
 	 * Atributo que representa el documento del Tripulante
 	 */
+	@Column
 	private String documento;
+	
 	/**
 	 * Atributo que representa el apellido del Tripulante
 	 */
+	@Column
 	private String apellido;
+	
 	/**
 	 * Atributo que representan los nombres del Tripulante
 	 */
+	@Column
 	private String nombres;
+	
 	/**
 	 * Atributo que representa la nacionalidad del Tripulante
 	 */
+	@Column
 	private String nacionalidad;
+
 //------------METODOS CONSTRUCTORES--------------
 	/**
 	 * Constructor sin parametros
@@ -36,6 +59,7 @@ public class Tripulante {
 	public Tripulante() {
 		
 	}
+	
 	//------------ACCESORES------------
 	/**
 	 * Devuelve el documento del Tripulante
@@ -92,12 +116,25 @@ public class Tripulante {
 	 */
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
+	}		
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
 	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	//*********METODO TO STRING*************
 	@Override
 	public String toString() {
 		return "Tripulante [documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
 				+ ", nacionalidad=" + nacionalidad + "]";
 	}
-	
 }

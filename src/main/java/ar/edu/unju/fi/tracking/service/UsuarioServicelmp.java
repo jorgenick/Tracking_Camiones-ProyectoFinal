@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,13 @@ public class UsuarioServicelmp implements IUsuarioService {
 	@Override
 	public void crear(Usuario unUsuario) {
 		iUsuario.save(unUsuario);
-	}	
+	}
+
+//	@Override
+//	public List<Usuario> obtenerUsuarios() {
+//		
+//		return iUsuario.obtnerUsuarios();
+//	}	
 	
 //	/**
 //	 * metodo que con la anotacion @Override invoca metodos 

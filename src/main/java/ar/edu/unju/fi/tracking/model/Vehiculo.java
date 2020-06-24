@@ -1,6 +1,24 @@
 package ar.edu.unju.fi.tracking.model;
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
+
+//import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+//import org.springframework.stereotype.Component;
+
+//import org.springframework.stereotype.Repository;
+
+//import org.hibernate.annotations.GenericGenerator;
+//import org.springframework.stereotype.Component;
 
 /**
  * Clase que permite representar el objeto de tipo Vehiculo
@@ -11,40 +29,68 @@ import org.springframework.stereotype.Component;
  * contenedor de Spring agregamos la anotacion Component 
  * @author Jorge Tolaba
  */
-@Component
-public class Vehiculo {
-/**
- * Atributo que representa la patente del vehiculo
- */
+//@Component
+@Entity
+@Table(name="vehiculos")
+public class Vehiculo implements Serializable{
+
+	
+//	public class Vehiculo implements Serializable{	
+	private static final long serialVersionUID = 1L;
+	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID")
+	private long id;
+	
+	/**
+	 * Atributo que representa la patente del vehiculo
+	 */
+	@Column
 	private String patente;
+	
+
+	//@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
+	//@GenericGenerator(name="native",strategy="native")
 /**
 * Atributo que representa el color del vehiculo
 */
+	@Column
 	private String color;
 /**
  * Atributo que representa el titular del vehiculo
  */
+	@Column
 	private String titular;
 /**
  * Atributo que representa la marca del vehiculo
  */
+	@Column
 	private String marca;
 /**
  * Atributo que representa el modelo del vehiculo
  */
+	@Column
 	private String modelo;
 /**
  * Atributo que representa el tipo de vehiculo
  */
+	@Column
 	private String tipo;
 /**
  * Atributo que representa el numero de chasis del vehiculo
  */
+	@Column
 	private String numeroChasis;
 /**
  * Atributo que representa el numeror de Motor del vehiculo
  */
+	@Column
 	private String numeroMotor;
+	
+	@OneToOne(mappedBy = "vehiculo", fetch = FetchType.LAZY)
+	private RegistroTracking registro;
 	
 //************CONTRUCTORES**************
 /**
@@ -54,6 +100,20 @@ public class Vehiculo {
 		
 	}
 //**************ACCESORES***************
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 /**
  * Devuelve el la patente del vehiculo
  * @return patente
@@ -61,6 +121,7 @@ public class Vehiculo {
 public String getPatente() {
 	return patente;
 }
+
 /**
  * Se asigna el valor de la patente
  * @param patente
@@ -166,6 +227,20 @@ public String getNumeroMotor() {
 public void setNumeroMotor(String numeroMotor) {
 	this.numeroMotor = numeroMotor;
 }
+
+/**
+ * @return the registro
+ */
+public RegistroTracking getRegistro() {
+	return registro;
+}
+/**
+ * @param registro the registro to set
+ */
+public void setRegistro(RegistroTracking registro) {
+	this.registro = registro;
+}
+
 //*********METODO TO STRING*************
 
 @Override
@@ -174,5 +249,4 @@ public String toString() {
 			+ ", modelo=" + modelo + ", tipo=" + tipo + ", numeroChasis=" + numeroChasis + ", numeroMotor="
 			+ numeroMotor + "]";
 }
-
 }
