@@ -67,7 +67,7 @@ public class Usuario implements Serializable {
 	private LocalDate fechaRegistro;
 	
 	
-	@OneToMany(mappedBy = "unConductor", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	private List<RegistroTracking> registro =new ArrayList<RegistroTracking>();
 	
 	

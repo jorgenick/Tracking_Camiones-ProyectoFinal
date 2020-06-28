@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
 /**
  * Clase que permite representar el objeto de tipo Tripulante
@@ -18,15 +20,17 @@ import javax.persistence.Table;
  * contenedor de Spring agregamos la anotacion Component 
  * @author Jorge Tolaba
  */
-//@Component
+@Component
 @Entity
 @Table(name="tripulantes")
-public class Tripulante {
+public class Tripulante implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	private long id;
+	@Column(name="ID_TRIPULANTE", nullable=false)
+	private Long id;
 	
 	/**
 	 * Atributo que representa el documento del Tripulante
@@ -51,15 +55,30 @@ public class Tripulante {
 	 */
 	@Column
 	private String nacionalidad;
+	
 
 //------------METODOS CONSTRUCTORES--------------
 	/**
 	 * Constructor sin parametros
 	 */
-	public Tripulante() {
-		
+	public Tripulante() {	
 	}
 	
+	/**
+ * @param id
+ * @param documento
+ * @param apellido
+ * @param nombres
+ * @param nacionalidad
+ */
+public Tripulante(Long id, String documento, String apellido, String nombres, String nacionalidad) {
+	this.id = id;
+	this.documento = documento;
+	this.apellido = apellido;
+	this.nombres = nombres;
+	this.nacionalidad = nacionalidad;
+}
+
 	//------------ACCESORES------------
 	/**
 	 * Devuelve el documento del Tripulante
@@ -117,18 +136,26 @@ public class Tripulante {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}		
+	
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	//*********METODO TO STRING*************

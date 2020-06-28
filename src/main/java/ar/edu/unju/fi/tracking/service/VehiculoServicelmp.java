@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -32,10 +34,29 @@ public class VehiculoServicelmp implements IVehiculoService {
 	 * de la capa repository
 	 */
 	@Override
-	public void crear(Vehiculo unVehiculo) {
-		iVehiculo.save(unVehiculo);
+	public void crear(Vehiculo vehiculo) {
+		iVehiculo.save(vehiculo);
 	}
-	
+
+	@Override
+	public List<Vehiculo> obtenerVehiculos() {
+		// TODO Auto-generated method stub
+		return iVehiculo.obtenerVehiculos();
+	}
+
+	@Override
+	public List<Vehiculo> obtenerTodos() {
+		List<Vehiculo> vehiculos=iVehiculo.findAll();
+		return vehiculos;
+	}
+/**
+	@Override
+	public List<Vehiculo> obtenerVehiculos() {
+	// TODO Auto-generated method stub
+		return iVehiculo.obtenerVehiculos();
+	}
+*/
+
 	
 /**	@Override
 	public void guardar() {

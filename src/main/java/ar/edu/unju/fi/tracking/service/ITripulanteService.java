@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+
 import ar.edu.unju.fi.tracking.model.Tripulante;
 
 /**
@@ -9,14 +11,16 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
  */
 public interface ITripulanteService {
 	//metodo que permite guardar datos de tipo Tripulante
-	public void guardar();
+	public void guardar(Tripulante tripulante);
 	
+	
+	public List<Tripulante> obtenerTodos();
 	//metodo que muestra datos de tipo Tripulante
-	public Tripulante mostrar();
+	//public Tripulante mostrar();
 	
 	//metodo que elimina datos de tipo Tripulante
-	public void eliminar();
+	//public void eliminar();
 	
 	//metodo que modifica datos de tipo Tripulante
-	public Tripulante modificar();
+	//public Tripulante modificar();
 }

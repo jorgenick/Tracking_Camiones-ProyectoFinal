@@ -2,6 +2,7 @@ package ar.edu.unju.fi.tracking.model;
 
 import java.time.LocalDateTime;
 //import java.util.List;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,8 +55,8 @@ public class RegistroTracking {
 	 * dependencias
 	 */
 //	@Autowired
-	@OneToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="VEHICULO_ID")
+	@ManyToOne
+	@JoinColumn(name="ID_VEHICULO")
 	private Vehiculo vehiculo;
 	/**
 	 * Atributo que representa el listado de tripulantes del Registro
@@ -62,9 +65,12 @@ public class RegistroTracking {
 	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
 	 * dependencias
 	 */
-//	@Autowired
-//	@Column
-//	private List<Tripulante> tripulantes;
+
+	@ManyToMany
+	@JoinTable(name="registro_Tracking_tripulante",
+	joinColumns=@JoinColumn(name="registroTracking_id"),
+	inverseJoinColumns = @JoinColumn(name="tripulante_id"))
+	 List<Tripulante> tripulantes;
 	/**
 	 * Atributo que representa la localidad del Registro
 	 */
@@ -85,12 +91,38 @@ public class RegistroTracking {
 	
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="ID_CONDUCTOR")
-	private Usuario unConductor;
+	@JoinColumn(name="ID_REGISTRADOR")
+	private Usuario usuario;
 	
 	
 	
-	//------------METODOS CONSTRUCTORES--------------
+	
+	
+	/**
+	 * @return the tripulantes
+	 */
+	public List<Tripulante> getTripulantes() {
+		return tripulantes;
+	}
+	/**
+	 * @param tripulantes the tripulantes to set
+	 */
+	public void setTripulantes(List<Tripulante> tripulantes) {
+		this.tripulantes = tripulantes;
+	}
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+		//------------METODOS CONSTRUCTORES--------------
 		/**
 		* Constructor sin parametros
 		*/
@@ -182,15 +214,15 @@ public class RegistroTracking {
 		/**
 		 * @return the unConductor
 		 */
-		public Usuario getUnConductor() {
-			return unConductor;
-		}
+	//	public Usuario getUnConductor() {
+	//		return unConductor;
+	//	}
 		/**
 		 * @param unConductor the unConductor to set
 		 */
-		public void setUnConductor(Usuario unConductor) {
-			this.unConductor = unConductor;
-		}
+	//	public void setUnConductor(Usuario unConductor) {
+	//		this.unConductor = unConductor;
+	//	}
 		
 		
 		//*********METODO TO STRING*****************

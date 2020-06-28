@@ -9,14 +9,14 @@ import ar.edu.unju.fi.tracking.model.RegistroTracking;
  */
 public interface IRegistroTrackingService {
 	//metodo que permite guardar datos de tipo RegistroTracking
-	public void guardar();
+	public void guardar(RegistroTracking registro );
 	
 	//metodo que muestra datos de tipo RegistroTracking
-	public RegistroTracking mostrar();
+//	public RegistroTracking mostrar();
 	
 	//metodo que elimina datos de tipo RegistroTracking
-	public void eliminar();
+//	public void eliminar();
 	
 	//metodo que modifica datos de tipo RegistroTracking
-	public RegistroTracking modificar();
+//	public RegistroTracking modificar();
 }

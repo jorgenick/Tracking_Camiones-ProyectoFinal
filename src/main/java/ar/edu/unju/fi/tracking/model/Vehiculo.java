@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 //import java.io.Serializable;
 
@@ -10,8 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+//import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+//import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
 
 //import org.springframework.stereotype.Component;
 
@@ -29,30 +34,30 @@ import javax.persistence.Table;
  * contenedor de Spring agregamos la anotacion Component 
  * @author Jorge Tolaba
  */
-//@Component
+@Component
 @Entity
 @Table(name="vehiculos")
 public class Vehiculo implements Serializable{
-
-	
-//	public class Vehiculo implements Serializable{	
+		
 	private static final long serialVersionUID = 1L;
 	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	private long id;
+	@Column(name="ID_VEHICULO", nullable=false)
+	private Long id;	
 	
-	/**
-	 * Atributo que representa la patente del vehiculo
-	 */
+	
+//	@GeneratedValue(strategy=GenerationType.AUTO,generator="native") estaba en el anterior en id
+//	@GenericGenerator(name="native",strategy="native")
+	
+	
+/**
+* Atributo que representa la patente del vehiculo
+*/	
 	@Column
 	private String patente;
-	
-
-	//@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
-	//@GenericGenerator(name="native",strategy="native")
+		
 /**
 * Atributo que representa el color del vehiculo
 */
@@ -89,8 +94,14 @@ public class Vehiculo implements Serializable{
 	@Column
 	private String numeroMotor;
 	
-	@OneToOne(mappedBy = "vehiculo", fetch = FetchType.LAZY)
-	private RegistroTracking registro;
+	@OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)
+	private List<RegistroTracking >registros;
+	
+	
+	//verificar
+	//@OneToMany(mappedBy = "unVehiculo", fetch = FetchType.LAZY)
+	//private List<Tripulante >tripulantes;
+		
 	
 //************CONTRUCTORES**************
 /**
@@ -99,21 +110,49 @@ public class Vehiculo implements Serializable{
 	public Vehiculo() {
 		
 	}
-//**************ACCESORES***************
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
 	
+/**
+ * @param id
+ * @param patente
+ * @param color
+ * @param titular
+ * @param marca
+ * @param modelo
+ * @param tipo
+ * @param numeroChasis
+ * @param numeroMotor
+ * @param registros
+ */
+public Vehiculo(Long id, String patente, String color, String titular, String marca, String modelo, String tipo,
+		String numeroChasis, String numeroMotor, List<RegistroTracking> registros) {
+	this.id = id;
+	this.patente = patente;
+	this.color = color;
+	this.titular = titular;
+	this.marca = marca;
+	this.modelo = modelo;
+	this.tipo = tipo;
+	this.numeroChasis = numeroChasis;
+	this.numeroMotor = numeroMotor;
+	this.registros = registros;
+}
+
+//**************ACCESORES***************
+	
+/**
+ * @return the id
+ */
+public Long getId() {
+	return id;
+}
+
+/**
+ * @param id the id to set
+ */
+public void setId(Long id) {
+	this.id = id;
+}
+
 /**
  * Devuelve el la patente del vehiculo
  * @return patente
@@ -129,6 +168,7 @@ public String getPatente() {
 public void setPatente(String patente) {
 	this.patente = patente;
 }
+
 /**
  * Devuelve el color del vehiculo
  * @return color del vheiculo
@@ -229,16 +269,23 @@ public void setNumeroMotor(String numeroMotor) {
 }
 
 /**
- * @return the registro
+ * @return the registros
  */
-public RegistroTracking getRegistro() {
-	return registro;
+public List<RegistroTracking> getRegistros() {
+	return registros;
 }
 /**
- * @param registro the registro to set
+ * @param registros the registros to set
  */
-public void setRegistro(RegistroTracking registro) {
-	this.registro = registro;
+public void setRegistros(List<RegistroTracking> registros) {
+	this.registros = registros;
+}
+
+/**
+ * @return the serialversionuid
+ */
+public static long getSerialversionuid() {
+	return serialVersionUID;
 }
 
 //*********METODO TO STRING*************

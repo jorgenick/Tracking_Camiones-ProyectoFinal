@@ -22,111 +22,88 @@
     	
 		<title>Tracking de Camiones</title>
 	</head>
-	
   <body>
- 		
+  	
 	<div class="container">
 			
-		<!-- abrir la plantilla del header -->
-		<div th:insert="layout/header :: header"></div>			
-		  <div class="card-deck mt-4">
-			
-	  	  	<form th:action="@{/save}" th:object=${vehiculo} method="POST">
-			  
-			  
+			<!-- abrir la plantilla del header -->
+			<div th:insert="layout/header :: header"></div>
+					
+			<div class="card-deck mt-4">
+					    
 				<!-- Tarjeta de registro -->
 				<div class="card">
 						<div class="card-header text-center">
-			    			<h4 class="h4 font-weight-bolder">DATOS DEL VEHICULO</h4>
+			    			<h4 class="h4 font-weight-bolder">DATOS DE LOS TRIPULANTES</h4>
 			    		</div>
 				    <div class="card-body">
-				
-					  			
-					  		<!-- PATENTE -->
+					  	
+					  	<!-- Formulario de Registro -->
+					  	
+					  	   <!--  <form th:object="${tripulanteDelForm}" class="needs-validation" novalidate id="formRegistro" th:action="@{/formulario}" method="post"> -->   
+					  		
+					  		<!-- PATENTE 
 						  	<div class="form-group row">
 						    	<label for="patente" class="col-sm-4 col-form-label">PATENTE</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.patente}" type="text" class="form-control" id="patente" required>
+						      		<input th:field="${vehiculoDelForm.patente}" type="text" class="form-control" id="patente" required>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+					  		-->
+					  		
+					  		<!-- Dni tripulante -->
+						  	<div class="form-group row">
+						    	<label for="dniTripulante" class="col-sm-4 col-form-label">DNI</label>
+						    	<div class="col-sm-8">
+						      		<input th:field="${tripulante.dni}" type="text" class="form-control" id="dniTripulante" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
 						  	</div>
 					  		
-					  		<!-- Nombre del titular -->
+					  		<!-- apellido tripulante -->
 						  	<div class="form-group row">
-						    	<label for="nombreTitular" class="col-sm-4 col-form-label">Nombre del Titular</label>
+						    	<label for="apellidoTripulante" class="col-sm-4 col-form-label">Apellido</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.titular}" type="text" class="form-control" id="nombreTitular" required>
+						      		<input th:field="${tripulante.apellido}" type="text" class="form-control" id="apellidoTripulante" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
 						  	</div>
 						  	
-						  	<!-- Tipo -->
+						  	<!-- nombres tripulantes -->
 						  	<div class="form-group row">
-						    	<label for="tipo" class="col-sm-4 col-form-label">TIPO</label>
+						    	<label for="nombreTripulante" class="col-sm-4 col-form-label">Nombres</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.tipo}" type="text" class="form-control" id="tipo" required>
+						      		<input th:field="${tripulante.nombres}" type="text" class="form-control" id="nombreTripulante" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
 						  	</div>
+						  	
 						  
 						  	
-						  	<!-- Marca -->
+						  	<!-- nacionalidad -->
 						  	<div class="form-group row">
-						    	<label for="marca" class="col-sm-4 col-form-label">MARCA</label>
+						    	<label for="nacionalidad" class="col-sm-4 col-form-label">Nacionalidad</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.marca}" type="text" class="form-control" id="marca" required>
+						      		<input th:field="${tripulante.nacionalidad}" type="text" class="form-control" id="nacionalidad" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
 						  	</div>
 							
-							<!-- Modelo -->
-						  	<div class="form-group row">
-						    	<label for="modelo" class="col-sm-4 col-form-label">MODELO</label>
-						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.modelo}" type="text" class="form-control" id="modelo" required>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-							
-							<!-- Color -->
-						  	<div class="form-group row">
-						    	<label for="color" class="col-sm-4 col-form-label">COLOR</label>
-						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.color}" type="text" class="form-control" id="color" required>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
+								<!-- Boton de otro tripulante -->
+						  	<br>
+								<a th:href="@{/otroTripulante}" class="btn btn-primary">OTRO TRIPULANTE</a>
+							<br><br>
 						  	
-						  	<!-- nro de chasis -->
-						  	<div class="form-group row">
-						    	<label for="chasis" class="col-sm-4 col-form-label">NRO DE CHASIS</label>
-						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.numeroChasis}" type="text" class="form-control" id="chasis" required>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
+						  		<!-- Boton Registrar -->
+						  	<div class="form-group row mt-5">
+						      	<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-4 mx-auto my-2 my-sm-0">REGISTRAR</button>
 						  	</div>
-						  	
-						  	<!-- nro de motor -->
-						  	<div class="form-group row">
-						    	<label for="motor" class="col-sm-4 col-form-label">NRO DE MOTOR</label>
-						    	<div class="col-sm-8">
-						      		<input th:field="${vehiculo.numeroMotor}" type="text" class="form-control" id="motor" required>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  	
-						  	<div class="card-footer">
-								<input type="submit" value="Guardar" class="btn btn-success">
-							</div>
-						  	
 						  	
 						  	<script>
 								// Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -147,14 +124,10 @@
 								    });
 								  }, false);
 								})();
-							</script>
-				
-				    </div>
-				</div>		  	
-			</form>
-		</div>
+							</script>			
+					</div>
+			  </div>
+		</div>		
 	</div>
-	<!--  	</form> 	--> 
-	
 </body>
 </html>

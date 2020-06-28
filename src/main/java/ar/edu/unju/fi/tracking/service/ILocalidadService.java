@@ -8,15 +8,15 @@ import ar.edu.unju.fi.tracking.model.Localidad;
  * @author Ulises Toconas
  */
 public interface ILocalidadService {
-	//metodo que permite guardar datos de tipo Localidad
-	public void guardar();
+	//metodo que permite crear un dato de tipo Localidad
+	public void crear(Localidad unaLocalidad);
 	
 	//metodo que muestra datos de tipo Localidad
-	public Localidad mostrar();
+//	public Localidad mostrar();
 	
 	//metodo que elimina datos de tipo Localidad
-	public void eliminar();
+//	public void eliminar();
 	
 	//metodo que modifica datos de tipo Localidad
-	public Localidad modificar();
+//	public Localidad modificar();
 }
