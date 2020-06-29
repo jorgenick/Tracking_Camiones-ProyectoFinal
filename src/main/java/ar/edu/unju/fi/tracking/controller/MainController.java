@@ -30,7 +30,7 @@ public class MainController {
 	private Usuario unUsuario;
 
 	
-	@RequestMapping("/home")
+	@RequestMapping({"/","/login"})
 	public String RegistroUsuario(Model model) {
 		model.addAttribute("registroUsuario", unUsuario);
 		return "index";
