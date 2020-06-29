@@ -1,20 +1,15 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,7 +24,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 public class Usuario implements Serializable {
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -50,6 +47,7 @@ public class Usuario implements Serializable {
 	 * Atributo que representa el nombre real del Usuario
 	 */
 	@Column
+	@NotBlank(message="El Apellido no puede quedar en blanco")
 	private String nombreReal;
 	/**
 	 * Atributo que representa el apellido real del Usuario
@@ -61,15 +59,6 @@ public class Usuario implements Serializable {
 	 */
 	@Column
 	private String tipoUsuario;
-	
-	@Column
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private LocalDate fechaRegistro;
-	
-	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	private List<RegistroTracking> registro =new ArrayList<RegistroTracking>();
-	
 	
 //------------METODOS CONSTRUCTORES--------------
 	/**
@@ -158,32 +147,6 @@ public class Usuario implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-	/**
-	 * @return the registro
-	 */
-	public List<RegistroTracking> getRegistro() {
-		return registro;
-	}
-	/**
-	 * @param registro the registro to set
-	 */
-	public void setRegistro(List<RegistroTracking> registro) {
-		this.registro = registro;
-	}
-	
-	/**
-	 * @return the fechaRegistro
-	 */
-	public LocalDate getFechaRegistro() {
-		return fechaRegistro;
-	}
-	/**
-	 * @param fechaRegistro the fechaRegistro to set
-	 */
-	public void setFechaRegistro(LocalDate fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
 	}
 	//*********METODO TO STRING*************
 	@Override

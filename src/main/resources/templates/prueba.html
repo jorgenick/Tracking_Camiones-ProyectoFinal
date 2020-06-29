@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Usuario BD</title>
+	<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+    <!-- FontAwesome -->
+    	<link href="fontawesome-5.13.1/css/all.css" rel="stylesheet">
+	<!-- Scripts de bootstrap -->
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+	<body class="editLocalidad">
+	<div th:insert="layout/headerUsuarioBD :: header"></div>
+	<br>
+	<div class="container">
+<form th:object="${registroLocalidad}" class="needs-validation" novalidate id="formRegistro" th:action="@{/saveLocalidad}" method="POST">
+  <input type="hidden" th:field="${registroLocalidad.id}"/>
+  <div class="form-row">
+      <div class="form-group col-md-3">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputNombre">Nombre de Localidad</label>
+		<input th:field="${registroLocalidad.nombre}" type="text" class="form-control" id="nombreUser" required>
+    </div>
+    <div class="form-group col-md-3">
+    </div>
+  </div>
+	<div class="form-group row mt-5">
+		<button th:href="@{/usuarioBd}" class="btn btn-warning">Volver</button>
+		<button type="submit" class="btn btn-primary">ECHO!</button>
+	</div>
+<!--   <button type="submit" class="btn btn-primary">Sign in</button> -->
+</form>
+
+	</div>
+	</body>
+</html>

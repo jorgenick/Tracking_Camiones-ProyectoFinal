@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.tracking.service;
+package ar.edu.unju.fi.tracking.repository;
 
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 
@@ -7,7 +7,7 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
  * entre capas y se definen metodos para luego utilizarlos
  * @author Toconas Ulises
  */
-public interface IVehiculoService {
+public interface IVehiculoDAO {
 	//metodo que permite guardar datos de tipo Vehiculo
 	public void guardar();
 	

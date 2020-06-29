@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,61 +28,49 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="tripulantes")
 public class Tripulante implements Serializable {
-	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_TRIPULANTE", nullable=false)
+	@Column(name="ID", nullable=false)
 	private Long id;
-	
+
 	/**
 	 * Atributo que representa el documento del Tripulante
 	 */
 	@Column
 	private String documento;
-	
 	/**
 	 * Atributo que representa el apellido del Tripulante
 	 */
 	@Column
 	private String apellido;
-	
 	/**
 	 * Atributo que representan los nombres del Tripulante
 	 */
 	@Column
 	private String nombres;
-	
 	/**
 	 * Atributo que representa la nacionalidad del Tripulante
 	 */
 	@Column
 	private String nacionalidad;
 	
-
+	@Autowired
+	@ManyToOne(fetch =FetchType.LAZY)
+	@JoinColumn(name = "VEHICULO_ID")
+	private Vehiculo vehiculo;
+	
+	
 //------------METODOS CONSTRUCTORES--------------
 	/**
 	 * Constructor sin parametros
 	 */
-	public Tripulante() {	
+	public Tripulante() {
+		
 	}
-	
-	/**
- * @param id
- * @param documento
- * @param apellido
- * @param nombres
- * @param nacionalidad
- */
-public Tripulante(Long id, String documento, String apellido, String nombres, String nacionalidad) {
-	this.id = id;
-	this.documento = documento;
-	this.apellido = apellido;
-	this.nombres = nombres;
-	this.nacionalidad = nacionalidad;
-}
-
 	//------------ACCESORES------------
 	/**
 	 * Devuelve el documento del Tripulante
@@ -135,33 +127,30 @@ public Tripulante(Long id, String documento, String apellido, String nombres, St
 	 */
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
-	}		
-	
-	/**
-	 * @return the id
-	 */
+	}
+//	agregados
 	public Long getId() {
 		return id;
 	}
-
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	/**
-	 * @return the serialversionuid
-	 */
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
+	
 	//*********METODO TO STRING*************
 	@Override
 	public String toString() {
 		return "Tripulante [documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
 				+ ", nacionalidad=" + nacionalidad + "]";
 	}
+	
 }

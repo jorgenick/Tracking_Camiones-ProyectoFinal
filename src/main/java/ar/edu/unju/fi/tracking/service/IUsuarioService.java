@@ -1,24 +1,18 @@
 package ar.edu.unju.fi.tracking.service;
 
-//import java.util.List;
+import java.util.List;
+import java.util.Optional;
 
 import ar.edu.unju.fi.tracking.model.Usuario;
 
-/**
- * Se implementa la interfaz para bajar el acomplamiento
- * entre capas y se definen metodos para luego utilizarlos
- * @author Toconas Ulises
- */
 public interface IUsuarioService {
-	//metodo que permite crear un tipo de Usuario
-	public void crear(Usuario unUsuario);
 	
-	//metodo que muestra datos de tipo Usuario
-//	public List<Usuario> obtenerUsuarios();
-//	
-//	//metodo que elimina datos de tipo Usuario
-//	public void eliminar();
-//	
-//	//metodo que modifica datos de tipo Usuario
-//	public Usuario modificar();
+	public void guardarUsuario(Usuario usuario);
+	
+	public List<Usuario> obtenerUsuarios();
+	
+	public Optional<Usuario> obtenerUnUsuario(Long id);
+	
+	public void eliminarUsuario(Long id);
+
 }

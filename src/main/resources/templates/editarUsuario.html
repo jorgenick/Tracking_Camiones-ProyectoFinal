@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="sp">
+	<head>
+		<meta name="author" content="Tolaba Jorge">
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	    	
+    	<!-- Bootstrap -->
+    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    	<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    	<link rel="stylesheet" href="css/estilos.css">
+    	<!-- CSS 
+    	<link th:rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    	-->
+    	
+    	<!-- FontAwesome -->
+    	<link href="fontawesome-5.13.1/css/all.css" rel="stylesheet">
+    	
+    	<!-- Scripts de bootstrap -->
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    	
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    	
+		<title>Editar Usuario</title>
+	</head>
+	<body>
+		<div th:insert="layout/headerUsuarioBD :: header"></div>
+		<br>
+		<div class="container">
+			  	<!-- Tarjeta de registro -->
+			<div class="card border-secondary text-secondary">
+				<div class="card-header text-center">
+			    	<h4 class="h4 font-weight-bolder">Edite el Usuario</h4>
+			    </div>
+				<div class="card-body">					  	
+					  	<!-- Editar formulario de Registro -->
+					<form th:object="${registroUsuario}" class="needs-validation" novalidate id="formRegistro" th:action="@{/saveUsuario}" method="post">
+						<input type="hidden" th:field="${registroUsuario.id}"/>
+					  		<!-- Nombre de usuario -->
+						 <div class="form-group row">
+						 	<label for="nombreUser" class="col-sm-4 col-form-label">Nombre de Usuario</label>
+						 	<div class="col-sm-8">
+						    	<input th:field="${registroUsuario.nombreUsuario}" type="text" class="form-control" id="nombreUser" required>
+						      	<div class="valid-feedback">Se vé bien!</div>
+						    	<div class="invalid-feedback">Debe completar este campo.</div>
+						    </div>
+						  </div>						  	
+						  <!-- Nombre real -->
+						  <div class="form-group row">
+						  	<label for="nombreReal" class="col-sm-4 col-form-label">Nombre</label>
+						    <div class="col-sm-8">
+						    	<input th:field="${registroUsuario.nombreReal}" type="text" class="form-control" id="nombreReal" required>
+						    	<div class="valid-feedback">Se vé bien!</div>
+						    	<div class="invalid-feedback">Debe completar este campo.</div>
+						    </div>
+						  </div>						  	
+						  	<!-- Apellido Real -->
+						  <div class="form-group row">
+						  	<label for="apellidoReal" class="col-sm-4 col-form-label">Apellido</label>
+						   	<div class="col-sm-8">
+						    	<input th:field="${registroUsuario.apellidoReal}" type="text" class="form-control" id="apellidoReal" required>
+						    	<div class="valid-feedback">Se vé bien!</div>
+						   		<div class="invalid-feedback">Debe completar este campo.</div>
+						    </div>
+						  </div>						  	
+						  <!-- Seleccion de tipo de usuario -->
+						  <fieldset class="form-group ">
+						  	<div class="form-group row">						    		
+						    <legend class="col-form-label col-sm-4 pt-0">Tipo</legend>
+								<div class="col-sm-8">
+									<div class="form-check">
+								    	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="consultorCheck" value="CONSULTOR" checked>
+								        	<div class="invalid-feedback">Debe completar este campo.</div>
+								          	<label class="form-check-label" for="consultorCheck">
+								            	CONSULTOR
+								          	</label>								          	
+								    </div>
+								    <div class="form-check">
+								    	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="registradorCheck" value="REGISTRADOR">
+								       	<div class="invalid-feedback">Debe completar este campo.</div>
+								        <label class="form-check-label" for="registradorCheck">
+								            	REGISTRADOR
+								        </label>								          	
+								     </div>
+								     <div class="form-check">
+								     	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="bdCheck" value="BD">
+								        <div class="invalid-feedback">Debe completar este campo.</div>
+								        <label class="form-check-label" for="bdCheck">
+								            	BD
+								        </label>								          	
+								     </div>
+								     <div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						      		</div> 
+						    	</div>
+						  	</fieldset>						  	
+						  	<!-- Password -->
+						  	<div class="form-group row">
+						    	<label for="contraseña" class="col-sm-4 col-form-label">Contraseña</label>
+						    	<div class="col-sm-8">
+						      		<input th:field="${registroUsuario.password}" type="text" class="form-control" id="contraseña" required>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>						  					  
+						  	<!-- Botones Registrar/Restabecer -->
+						  	<div class="form-group row mt-5">
+						    	<button th:href="@{/usuarioBd}" class="btn btn-warning">Volver</button>
+						      	<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-4 mx-auto my-2 my-sm-0">ECHO!</button>
+						  	</div>			
+						  				  	
+							<script>
+								// Example starter JavaScript for disabling form submissions if there are invalid fields
+								(function() {
+								  'use strict';
+								  window.addEventListener('load', function() {
+								    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+								    var forms = document.getElementsByClassName('needs-validation');
+								    // Loop over them and prevent submission
+								    var validation = Array.prototype.filter.call(forms, function(form) {
+								      form.addEventListener('submit', function(event) {
+								        if (form.checkValidity() === false) {
+								          event.preventDefault();
+								          event.stopPropagation();
+								        }
+								        form.classList.add('was-validated');
+								      }, false);
+								    });
+								  }, false);
+								})();
+							</script>						  	
+						</form>						
+				    </div>
+			</div>		
+		</div>
+	
+	</body>
+</html>

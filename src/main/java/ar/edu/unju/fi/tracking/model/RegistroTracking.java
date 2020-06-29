@@ -1,27 +1,10 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.time.LocalDateTime;
-//import java.util.List;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 /**
  * Clase que permite representar el objeto de tipo RegistroTracking
  * @author Jorge Tolaba
@@ -31,22 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  * contenedor de Spring agregamos la anotacion Component 
  * @author Jorge Tolaba
  */
-//@Component
-@Entity
-@Table(name="RegistroTracking")
+@Component
 public class RegistroTracking {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	private long id;
-	
 	/**
 	 * Atributo que representa la fecha y hora del Registro
 	 */
-	@Column
 	private LocalDateTime fechaHora;
-	
 	/**
 	 * Atributo que representa el vehiculo del Registro
 	 */
@@ -54,9 +27,7 @@ public class RegistroTracking {
 	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
 	 * dependencias
 	 */
-//	@Autowired
-	@ManyToOne
-	@JoinColumn(name="ID_VEHICULO")
+	@Autowired
 	private Vehiculo vehiculo;
 	/**
 	 * Atributo que representa el listado de tripulantes del Registro
@@ -65,12 +36,8 @@ public class RegistroTracking {
 	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
 	 * dependencias
 	 */
-
-	@ManyToMany
-	@JoinTable(name="registro_Tracking_tripulante",
-	joinColumns=@JoinColumn(name="registroTracking_id"),
-	inverseJoinColumns = @JoinColumn(name="tripulante_id"))
-	 List<Tripulante> tripulantes;
+	@Autowired
+	private List<Tripulante> tripulantes;
 	/**
 	 * Atributo que representa la localidad del Registro
 	 */
@@ -78,51 +45,14 @@ public class RegistroTracking {
 	 * Se utiliza la anotacion Autowired para realizar la inyeccion 
 	 * dependencias
 	 */
-//	@Autowired
-	@OneToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="LOCALIDAD_ID")
+	@Autowired
 	private Localidad localidad;
-	
 	/**
 	 * Atributo que representa el detalle del Lugar del registro
 	 */
-	@Column
 	private String detalleLugarRegistro;
 	
-	@Autowired
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="ID_REGISTRADOR")
-	private Usuario usuario;
-	
-	
-	
-	
-	
-	/**
-	 * @return the tripulantes
-	 */
-	public List<Tripulante> getTripulantes() {
-		return tripulantes;
-	}
-	/**
-	 * @param tripulantes the tripulantes to set
-	 */
-	public void setTripulantes(List<Tripulante> tripulantes) {
-		this.tripulantes = tripulantes;
-	}
-	/**
-	 * @return the usuario
-	 */
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	/**
-	 * @param usuario the usuario to set
-	 */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-		//------------METODOS CONSTRUCTORES--------------
+	//------------METODOS CONSTRUCTORES--------------
 		/**
 		* Constructor sin parametros
 		*/
@@ -159,16 +89,16 @@ public class RegistroTracking {
 		  * Devuelve el listados de tripulantes 
 		  * @return tripulantes
 		  */
-//		public List<Tripulante> getTripulantes() {
-//			return tripulantes;
-//		}
+		public List<Tripulante> getTripulantes() {
+			return tripulantes;
+		}
 		/**
 		 * Se asigna el listado de Tripulantes
 		 * @param tripulantes
 		 */
-//		public void setTripulantes(List<Tripulante> tripulantes) {
-//			this.tripulantes = tripulantes;
-//		}
+		public void setTripulantes(List<Tripulante> tripulantes) {
+			this.tripulantes = tripulantes;
+		}
 		 /**
 		  * Devuelve la Localidad
 		  * @return Localidad
@@ -197,37 +127,10 @@ public class RegistroTracking {
 		public void setDetalleLugarRegistro(String detalleLugarRegistro) {
 			this.detalleLugarRegistro = detalleLugarRegistro;
 		}
-				
-		/**
-		 * @return the id
-		 */
-		public long getId() {
-			return id;
-		}
-		/**
-		 * @param id the id to set
-		 */
-		public void setId(long id) {
-			this.id = id;
-		}
-		
-		/**
-		 * @return the unConductor
-		 */
-	//	public Usuario getUnConductor() {
-	//		return unConductor;
-	//	}
-		/**
-		 * @param unConductor the unConductor to set
-		 */
-	//	public void setUnConductor(Usuario unConductor) {
-	//		this.unConductor = unConductor;
-	//	}
-		
-		
 		//*********METODO TO STRING*****************
 		@Override
 		public String toString() {
-			return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
+			return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", tripulantes="
+					+ tripulantes + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
 		}
 }

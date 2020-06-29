@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import ar.edu.unju.fi.tracking.model.Localidad;
 
 /**
@@ -8,15 +11,12 @@ import ar.edu.unju.fi.tracking.model.Localidad;
  * @author Ulises Toconas
  */
 public interface ILocalidadService {
-	//metodo que permite crear un dato de tipo Localidad
-	public void crear(Localidad unaLocalidad);
+
+	public void guardarLocalidad(Localidad localidad);
 	
-	//metodo que muestra datos de tipo Localidad
-//	public Localidad mostrar();
+	List<Localidad> obtenerLocalidades();
 	
-	//metodo que elimina datos de tipo Localidad
-//	public void eliminar();
+	public Optional<Localidad> obtenerUnaLocalidad(Long id);
 	
-	//metodo que modifica datos de tipo Localidad
-//	public Localidad modificar();
+	public void eliminarLocalidad(Long id);
 }

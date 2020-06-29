@@ -1,29 +1,20 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-//import java.io.Serializable;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-//import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-//import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-//import org.springframework.stereotype.Component;
-
-//import org.springframework.stereotype.Repository;
-
-//import org.hibernate.annotations.GenericGenerator;
-//import org.springframework.stereotype.Component;
 
 /**
  * Clase que permite representar el objeto de tipo Vehiculo
@@ -36,28 +27,20 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-@Table(name="vehiculos")
 public class Vehiculo implements Serializable{
-		
-	private static final long serialVersionUID = 1L;
-	
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_VEHICULO", nullable=false)
-	private Long id;	
-	
-	
-//	@GeneratedValue(strategy=GenerationType.AUTO,generator="native") estaba en el anterior en id
-//	@GenericGenerator(name="native",strategy="native")
-	
-	
 /**
-* Atributo que representa la patente del vehiculo
-*/	
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
+	@GenericGenerator(name="native",strategy="native")
+	private Long id;
+/**
+ * Atributo que representa la patente del vehiculo
+ */
 	@Column
 	private String patente;
-		
 /**
 * Atributo que representa el color del vehiculo
 */
@@ -94,14 +77,8 @@ public class Vehiculo implements Serializable{
 	@Column
 	private String numeroMotor;
 	
-	@OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)
-	private List<RegistroTracking >registros;
-	
-	
-	//verificar
-	//@OneToMany(mappedBy = "unVehiculo", fetch = FetchType.LAZY)
-	//private List<Tripulante >tripulantes;
-		
+	@OneToMany(mappedBy ="", cascade = CascadeType.ALL)
+	private List<Tripulante> tripulantes = new ArrayList<Tripulante>();
 	
 //************CONTRUCTORES**************
 /**
@@ -110,49 +87,7 @@ public class Vehiculo implements Serializable{
 	public Vehiculo() {
 		
 	}
-	
-/**
- * @param id
- * @param patente
- * @param color
- * @param titular
- * @param marca
- * @param modelo
- * @param tipo
- * @param numeroChasis
- * @param numeroMotor
- * @param registros
- */
-public Vehiculo(Long id, String patente, String color, String titular, String marca, String modelo, String tipo,
-		String numeroChasis, String numeroMotor, List<RegistroTracking> registros) {
-	this.id = id;
-	this.patente = patente;
-	this.color = color;
-	this.titular = titular;
-	this.marca = marca;
-	this.modelo = modelo;
-	this.tipo = tipo;
-	this.numeroChasis = numeroChasis;
-	this.numeroMotor = numeroMotor;
-	this.registros = registros;
-}
-
 //**************ACCESORES***************
-	
-/**
- * @return the id
- */
-public Long getId() {
-	return id;
-}
-
-/**
- * @param id the id to set
- */
-public void setId(Long id) {
-	this.id = id;
-}
-
 /**
  * Devuelve el la patente del vehiculo
  * @return patente
@@ -160,7 +95,6 @@ public void setId(Long id) {
 public String getPatente() {
 	return patente;
 }
-
 /**
  * Se asigna el valor de la patente
  * @param patente
@@ -168,7 +102,6 @@ public String getPatente() {
 public void setPatente(String patente) {
 	this.patente = patente;
 }
-
 /**
  * Devuelve el color del vehiculo
  * @return color del vheiculo
@@ -267,23 +200,19 @@ public String getNumeroMotor() {
 public void setNumeroMotor(String numeroMotor) {
 	this.numeroMotor = numeroMotor;
 }
-
-/**
- * @return the registros
- */
-public List<RegistroTracking> getRegistros() {
-	return registros;
+// Agregados
+public Long getId() {
+	return id;
 }
-/**
- * @param registros the registros to set
- */
-public void setRegistros(List<RegistroTracking> registros) {
-	this.registros = registros;
+public void setId(Long id) {
+	this.id = id;
 }
-
-/**
- * @return the serialversionuid
- */
+public List<Tripulante> getTripulantes() {
+	return tripulantes;
+}
+public void setTripulantes(List<Tripulante> tripulantes) {
+	this.tripulantes = tripulantes;
+}
 public static long getSerialversionuid() {
 	return serialVersionUID;
 }
@@ -296,4 +225,5 @@ public String toString() {
 			+ ", modelo=" + modelo + ", tipo=" + tipo + ", numeroChasis=" + numeroChasis + ", numeroMotor="
 			+ numeroMotor + "]";
 }
+
 }

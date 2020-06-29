@@ -7,7 +7,7 @@
     	
     	<!-- Bootstrap -->
     	<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-    	
+    	<link rel="stylesheet" href="css/estilos.css">
     	<!-- CSS 
     	<link th:rel="stylesheet" type="text/css" th:href="@{css/style.css}">
     	-->
@@ -26,7 +26,7 @@
 	
 		<!-- abrir la plantilla del header -->
 		<div th:insert="layout/header :: header"></div>
-					
+		
 		<!-- Ingresar modal -->
 		<div class="modal fade row" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered ">
@@ -85,7 +85,7 @@
 		
 		
 		<div class="container">
-					
+			
 			<div class="card-deck mt-4">
 			
 				<div class="card">
@@ -106,12 +106,12 @@
 					  	
 					  	<!-- Formulario de Registro -->
 					  	
-					  	<form th:object="${usuarioDelForm}" class="needs-validation" novalidate id="formRegistro" th:action="@{/formulario}" method="post">
+					  	<form th:object="${registroUsuario}" class="needs-validation" novalidate id="formRegistro" th:action="@{/formulario}" method="post">
 					  		<!-- Nombre de usuario -->
 						  	<div class="form-group row">
 						    	<label for="nombreUser" class="col-sm-4 col-form-label">Nombre de Usuario</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${usuarioDelForm.nombreUsuario}" type="text" class="form-control" id="nombreUser" required>
+						      		<input th:field="${registroUsuario.nombreUsuario}" type="text" class="form-control" id="nombreUser" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
@@ -121,7 +121,7 @@
 						  	<div class="form-group row">
 						    	<label for="nombreReal" class="col-sm-4 col-form-label">Nombre</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${usuarioDelForm.nombreReal}" type="text" class="form-control" id="nombreReal" required>
+						      		<input th:field="${registroUsuario.nombreReal}" type="text" class="form-control" id="nombreReal" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
@@ -131,7 +131,7 @@
 						  	<div class="form-group row">
 						    	<label for="apellidoReal" class="col-sm-4 col-form-label">Apellido</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${usuarioDelForm.apellidoReal}" type="text" class="form-control" id="apellidoReal" required>
+						      		<input th:field="${registroUsuario.apellidoReal}" type="text" class="form-control" id="apellidoReal" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
@@ -144,19 +144,19 @@
 						      		<legend class="col-form-label col-sm-4 pt-0">Tipo</legend>
 							      	<div class="col-sm-8">
 								        <div class="form-check">
-								          	<input th:field="${usuarioDelForm.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="consultorCheck" value="CONSULTOR" checked>
+								          	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="consultorCheck" value="CONSULTOR" checked>
 								          	<label class="form-check-label" for="consultorCheck">
 								            	CONSULTOR
 								          	</label>
 								        </div>
 								        <div class="form-check">
-								          	<input th:field="${usuarioDelForm.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="registradorCheck" value="REGISTRADOR">
+								          	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="registradorCheck" value="REGISTRADOR">
 								          	<label class="form-check-label" for="registradorCheck">
 								            	REGISTRADOR
 								          	</label>
 								        </div>
 								        <div class="form-check">
-								          	<input th:field="${usuarioDelForm.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="bdCheck" value="BD">
+								          	<input th:field="${registroUsuario.tipoUsuario}" class="form-check-input" type="radio" name="gridRadios" id="bdCheck" value="BD">
 								          	<label class="form-check-label" for="bdCheck">
 								            	BD
 								          	</label>
@@ -169,7 +169,7 @@
 						  	<div class="form-group row">
 						    	<label for="contraseña" class="col-sm-4 col-form-label">Contraseña</label>
 						    	<div class="col-sm-8">
-						      		<input th:field="${usuarioDelForm.password}" type="password" class="form-control" id="contraseña" required>
+						      		<input th:field="${registroUsuario.password}" type="password" class="form-control" id="contraseña" required>
 						      		<div class="valid-feedback">Se vé bien!</div>
 						    		<div class="invalid-feedback">Debe completar este campo.</div>
 						    	</div>
