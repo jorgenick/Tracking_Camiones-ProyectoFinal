@@ -19,4 +19,6 @@ public interface ILocalidadService {
 	public Optional<Localidad> obtenerUnaLocalidad(Long id);
 	
 	public void eliminarLocalidad(Long id);
+	
+	public Iterable<Localidad> listarLocalidades();
 }

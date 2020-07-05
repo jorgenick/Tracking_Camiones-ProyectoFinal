@@ -1,15 +1,17 @@
 package ar.edu.unju.fi.tracking.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
+
+//import org.springframework.stereotype.Component;
 
 /**
  * Clase que permite representar el objeto de tipo Localidad
@@ -22,58 +24,73 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Entity
-public class Localidad implements Serializable{
-/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@Table(name="localidad")
+public class Localidad {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
-	@GenericGenerator(name="native",strategy="native")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID")
 	private Long id;
-/**
- * Atributo que representa el nombre de la localidad
- */
-	@Column
-private String nombre;
-//------------METODOS CONSTRUCTORES--------------
-/**
- * Constructor sin parametros
- */
-public Localidad() {
-}
-//------------ACCESORES------------
-/**
- * Devuelve el nombre de la localidad
- * @return localidad
- */
-public String getNombre() {
-	return nombre;
-}
-/**
- * Se asigna el nombre la localidad
- * @param nombre
- */
-public void setNombre(String nombre) {
-	this.nombre = nombre;
-}
 
-//Agregados . . .
+	/**
+	 * Atributo que representa el nombre de la localidad
+	 */	
+	@Column	
+	private String nombre;
+	
+	@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
+	private RegistroTracking registro;
 
-public Long getId() {
-	return id;
-}
-public void setId(Long id) {
-	this.id = id;
-}
-public static long getSerialversionuid() {
-	return serialVersionUID;
-}
-//------------METODO TO STRING-------------
-@Override
-public String toString() {
-	return "Localidad [nombre=" + nombre + "]";
-}
-
+	//------------METODOS CONSTRUCTORES--------------
+	/**
+	 * Constructor sin parametros
+	 */
+	public Localidad() {
+	}
+	//------------ACCESORES------------
+	/**
+	 * Devuelve el nombre de la localidad
+	 * @return localidad
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+	/**
+	 * Se asigna el nombre la localidad
+	 * @param nombre
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	/**
+	 * @return the registro
+	 */
+	public RegistroTracking getRegistro() {
+		return registro;
+	}
+	/**
+	 * @param registro the registro to set
+	 */
+	public void setRegistro(RegistroTracking registro) {
+		this.registro = registro;
+	}
+	//------------METODO TO STRING-------------
+	@Override
+	public String toString() {
+		return "Localidad [nombre=" + nombre + "]";
+	}
 }

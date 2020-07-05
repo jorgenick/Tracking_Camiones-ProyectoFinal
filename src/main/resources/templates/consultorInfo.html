@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Gonzalez Brian Leonel">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<link rel="icon" type="image/png" href="img/logo2.png">
+		
+		<title>Consultas</title>
+		
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		
+		<!-- FontAwesome -->
+		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" >
+	
+	</head>
+	<body class="body-container">
+	
+		<!-- Header -->
+		<div th:insert="layout/header :: header-sign-off"></div>
+		
+		<div class="container-fluid h-100 row m-0 p-0 d-flex justify-content-center align-items-center">
+			  
+			<div class="alert alert-success m-0 p-2 col-sm-5 row" role="alert">
+				<div class="col-sm-12 row d-flex justify-content-center align-items-center m-0 p-4">
+					<h2 class="alert-heading text-center h1 m-0">Bienvenido Consultor!</h2>
+				</div>
+  				<div class="col-sm-12 row d-flex justify-content-center align-items-center m-0 p-4">
+  					<h5 class="h5">Acciones permitidas:</h5>
+  					<ul class="h6">
+  						<li>
+  							Listar vehiculos por localidad y rango de fechas.
+  						</li>
+  						<li>
+  							Listar el recorrido por tripulante.
+  						</li>
+  						<li>
+  							Listar el recorrido por patente.
+  						</li>
+  					</ul>
+  				</div>
+  				<div class="col-sm-12 row d-flex justify-content-center align-items-center m-0 p-4">
+  					<a class="btn btn-info col-sm-6 p-2 btn-lg m-0" th:href="@{consulta}">
+  						<i class="fas fa-clipboard-list"></i> &nbsp; Empezar consulta
+  					</a>
+  				</div>
+			</div> 
+			
+			
+		</div>
+			
+		
+		<!-- Footer -->
+		<div th:insert="layout/footer :: footer"></div>
+		
+		<!-- Script Bootstrap -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+	</body>
+</html>

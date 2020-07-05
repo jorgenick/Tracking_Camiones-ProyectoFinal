@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
+import ar.edu.unju.fi.tracking.repository.ILocalidadRepository;
 
 /**
  * Esta clase ultiza la anotacion @Repository para manejar las instancias de los objetos  
@@ -20,6 +21,9 @@ public class LocalidadServicelmp implements ILocalidadService {
 
 	@Autowired
 	ILocalidadDAO localidadDAOimp;
+	
+	@Autowired
+	ILocalidadRepository localidadRepository;
 
 	@Override
 	public void guardarLocalidad(Localidad localidad) {
@@ -42,5 +46,10 @@ public class LocalidadServicelmp implements ILocalidadService {
 		localidadDAOimp.deleteById(id);;
 		
 	}
+	
+	public Iterable<Localidad> listarLocalidades() {
+		return localidadRepository.findAll();
+	}
+
 	
 }
