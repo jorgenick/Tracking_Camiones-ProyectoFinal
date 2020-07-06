@@ -15,7 +15,7 @@ import ar.edu.unju.fi.tracking.service.LocalidadServicelmp;
 
 /**
  * Controlador de Usuario Consultor
- * @author Brian's
+ * @author Gonzalez Brian Leonel
  *
  */
 @Controller

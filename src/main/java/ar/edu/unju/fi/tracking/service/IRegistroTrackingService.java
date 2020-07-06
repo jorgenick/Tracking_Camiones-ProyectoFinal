@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
 
 /**
@@ -19,4 +22,8 @@ public interface IRegistroTrackingService {
 	
 	//metodo que modifica datos de tipo RegistroTracking
 	public RegistroTracking modificar();
+	
+	//metodo para buscar registros por localidad y rango de fechas
+	public List<RegistroTracking> listaRegistrosLocalidadRangoFecha(String locaidad, LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+		
 }
