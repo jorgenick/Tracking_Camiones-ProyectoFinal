@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 
 /**
@@ -8,15 +11,12 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
  * @author Toconas Ulises
  */
 public interface IVehiculoService {
-	//metodo que permite guardar datos de tipo Vehiculo
-	public void guardar();
 	
-	//metodo que muestra datos de tipo Vehiculo
-	public Vehiculo mostrar();
+	public void guardaVehiculoLocalidad(Vehiculo vehiculo);
 	
-	//metodo que elimina datos de tipo Vehiculo
-	public void eliminar();
+	List<Vehiculo> obtenerVehiculos();
 	
-	//metodo que modifica datos de tipo Vehiculo
-	public Vehiculo modificar();
+	public Optional<Vehiculo> obtenerUnVehiculo(Long id);
+	
+	public void eliminarVehiculo(Long id);
 }

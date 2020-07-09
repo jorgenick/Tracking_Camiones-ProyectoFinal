@@ -45,7 +45,7 @@ public class RegistroTracking {
 	 */
 	@Column
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime fechaHora;
+	private LocalDateTime fecha;
 	
 	/**
 	 * Atributo que representa el vehiculo del Registro
@@ -108,12 +108,12 @@ public class RegistroTracking {
 		  * Devuelve del Registro
 		  * @return
 		  */
-		public LocalDateTime getFechaHora() {
-			return fechaHora;
+		public LocalDateTime getFecha() {
+			return fecha;
 		}
 
-		public void setFechaHora(LocalDateTime fechaHora) {
-			this.fechaHora = fechaHora;
+		public void setFechaHora(LocalDateTime fecha) {
+			this.fecha = fecha;
 		}
 		 /**
 		  * Devuelve datos del vehiculo
@@ -190,6 +190,6 @@ public class RegistroTracking {
 		//*********METODO TO STRING*****************
 		@Override
 		public String toString() {
-			return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
+			return "RegistroTracking [fechaHora=" + fecha + ", vehiculo=" + vehiculo + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
 		}
 }

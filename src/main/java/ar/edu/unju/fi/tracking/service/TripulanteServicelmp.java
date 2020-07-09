@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,47 +23,30 @@ public class TripulanteServicelmp implements ITripulanteService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private ITripulanteDAO itripulante;
-	
-	/**
-	 * metodo que con la anotacion @Override invoca metodos 
-	 * de la capa repository
-	 */
+	private ITripulanteDAO tripulanteDAOImp;
+
 	@Override
-	public void guardar() {
-		//se invoca el metodo guardar de la interfaz para guardar los datos
-		itripulante.guardar();
+	public void guardarTripulante(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		tripulanteDAOImp.save(tripulante);
 	}
 
-	/**
-	 * Metodo que contiene un atributo de tipo Tripulante
-	 * y que con la anotacion @Override invoca el metodo para mostrar los datos
-	 * @return tripulante
-	 */
 	@Override
-	public Tripulante mostrar() {
-		Tripulante tripulante=itripulante.mostrar();
-		return tripulante;
+	public List<Tripulante> obtenerTripulantes() {
+		// TODO Auto-generated method stub
+		return tripulanteDAOImp.findAll();
 	}
 
-	/**
-	 * metodo que con la anotacion @Override invoca metodos 
-	 * de la capa repository
-	 */
 	@Override
-	public void eliminar() {
-		//se invoca el metodo eliminar de la interfaz para borrar datos
-		itripulante.eliminar();
+	public Optional<Tripulante> obtenerUnTripulante(Long id) {
+		// TODO Auto-generated method stub
+		return tripulanteDAOImp.findById(id);
 	}
 
-	/**
-	 * Metodo que contiene un atributo de tipo Tripulante
-	 * y que con la anotacion @Override invoca el metodo para modificar los datos
-	 * @return tripulante
-	 */
 	@Override
-	public Tripulante modificar() {
-		Tripulante tripulante=itripulante.modificar();
-		return tripulante;
+	public void eliminarTripulante(Long id) {
+		// TODO Auto-generated method stub
+		tripulanteDAOImp.deleteById(id);
 	}
+
 }

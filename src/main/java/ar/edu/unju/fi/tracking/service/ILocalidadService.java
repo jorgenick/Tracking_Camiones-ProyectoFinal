@@ -20,5 +20,7 @@ public interface ILocalidadService {
 	
 	public void eliminarLocalidad(Long id);
 	
-	public Iterable<Localidad> listarLocalidades();
+	public Localidad buscarNombreLocalidad(String nombre) throws Exception;
+	
+	public Localidad buscarLocalidadPorNombre(String nombre);
 }

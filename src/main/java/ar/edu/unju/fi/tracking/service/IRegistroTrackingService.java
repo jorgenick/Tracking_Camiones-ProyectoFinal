@@ -1,8 +1,10 @@
 package ar.edu.unju.fi.tracking.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
+import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
 
 /**
@@ -11,19 +13,23 @@ import ar.edu.unju.fi.tracking.model.RegistroTracking;
  * @author Toconas Ulises
  */
 public interface IRegistroTrackingService {
-	//metodo que permite guardar datos de tipo RegistroTracking
-	public void guardar();
 	
-	//metodo que muestra datos de tipo RegistroTracking
-	public RegistroTracking mostrar();
+	public void guardarRegistroTracking(RegistroTracking registroTracking);
 	
-	//metodo que elimina datos de tipo RegistroTracking
-	public void eliminar();
+	public List<RegistroTracking> obtenerRegistros();
 	
-	//metodo que modifica datos de tipo RegistroTracking
-	public RegistroTracking modificar();
+	public Optional<RegistroTracking> obtenerUnRegistro(Long id);
+	
+	public void eliminarRegistro(Long id);
+	
+	
+	//buscar registro por patente de vehiculo
+	List<RegistroTracking> buscarPorVehiculoPatente(String patente);
+	
+	//buscar registro por rango de fechas y localidad
+	public List<RegistroTracking> buscarRegistrosRangoFechasYLocalidad(LocalDate fechaDesde, LocalDate fechaHasta, Localidad localidad);
 	
 	//metodo para buscar registros por localidad y rango de fechas
-	public List<RegistroTracking> listaRegistrosLocalidadRangoFecha(String locaidad, LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+	//public List<RegistroTracking> listaRegistrosLocalidadRangoFecha(String locaidad, LocalDateTime fechaInicial, LocalDateTime fechaFinal);
 		
 }

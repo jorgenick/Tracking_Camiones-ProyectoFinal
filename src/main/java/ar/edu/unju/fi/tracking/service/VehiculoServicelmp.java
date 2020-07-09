@@ -1,7 +1,10 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IVehiculoDAO;
@@ -12,7 +15,7 @@ import ar.edu.unju.fi.tracking.repository.IVehiculoDAO;
  * utilizarlos luego para manipular los datos 
  * @author Toconas Ulises
  */
-@Repository
+@Service
 public class VehiculoServicelmp implements IVehiculoService {
 
 	/**
@@ -20,47 +23,29 @@ public class VehiculoServicelmp implements IVehiculoService {
 	 * y la anotacion @Autowired para la inyeccion de dependencia  
 	 */
 	@Autowired
-	private IVehiculoDAO ivehiculo;
-	
-	/**
-	 * metodo que con la anotacion @Override invoca metodos 
-	 * de la capa repository
-	 */
+	private IVehiculoDAO vehiculoDAOImp;
+
 	@Override
-	public void guardar() {
-	//se invoca el metodo guardar de la interfaz para guardar los datos	
-		ivehiculo.guardar();
+	public void guardaVehiculoLocalidad(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		vehiculoDAOImp.save(vehiculo);
 	}
 
-	/**
-	 * Metodo que contiene un atributo de tipo Vehiculo
-	 * y que con la anotacion @Override invoca el metodo para mostrar los datos
-	 * @return vehiculo
-	 */
 	@Override
-	public Vehiculo mostrar() {
-		Vehiculo vehiculo=ivehiculo.mostrar();
-		return vehiculo;
+	public List<Vehiculo> obtenerVehiculos() {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findAll();
 	}
 
-	/**
-	 * metodo que con la anotacion @Override invoca metodos 
-	 * de la capa repository
-	 */
 	@Override
-	public void eliminar() {
-	//se invoca el metodo eliminar de la interfaz para borrar datos	
-		ivehiculo.eliminar();
+	public Optional<Vehiculo> obtenerUnVehiculo(Long id) {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findById(id);
 	}
 
-	/**
-	 * Metodo que contiene un atributo de tipo Vehiculo
-	 * y que con la anotacion @Override invoca el metodo para modificar los datos
-	 * @return vehiculo
-	 */
 	@Override
-	public Vehiculo modificar() {
-		Vehiculo vehiculo=ivehiculo.modificar();
-		return vehiculo;
+	public void eliminarVehiculo(Long id) {
+		// TODO Auto-generated method stub
+		vehiculoDAOImp.deleteById(id);
 	}
 }
