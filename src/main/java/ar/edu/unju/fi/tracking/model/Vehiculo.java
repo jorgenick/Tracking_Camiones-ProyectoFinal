@@ -67,26 +67,31 @@ public class Vehiculo implements Serializable{
 	 * Atributo que representa la marca del vehiculo
 	 */
 		@Column
+		@NotBlank(message = "La marca no debe quedar en blanco")
 		private String marca;
 	/**
 	 * Atributo que representa el modelo del vehiculo
 	 */
 		@Column
+		@NotBlank(message = "El modelo no debe quedar en blanco")
 		private String modelo;
 	/**
 	 * Atributo que representa el tipo de vehiculo
 	 */
 		@Column
+		@NotBlank(message = "El tipo no debe quedar en blanco")
 		private String tipo;
 	/**
 	 * Atributo que representa el numero de chasis del vehiculo
 	 */
 		@Column
+		@NotBlank(message = "Debe ingresar el numero de chasis")
 		private String numeroChasis;
 	/**
 	 * Atributo que representa el numeror de Motor del vehiculo
 	 */
 		@Column
+		@NotBlank(message = "Debe ingresar el numero de motor")
 		private String numeroMotor;
 		
 		@OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY)

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="sp">
+	<head>
+		<meta name="author" content="Toconas Ulises Daniel ">
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	
+    	<!-- Bootstrap -->
+    	<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    	
+    	<!-- CSS 
+    	<link th:rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    	-->
+    	
+    	<!-- FontAwesome -->
+    	<link href="fontawesome-5.13.1/css/all.css" rel="stylesheet">
+    	
+    	<!-- Scripts de bootstrap -->
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    	
+		<title>Tracking de Camiones</title>
+	</head>
+	
+  <body>
+ 		
+	<div class="container">
+			
+		<!-- abrir la plantilla del header 
+		<div th:insert="layout/header :: header"></div>	-->		
+		  
+		  <div class="card-deck mt-4">
+			
+			<div class="col">
+
+               <form class="form" role="form" autocomplete="off" th:object=${encontrado} th:action="@{/formularioVehiculo}" method="post" >  
+             
+                <div class="card ">
+ 
+						<div class="card-header text-center">
+			    			<h4 class="h4 font-weight-bolder">DATOS DEL VEHICULO</h4>
+			    		</div>
+			       		
+				      <div class="card-body">
+				 			
+					  		<!-- PATENTE -->
+						  	<div class="form-group row">	<!--th:if="${editMode==null or editMode==false}">se muestra si la edicion es nula  -->
+						    	<label for="patente" class="col-sm-4 col-form-label">PATENTE</label>
+						    	<div class="col-sm-6">
+	 			<!--  		      		<input th:field="${vehiculo.patente}" type="text" class="form-control" id="patente" required>	
+	 					      		<div class="alert-danger" th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}">Name Error</div>-->
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>						    	
+						    	</div>    	
+						  	</div>
+					
+					  		<!-- Nombre del titular -->
+						  	<div class="form-group row">
+						    	<label for="nombreTitular" class="col-sm-4 col-form-label">Nombre del Titular</label>
+						    	<div class="col-sm-6">
+						<!--  		<input th:field="${vehiculo.titular}" type="text" class="form-control" id="nombreTitular" required/>-->      
+						      		<input type="text" class="form-control" th:text = "${encontrado.titular}"> 
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('titular')}" th:errors="*{titular}">Name Error</div>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- Tipo -->
+						  	<div class="form-group row">
+						    	<label for="tipo" class="col-sm-4 col-form-label">TIPO</label>
+						    	<div class="col-sm-6">
+						<!--  		<input th:field="${vehiculo.tipo}" type="text" class="form-control" id="tipo" required/>-->      
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}">Name Error</div>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  				  	
+						  	<!-- Marca -->
+						  	<div class="form-group row">
+						    	<label for="marca" class="col-sm-4 col-form-label">MARCA</label>
+						    	<div class="col-sm-6">
+					<!--  	      		<input th:field="${vehiculo.marca}" type="text" class="form-control" id="marca" required/>-->
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}">Name Error</div>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+							
+							<!-- Modelo -->
+						  	<div class="form-group row">
+						    	<label for="modelo" class="col-sm-4 col-form-label">MODELO</label>
+						    	<div class="col-sm-6">
+			<!--  			      		<input th:field="${vehiculo.modelo}" type="text" class="form-control" id="modelo" required/>-->
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}">Name Error</div>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+							
+							<!-- Color -->
+						  	<div class="form-group row">
+						    	<label for="color" class="col-sm-4 col-form-label">COLOR</label>
+						    	<div class="col-sm-6">
+					<!--  	      		<input th:field="${vehiculo.color}" type="text" class="form-control" id="color" required/>-->
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Name Error</div>
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- nro de chasis -->
+						  	<div class="form-group row">
+						    	<label for="chasis" class="col-sm-4 col-form-label">NRO DE CHASIS</label>
+						    	<div class="col-sm-6">
+				<!--  		      		<input th:field="${vehiculo.numeroChasis}" type="number" class="form-control" id="chasis" required/>-->
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- nro de motor -->
+						  	<div class="form-group row">
+						    	<label for="motor" class="col-sm-4 col-form-label">NRO DE MOTOR</label>
+						    	<div class="col-sm-6">
+			<!--  					      		<input th:field="${vehiculo.numeroMotor}" type="number" class="form-control" id="motor" required/>-->	
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- Boton cancelar/guardar -->	
+					   			<div class="form-group row mt-5">
+					   				<button type="reset" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
+						      		<button type="submit" id="vehiculo" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">SIGUIENTE-></button>  				
+					  			 </div>	
+					  	</div>
+					 </div> 	   	
+				</form> 		 
+			</div>
+	<!--  -->	  
+						
+	             <div class="col">							  	
+	                       <!--  	<div class="tab-pane fade" id="tripulantes" role="tabpanel" aria-labelledby="lista-tab">  -->	
+		           <form class="form" role="form" autocomplete="off" th:object=${tripulante} th:action="@{/formularioTripu}" method="post" >					    
+				
+	 			     <div class="card">         
+						<div class="card-header text-center">
+			    			<h4 class="h4 font-weight-bolder">DATOS DE LOS TRIPULANTES</h4>
+			    		</div>
+	  			        <div class="card-body">
+					  	
+					  		<!-- Dni tripulante -->
+						  	<div class="form-group row">
+						    	<label for="documento" class="col-sm-4 col-form-label">DNI</label> <!-- for="dni" -->
+						    	<div class="col-sm-8">
+<!--						      		<input th:field="${tripulante.documento}" type="number" class="form-control" id="documento" required/>  --> 
+						      		<div class="alert-danger" th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}">Name Error</div>
+						      		<input type="text" class="form-control"> 
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+					  		
+						  	<div class="form-group row">
+						    	<label for="apellidoTripulante" class="col-sm-4 col-form-label">Apellido</label>
+						    	<div class="col-sm-8">
+	<!--					    		<input th:field="${tripulante.apellido}" type="text" class="form-control" id="apellidoTripulante" required/> -->
+						    		<div class="alert-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Name Error</div>  
+	   					    		<input type="text" class="form-control">    
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- nombres tripulantes -->
+						  	<div class="form-group row">
+						    	<label for="nombreTripulante" class="col-sm-5 col-form-label">Nombres</label>
+						    	<div class="col-sm-7">
+			<!--			    		<input th:field="${tripulante.nombres}" type="text" class="form-control" id="nombreTripulante" required/>  -->
+	  								<div class="alert-danger" th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}">Name Error</div>	  		   		
+	  								<input type="text" class="form-control"> 
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  	<!-- nacionalidad -->
+						  	<div class="form-group row">
+						    	<label for="nacionalidad" class="col-sm-6 col-form-label">Nacionalidad</label>
+						    	<div class="col-sm-6">
+		<!--					   		<input th:field="${tripulante.nacionalidad}" type="text" class="form-control" id="nacionalidad" required/>-->
+							   		<div class="alert-danger" th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}">Name Error</div>  
+					   			    <input type="text" class="form-control"> 	
+	  					      		<div class="valid-feedback">Se vé bien!</div>    
+						    		<div class="invalid-feedback">Debe completar este campo.</div>
+						    	</div>
+						  	</div>
+						  	
+						  		<!-- Boton cancelar/guardar -->
+					   			<div class="form-group row mt-5">
+					   				<button type="reset" disabled="disabled" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
+						      		<button type="submit" disabled="disabled" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >GUARDAR</button>
+					  			 </div>
+						</div>		   
+					</div>  	
+			 </form> 		  	
+  		</div>
+  								
+  						  	
+		<div class="col">				  	
+			 <form class="form" role="form" autocomplete="off" th:object=${registro} th:action="@{/formularioRegistro}" method="post" >
+			  
+				<!-- Tarjeta de registro -->
+				<div class="card">
+						<div class="card-header text-center">
+			    			<h4 class="h4 font-weight-bolder">DATOS DEL REGISTRO</h4>
+			    		</div>
+			    		
+				    <div class="card-body">
+				  			
+					  		<!-- DETALLE -->
+						  	<div class="form-group row">	<!--th:if="${editMode==null or editMode==false}">se muestra si la edicion es nula  -->
+						    	<label for="detalle" class="col-sm-6 col-form-label">DETALLE DEL REGISTRO:</label>
+						    	<div class="col-sm-10">
+	 	<!--  				      		<input th:field="${registro.detalleLugarRegistro}" type="text" class="form-control" id="detalle" required/>-->
+	 	  				      		<div class="alert-danger" th:if="${#fields.hasErrors('detalleLugarRegistro')}" th:errors="*{detalleLugarRegistro}">Name Error</div>	
+						      		<input type="text" class="form-control"> 
+						      		<div class="valid-feedback">Se vé bien!</div>
+						    		<div class="invalid-feedback">Debe completar este campo.</div>						    	
+						    	</div>
+							</div>
+		
+											<div class="col-sm-10 container mt-4">
+						    					 
+						    					<div class="row"> 
+						    						<label class="col-lg-12 col-form-label form-control-label">Localidad:</label>
+						    						<select class="custom-select col-sm-12" id="" required>
+												
+												        <option selected disabled value="" >Seleccione una localidad</option>
+												        <option th:each="localidad : ${localidades}"
+												        	th:text="${localidad.nombre}"
+												        	th:value="${localidad.nombre}"
+												        	th:selected th:field="${registro.localidad}"
+												        ></option>
+												        
+											     	</select>
+						    					</div>
+						    				</div>
+				    	
+								  	
+						  	
+						  							  	
+						  	<!-- Boton Registrar 
+					   			<div class="form-group row mt-5">
+						      		<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-6 mx-auto my-4 my-sm-0">REGISTRAR</button>
+					  			 </div>	
+					  		-->
+					  			 
+					  	 <div class="form-group row">
+							<div class="card-header text-center">
+										<a class="btn btn-secondary" th:href="@{'registro/cancelar'}">Cancelar</a>
+									<button type="button" disabled="disabled" class="btn btn-primary" data-toggle="modal" data-target="#ventanaRegistrar">Guardar Registro</button>
+		
+									<!-- VENTANA MODAL -->
+			
+								<div id="ventanaRegistrar" tabindex="1" class="modal fade" role="dialog" 
+			   						aria-labelledby="agregarTitulo" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+									<div class="modal-content">	
+						
+										<div class="modal-header">
+											<h5 id="agregarTitulo">Confirmar Registrar</h5>
+											<button class="close" data-dismiss="modal" aria-label="Cerrar">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										</div>
+										<div class="modal-body"><h6>Desea agregar este registro?</h6></div>
+										<div class="modal-footer">
+											<button class="btn btn-warning" type="button" data-dismiss="modal">
+												Cerrar
+											</button>
+											<input type="submit" class="btn btn-primary" value="Agregar">
+										</div>										
+									</div>	
+								  </div>			
+							  </div>
+		                  </div>
+					  	</div>		 			  			 	  			 			 
+	     			</div>
+	     		</div>	  
+			</form>		
+		</div>				
+		
+				
+									     		<!--busqueda correcta  -->					
+					  <div class="table-responsive">				
+				  				<form th:action="@{/patente}" th:object="${vehiculo}" method="get">
+									<input type="text" th:field="*{patente}" class="col-sm-4 col-form-label">
+									<div class="invalid-feedback">Ingrese una patente</div>
+									<button type="submit" class="btn btn-success mt-4 mb-6">Buscar Patente</button>
+								</form>
+							
+		<!--  			<div class="alert-danger text-center" th:if="${vehiculoPatente}" th:text="${formUsuarioErrorMessage}">Name Error</div>-->  
+					<!--  
+					<div class="alert-danger text-center"
+								th:if="${formUsuarioErrorMessage}"
+								th:text="${formUsuarioErrorMessage}">Name Error</div>
+					-->
+				
+					<!--busqueda correcta  					
+				  		<form th:action="@{/documento}" th:object="${tripulante}" method="get">
+							<input type="text" th:field="*{documento}" class="col-sm-4 col-form-label">
+							<button type="submit" class="btn btn-success mt-4 mb-4">Buscar DNI</button>
+						</form>-->
+				</div>	
+			
+		  				    <div class="card-header text-center">	
+				  						<h4 >DATOS VEHICULO ENCONTRADO</h4>
+							</div>
+							<div class="table-responsive">
+				  				<table class="table table-bordered table-hover table-striped">					
+		  							<thead class="thead-dark">
+		    							<tr>
+			      								<th scope="col">PATENTE</th>
+			      								<th scope="col">TITULAR</th>
+			      								<th scope="col">TIPO</th>
+			      								<th scope="col">MARCA</th>
+						      					<th scope="col">MODELO</th>
+						      					<th scope="col">COLOR</th>
+						      					<th scope="col">NRO DE CHASIS</th>
+						      					<th scope="col">NRO DE MOTOR</th>
+				    				    </tr>
+				  				  </thead>
+				  			  <tbody>
+				  			  		<tr th:each = "patenteEncontrada:${vehiculoPatente}">
+				      				<td th:text = "${patenteEncontrada.patente}" ></td>
+				      				<td th:text = "${patenteEncontrada.titular}" ></td>
+				      				<td th:text = "${patenteEncontrada.tipo}" ></td>
+				      				<td th:text = "${patenteEncontrada.marca}" ></td>
+				      				<td th:text = "${patenteEncontrada.modelo}" ></td>
+				      				<td th:text = "${patenteEncontrada.color}" ></td>
+				      				<td th:text = "${patenteEncontrada.numeroChasis}" ></td>
+				      				<td th:text = "${patenteEncontrada.numeroMotor}" ></td>	
+				    			 </tr>
+				  			 </tbody> 				
+						  </table>
+					   </div>
+				    </div>	
+			    					      					
+						  	<script>
+								// Example starter JavaScript for disabling form submissions if there are invalid fields
+								(function() {
+								  'use strict';
+								  window.addEventListener('load', function() {
+								    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+								    var forms = document.getElementsByClassName('needs-validation');
+								    // Loop over them and prevent submission
+								    var validation = Array.prototype.filter.call(forms, function(form) {
+								      form.addEventListener('submit', function(event) {
+								        if (form.checkValidity() === false) {
+								          event.preventDefault();
+								          event.stopPropagation();
+								        }
+								        form.classList.add('was-validated');
+								      }, false);
+								    });
+								  }, false);
+								})();
+							</script>
+								 	
+					
+   </div>				  
+</div>		
+</body>
+</html>

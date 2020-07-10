@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,7 +45,7 @@ public class RegistroTracking {
 	 * Atributo que representa la fecha y hora del Registro
 	 */
 	@Column
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	private LocalDateTime fecha;
 	
 	/**
@@ -93,6 +94,7 @@ public class RegistroTracking {
 	 * Atributo que representa el detalle del Lugar del registro
 	 */
 	@Column
+	@NotBlank(message = "Los detalles no debe quedar en blanco")
 	private String detalleLugarRegistro;
 	
 	
@@ -112,7 +114,7 @@ public class RegistroTracking {
 			return fecha;
 		}
 
-		public void setFechaHora(LocalDateTime fecha) {
+		public void setFecha(LocalDateTime fecha) {
 			this.fecha = fecha;
 		}
 		 /**

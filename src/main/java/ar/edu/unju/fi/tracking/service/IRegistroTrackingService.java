@@ -31,5 +31,8 @@ public interface IRegistroTrackingService {
 	
 	//metodo para buscar registros por localidad y rango de fechas
 	//public List<RegistroTracking> listaRegistrosLocalidadRangoFecha(String locaidad, LocalDateTime fechaInicial, LocalDateTime fechaFinal);
-		
+
+    public void guardar(RegistroTracking registro );
+	
+	Iterable<RegistroTracking> listarTodos();
 }

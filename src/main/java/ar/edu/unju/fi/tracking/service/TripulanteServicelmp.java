@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,15 @@ public class TripulanteServicelmp implements ITripulanteService {
 	@Autowired
 	private ITripulanteDAO tripulanteDAOImp;
 
+	@Autowired
+	private List<Tripulante>listaAuxTri =new ArrayList<>(); 
+	
+	private Tripulante untripulante;
+	
 	@Override
 	public void guardarTripulante(Tripulante tripulante) {
 		// TODO Auto-generated method stub
+		untripulante=tripulante;
 		tripulanteDAOImp.save(tripulante);
 	}
 
@@ -47,6 +54,25 @@ public class TripulanteServicelmp implements ITripulanteService {
 	public void eliminarTripulante(Long id) {
 		// TODO Auto-generated method stub
 		tripulanteDAOImp.deleteById(id);
+	}
+
+	@Override
+	public void crearTri(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		tripulanteDAOImp.save(tripulante);
+	}
+
+	@Override
+	public Iterable<Tripulante> listarTodos() {
+		// TODO Auto-generated method stub
+		return tripulanteDAOImp.findAll();
+	}
+
+	//busqueda correcta
+	@Override
+	public List<Tripulante> buscarDocumento(String documento) throws Exception {
+		// TODO Auto-generated method stub
+		return tripulanteDAOImp.findByDocumento(documento);
 	}
 
 }

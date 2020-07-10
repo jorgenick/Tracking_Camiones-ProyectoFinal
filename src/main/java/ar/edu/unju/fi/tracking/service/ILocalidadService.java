@@ -23,4 +23,7 @@ public interface ILocalidadService {
 	public Localidad buscarNombreLocalidad(String nombre) throws Exception;
 	
 	public Localidad buscarLocalidadPorNombre(String nombre);
+	
+	
+	public Iterable<Localidad> listarTodos();
 }

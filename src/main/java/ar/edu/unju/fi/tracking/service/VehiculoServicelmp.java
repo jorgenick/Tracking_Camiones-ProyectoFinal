@@ -25,6 +25,9 @@ public class VehiculoServicelmp implements IVehiculoService {
 	@Autowired
 	private IVehiculoDAO vehiculoDAOImp;
 
+	@Autowired
+	private Vehiculo unicoVehiculo;
+	
 	@Override
 	public void guardaVehiculoLocalidad(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
@@ -48,4 +51,29 @@ public class VehiculoServicelmp implements IVehiculoService {
 		// TODO Auto-generated method stub
 		vehiculoDAOImp.deleteById(id);
 	}
+
+	@Override
+	public void crear(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		vehiculoDAOImp.save(vehiculo);
+	}
+
+	@Override
+	public void guardar(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		unicoVehiculo=vehiculo;
+	}
+
+	@Override
+	public Iterable<Vehiculo> listarTodos() {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findAll();
+	}
+
+	@Override
+	public List<Vehiculo> buscarPatente(String patente) throws Exception {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findByPatente(patente);
+	}
+
 }

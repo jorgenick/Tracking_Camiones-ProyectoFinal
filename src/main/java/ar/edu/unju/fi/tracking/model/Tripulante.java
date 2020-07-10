@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
 
@@ -38,24 +39,28 @@ public class Tripulante implements Serializable {
 	 * Atributo que representa el documento del Tripulante
 	 */
 	@Column
+	@NotBlank(message = "El dni no debe quedar en blanco")
 	private String documento;
 	
 	/**
 	 * Atributo que representa el apellido del Tripulante
 	 */
 	@Column
+	@NotBlank(message = "El apellido no debe quedar en blanco")
 	private String apellido;
 	
 	/**
 	 * Atributo que representan los nombres del Tripulante
 	 */
 	@Column
+	@NotBlank(message = "Debe ingresar sus nombres")
 	private String nombres;
 	
 	/**
 	 * Atributo que representa la nacionalidad del Tripulante
 	 */
 	@Column
+	@NotBlank(message = "La nacionalidad no debe quedar en blanco")
 	private String nacionalidad;
 	
 	@ManyToMany(mappedBy = "tripulantes")

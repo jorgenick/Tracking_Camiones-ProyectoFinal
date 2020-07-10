@@ -86,5 +86,11 @@ public class LocalidadServicelmp implements ILocalidadService {
 		
 		return localidadEncontrada;
 	}
+
+	@Override
+	public Iterable<Localidad> listarTodos() {
+		// TODO Auto-generated method stub
+		return localidadDAOimp.findAll();
+	}
 	
 }

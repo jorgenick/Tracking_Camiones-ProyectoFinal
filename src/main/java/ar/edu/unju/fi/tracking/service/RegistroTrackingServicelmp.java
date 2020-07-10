@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tracking.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,19 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 			Localidad localidad) {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findAllByFechaBetweenAndLocalidadOrderByFecha(fechaDesde, fechaHasta, localidad);
+	}
+
+	@Override
+	public void guardar(RegistroTracking registro) {
+		// TODO Auto-generated method stub
+		registro.setFecha(LocalDateTime.now());
+		registroTrackingImp.save(registro);
+	}
+
+	@Override
+	public Iterable<RegistroTracking> listarTodos() {
+		// TODO Auto-generated method stub
+		return registroTrackingImp.findAll();
 	}
 	
 	

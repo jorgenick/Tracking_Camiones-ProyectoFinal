@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ar.edu.unju.fi.tracking.model.Tripulante;
@@ -11,4 +13,5 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
  */
 public interface ITripulanteDAO extends JpaRepository<Tripulante, Long> {
 
+	List<Tripulante> findByDocumento(String documento);
 }
