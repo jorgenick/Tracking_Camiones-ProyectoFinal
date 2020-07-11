@@ -14,6 +14,12 @@ import ar.edu.unju.fi.tracking.model.Localidad;
 
 /**
  * Clase que representa un objecto de tipo consulta de registro 
+ * 
+ * Implementa la interfaz Serializable:
+ * --> Para que un programa java pueda convertir un objeto en un montón de bytes y pueda luego recuperarlo, 
+ * el objeto necesita ser Serializable. Al poder convertir el objeto a bytes, ese objeto se puede enviar a 
+ * través de red, guardarlo en un fichero, y después reconstruirlo al otra lado de la red, leerlo del fichero,...
+ * 
  * @author Gonzalez Brian Leonel
  *
  */

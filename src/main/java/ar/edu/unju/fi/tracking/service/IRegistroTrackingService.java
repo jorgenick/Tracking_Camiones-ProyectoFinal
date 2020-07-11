@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 
 /**
@@ -24,6 +25,8 @@ public interface IRegistroTrackingService {
 	public void eliminarRegistro(Long id);
 	
 	public List<RegistroTracking> buscarPorPatenteOrdenFecha(Vehiculo vehiculo);
+	
+	public List<RegistroTracking> buscarPorTripulanteOrdenFecha(Tripulante tripulante);
 	
 	//buscar registro por patente de vehiculo
 	List<RegistroTracking> buscarPorVehiculoPatente(String patente);

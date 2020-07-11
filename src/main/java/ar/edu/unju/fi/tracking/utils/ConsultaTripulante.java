@@ -8,19 +8,19 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 /**
- * Clase que representa un elemento de mundo real de tipo consulta de un vehiculo por patente
+ * Clase que representa un objeto de tipo consulta de tripulante en el mundo real
  * 
  * Implementa la interfaz Serializable:
  * --> Para que un programa java pueda convertir un objeto en un montón de bytes y pueda luego recuperarlo, 
  * el objeto necesita ser Serializable. Al poder convertir el objeto a bytes, ese objeto se puede enviar a 
  * través de red, guardarlo en un fichero, y después reconstruirlo al otra lado de la red, leerlo del fichero,...
  * 
- * @author Gonzalez Brian leonel
+ * @author Gonzalez Brian Leonel
  *
  */
 
 @Component
-public class ConsultaVehiculoPatente implements Serializable {
+public class ConsultaTripulante implements Serializable {
 
 	/**
 	 * Valor por defecto de serializable
@@ -28,42 +28,45 @@ public class ConsultaVehiculoPatente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/*
-	 * -------------------- ATRIBUTOS --------------------
+	 * --------------- ATRIBUTOS --------------------
 	 */
 	
 	/**
-	 * Atributo que representa una patente de vehiculo
+	 * Atributo que representa el dni de una persona
 	 */
-	private String patente;
+	private Long dni;
+	
 
 	/*
-	 * -------------------- CONSTRUCTORES ---------------------
+	 * -------------- CONSTRUCTORES ------------------
 	 */
 	
 	/**
 	 * Constructor sin parametros
 	 */
-	public ConsultaVehiculoPatente() {
+	public ConsultaTripulante() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+
 	/*
-	 * ------------------ GETTERS AND SETTERS -------------------
+	 * -------------- GETTERS AND SETTERS ---------------
 	 */
-
 	/**
-	 * @return the patente
+	 * @return the dni
 	 */
-	public String getPatente() {
-		return patente;
+	public Long getDni() {
+		return dni;
 	}
 
+
 	/**
-	 * @param patente the patente to set
+	 * @param dni the dni to set
 	 */
-	public void setPatente(String patente) {
-		this.patente = patente;
+	public void setDni(Long dni) {
+		this.dni = dni;
 	}
+
 
 	/**
 	 * @return the serialversionuid

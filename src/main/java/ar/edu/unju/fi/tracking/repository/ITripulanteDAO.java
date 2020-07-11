@@ -14,4 +14,6 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
 public interface ITripulanteDAO extends JpaRepository<Tripulante, Long> {
 
 	List<Tripulante> findByDocumento(String documento);
+	
+	Tripulante findAllByDocumento(String documento);
 }

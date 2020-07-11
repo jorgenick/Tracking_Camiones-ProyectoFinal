@@ -5,7 +5,7 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
-		<title>Consultas</title>
+		<title>Registro Localidad - Fecha</title>
 		<link rel="icon" type="image/png" href="img/logo2.png">
 		
 		<!-- Bootstrap -->
@@ -90,12 +90,12 @@
 						    		</div>
 						    		
 						    		<!-- probar datos que envia y recibe -->
-						    		<div th:if="${activar==true}" class="col-sm-12 text-center h5 font-weight-lighter">
+						    		<!-- <div th:if="${activar==true}" class="col-sm-12 text-center h5 font-weight-lighter">
 						    			<div class="alert alert-primary" th:text="${verBuscado}"></div>
 						    			<div class="alert alert-primary" th:text="${mostrarLocalidad}"></div>
 						    			<div class="alert alert-primary" th:text="${verReg}"></div>
 						    			
-						    		</div>
+						    		</div> -->
 						    		
 						    		<!-- mensaje de error de ingreso de fechas -->
 									<div th:if="${mensajeErr==true}" class="col-sm-12 mt-4 h5 font-weight-lighter">
@@ -112,20 +112,26 @@
 						    		<!-- Tabla de registros encontrados -->
 						    		<div th:if="${activarRegLocFech==true}" class="col-sm-12 text-center">
 						    			<div class="table-responsive">
-							    			<table class="table table-hover m-auto">
-											    <thead class="thead-dark">
+							    			<table class="table-sm table-hover m-auto">
+											    <thead class="bg-dark text-white">
 											    	<tr>
-												        <th>ID</th>
+											    		<th rowspan="2">ID</th>
+											    		<th colspan="8">Vehiculo</th>
+											    		<th rowspan="2">Localidad</th>
+											    		<th colspan="3">Registro</th>
+											    	</tr>
+											    	<tr>
 												        <th>Tipo</th>
 												        <th>N° Patente</th>
 												        <th>N° Chasis</th>
 												        <th>N° Motor</th>
-												        <th>Modelo</th>
 												        <th>Marca</th>
+												        <th>Modelo</th>
 												        <th>Color</th>
 												        <th>Titular</th>
 												        <th>Fecha-Hora</th>
-												        <th>Localidad</th>
+												        <th>Detalles</th>
+												        
 												        <th>Ver tripulante</th>
 											      	</tr>
 											    </thead>
@@ -136,12 +142,13 @@
 												        <td th:text="${registroLocFech.vehiculo.patente}"></td>
 												        <td th:text="${registroLocFech.vehiculo.numeroChasis}"></td>
 												        <td th:text="${registroLocFech.vehiculo.numeroMotor}"></td>
-												        <td th:text="${registroLocFech.vehiculo.modelo}"></td>
 												        <td th:text="${registroLocFech.vehiculo.marca}"></td>
+												        <td th:text="${registroLocFech.vehiculo.modelo}"></td>
 												        <td th:text="${registroLocFech.vehiculo.color}"></td>
 												        <td th:text="${registroLocFech.vehiculo.titular}"></td>
-												        <td th:text="${registroLocFech.fecha}"></td>
 												        <td th:text="${registroLocFech.localidad.nombre}"></td>
+												        <td th:text="${registroLocFech.fecha}"></td>
+												        <td th:text="${registroLocFech.detalleLugarRegistro}"></td>
 												        <td >
 												        	<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#verTripulantes">
   																<i class="far fa-eye"></i>

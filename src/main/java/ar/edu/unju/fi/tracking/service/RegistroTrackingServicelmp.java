@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IRegistroTrackingDAO;
 
@@ -80,6 +81,12 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 	public List<RegistroTracking> buscarPorPatenteOrdenFecha(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findAllByVehiculoOrderByFecha(vehiculo);
+	}
+
+	@Override
+	public List<RegistroTracking> buscarPorTripulanteOrdenFecha(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		return registroTrackingImp.findAllByTripulantesOrderByFecha(tripulante);
 	}
 	
 	

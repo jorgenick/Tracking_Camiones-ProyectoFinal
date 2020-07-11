@@ -75,4 +75,9 @@ public class TripulanteServicelmp implements ITripulanteService {
 		return tripulanteDAOImp.findByDocumento(documento);
 	}
 
+	@Override
+	public Tripulante buscarTripulanteDNI(String documento) {
+		return tripulanteDAOImp.findAllByDocumento(documento);
+	}
+
 }

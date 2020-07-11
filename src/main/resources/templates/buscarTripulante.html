@@ -5,7 +5,7 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
-		<title>Consultas</title>
+		<title>Registro por Tripulante</title>
 		<link rel="icon" type="image/png" href="img/logo2.png">
 		
 		<!-- Bootstrap -->
@@ -44,29 +44,82 @@
 					
 						    		<div class=" col-sm-12">
 						    			<div class="container my-4">
-							    			<form class="row justify-content-center" th:action="@{}" th:object="${}" method="post">
+							    			<form class="row justify-content-center" th:action="@{/buscarTripulante}" th:object="${consultTrip}" method="post">
 							    				
-							    				<input class="form-control col-sm-4" type="number" min="1000000" th:field="${}" required placeholder="Ingrese DNI de tripulante a buscar...">
+							    				<!-- min="1000000" -->
+							    				<input class="form-control col-sm-4" type="number"  th:field="${consultTrip.dni}" required placeholder="Ingrese DNI de tripulante a buscar...">
 							    				<button type="submit" class="btn btn-success col-sm-2 ml-2">BUSCAR</button>
 							    			</form>
 						    			</div>
 						    		</div>
 						    		
-						    		<div th:if="${activarNoPatente==true}" class="col-sm-12 text-center h5 font-weight-lighter">
-						    			<div th:text="${noPatente}" class="alert alert-danger" role="alert"></div>
+						    		<div th:if="${activarSinReg==true}" class="col-sm-12 text-center h5 font-weight-lighter mt-2">
+						    			<div th:text="${msgSinTripu}" class="alert alert-danger" role="alert"></div>
 						    		</div>
 						    		
-						    		<div th:if="${activarSinRegistro==true}" class="col-sm-12 text-center h5 font-weight-lighter">
-						    			<div th:text="${sinRegistro}" class="alert alert-danger" role="alert"></div>
+						    		<div th:if="${activarVerTripuBusc==true}" class=" col-sm-12">
+						    			<div class="container my-2">
+							    			<form class="row justify-content-center" th:object="${tripuEncontrado}" method="post">
+							    			
+							    				<div class="col-sm-12 container mt-1">
+							    					<div class="row d-flex align-items-center">
+							    						<h4 class="col-sm-12">Datos del tripulante:</h4>
+							    					</div>
+							    				</div>
+							    				
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="dni">DNI:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="dni" th:value="*{documento}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="nacionalidad">Nacionalidad:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="nacionalidad" th:value="*{nacionalidad}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="apellido">Apellido:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="apellido" th:value="*{apellido}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="nombre">Nombre:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="nombre" th:value="*{nombres}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    			</form>
+						    			</div>
 						    		</div>
+						    		
+						    		<div th:if="${activarNoTripu==true}" class="col-sm-12 text-center h5 font-weight-lighter">
+						    			<div th:text="${noTripu}" class="alert alert-danger" role="alert"></div>
+						    		</div>
+						    		
+						    		<!--  <div th:if="${activarSinReg==true}" class="col-sm-12 text-center h5 font-weight-lighter">
+						    			<div th:text="${sinRegistro}" class="alert alert-danger" role="alert"></div>
+						    		</div> -->
 						    		
 						    		<!-- Tabla de registros encontrados -->
 						    		<div th:if="${activarTabla==true}" class="col-sm-12 text-center">
 						    			<div class="table-responsive">
-							    			<table class="table table-hover m-auto">
-											    <thead class="thead-dark">
+							    			<table class="table-sm table-hover m-auto">
+											    <thead class="bg-dark text-white">
 											    	<tr>
-												        <th>ID</th>
+											    		<th rowspan="2">ID</th>
+											    		<th colspan="7">Vehiculo</th>
+											    		<th rowspan="2">Localidad</th>
+											    		<th colspan="2">Registro</th>
+											    	</tr>
+											    	<tr>
 												        <th>N° Patente</th>
 												        <th>Tipo</th>
 												        <th>N° Chasis</th>
@@ -74,13 +127,12 @@
 												        <th>Modelo</th>
 												        <th>Marca</th>
 												        <th>Color</th>
-												        <th>Localidad</th>
 												        <th>Fecha-Hora</th>
 												        <th>Detalles</th>
 											      	</tr>
 											    </thead>
 											    <tbody>
-											      	<tr th:each="registro : ${registrosPatente}">
+											      	<tr th:each="registro : ${registrosTrip}">
 												        <td th:text="${registro.id}"></td>
 												        <td th:text="${registro.vehiculo.patente}"></td>
 												        <td th:text="${registro.vehiculo.tipo}"></td>

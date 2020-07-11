@@ -28,6 +28,8 @@ public interface ITripulanteService {
 	public Optional<Tripulante> obtenerUnTripulante(Long id);
 	
 	public void eliminarTripulante(Long id);
+	
+	public Tripulante buscarTripulanteDNI(String documento);
 
 	
 }

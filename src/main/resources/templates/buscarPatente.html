@@ -5,7 +5,7 @@
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
-		<title>Consultas</title>
+		<title>Registro por Patente</title>
 		<link rel="icon" type="image/png" href="img/logo2.png">
 		
 		<!-- Bootstrap -->
@@ -63,10 +63,15 @@
 						    		<!-- Tabla de registros encontrados -->
 						    		<div th:if="${activarTabla==true}" class="col-sm-12 text-center">
 						    			<div class="table-responsive">
-							    			<table class="table table-hover m-auto">
-											    <thead class="thead-dark">
+							    			<table class="table-sm table-hover m-auto">
+											    <thead class="bg-dark text-white">
 											    	<tr>
-												        <th>ID</th>
+											    		<th rowspan="2">ID</th>
+											    		<th colspan="7">Vehiculo</th>
+											    		<th rowspan="2">Localidad</th>
+											    		<th colspan="2">Registro</th>
+											    	</tr>
+											    	<tr>
 												        <th>N° Patente</th>
 												        <th>Tipo</th>
 												        <th>N° Chasis</th>
@@ -74,7 +79,6 @@
 												        <th>Modelo</th>
 												        <th>Marca</th>
 												        <th>Color</th>
-												        <th>Localidad</th>
 												        <th>Fecha-Hora</th>
 												        <th>Detalles</th>
 											      	</tr>

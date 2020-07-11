@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.service.LocalidadServicelmp;
 import ar.edu.unju.fi.tracking.service.RegistroTrackingServicelmp;
+import ar.edu.unju.fi.tracking.service.TripulanteServicelmp;
 import ar.edu.unju.fi.tracking.service.VehiculoServicelmp;
 import ar.edu.unju.fi.tracking.utils.ConsultaRegistro;
+import ar.edu.unju.fi.tracking.utils.ConsultaTripulante;
 import ar.edu.unju.fi.tracking.utils.ConsultaVehiculoPatente;
 
 /**
@@ -59,10 +62,22 @@ public class ConsultorController {
 	private VehiculoServicelmp vehiculoServiceImp;
 	
 	/**
+	 * Inyecta un objeto usando un servicio de Tripulante
+	 */
+	@Autowired
+	private TripulanteServicelmp tripulanteServiceImp;
+	
+	/**
 	 * Inyecta un objeto que implmenta una clase de tipo ConsultaRegistro
 	 */
 	@Autowired
 	private ConsultaRegistro consultaRegistro;
+	
+	/**
+	 * Inyecta un objeto que implmenta una clase de tipo ConsultaTripulante
+	 */
+	@Autowired
+	private ConsultaTripulante consultaTripulante;
 	
 	/**
 	 * Inyecta un objeto que implmenta una clase de tipo ConsultaPatente
@@ -232,14 +247,83 @@ public class ConsultorController {
 	 * ---------------------- BUSCAR POR TRIPULANTE -----------------------
 	 */
 	
+	/**
+	 * Metodo de controller de consultas que envia la vista para consultar por Tripulante
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/ingresarTripulante")
 	public String ingresarDNITipulante(Model model) {
+		
+		model.addAttribute("consultTrip", this.consultaTripulante);
+		
+		//desactivar el panel de error
+		model.addAttribute("activarNoTripu", false);
+		model.addAttribute("activarVerTripuBusc", false);
+		model.addAttribute("activarSinReg", false);
+		model.addAttribute("activarTabla", false);
 		
 		return "buscarTripulante";
 	}
 	
+	/**
+	 * Metodo de controller de consultas que recibe los datos a buscar por tripulante,
+	 * y realiza la respectiva consulta y muestra los correspondientes mensajes
+	 * @param consultaTripulante
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/buscarTripulante")
-	public String buscarTripulante() {
+	public String buscarTripulante(@Valid @ModelAttribute("consultTrip") ConsultaTripulante consultaTripulante, Model model) {
+		
+		//enviar un objeto a la vista
+		model.addAttribute("consultTrip", this.consultaTripulante);
+		
+		//instanciar un objeto de tipo Tripulante
+		Tripulante tripulanteBusc = new Tripulante();
+		
+		//busco el DNI del tripulante
+		tripulanteBusc = tripulanteServiceImp.buscarTripulanteDNI(consultaTripulante.getDni().toString());
+		
+		//verifico si esque se encontro el tripulante
+		if(tripulanteBusc == null) {
+			
+			//activar el panel de error
+			model.addAttribute("activarNoTripu", true);
+			
+			//enviar mensaje de no encontrado
+			model.addAttribute("noTripu", "No se encontro la tripulante con DNI: " + consultaTripulante.getDni());
+			
+		} else {
+			//tripuEncontrado
+			model.addAttribute("activarVerTripuBusc", true);
+			model.addAttribute("tripuEncontrado", tripulanteBusc);
+			
+			//instanciar un List que alamcenara registros
+			List<RegistroTracking> registrosEnco = new ArrayList<RegistroTracking>();
+			
+			//buscar los registros para un tripulante
+			registrosEnco = registroTrackingServiceImp.buscarPorTripulanteOrdenFecha(tripulanteBusc);
+			
+			//verificar si hay registros
+			if(registrosEnco.isEmpty()) {
+				
+				//enviar mensaje correspondiente
+				model.addAttribute("activarSinReg", true);
+				model.addAttribute("msgSinTripu", "No se encontraron registros para el tripulante seleccionado");
+				
+			} else {
+				
+				//activar vista de registros
+				model.addAttribute("activarTabla", true);
+				
+				//enviar registros encontrados
+				model.addAttribute("registrosTrip", registrosEnco);
+				
+				
+			}
+			
+		}
 		
 		return "buscarTripulante";
 	}
@@ -272,6 +356,9 @@ public class ConsultorController {
 	 */
 	@PostMapping("/buscarPatente")
 	public String buscarPatente(@Valid @ModelAttribute("consPatente") ConsultaVehiculoPatente consultaPatente, Model model) {
+		
+		//enviar objeto a la vista
+		model.addAttribute("consPatente", this.consultaPatente);
 		
 		// instancir una clase Vehiculo a buscar
 		Vehiculo vehiculoBusc = new Vehiculo();
