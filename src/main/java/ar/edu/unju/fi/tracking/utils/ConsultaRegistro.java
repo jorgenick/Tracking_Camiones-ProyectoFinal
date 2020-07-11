@@ -4,7 +4,7 @@
 package ar.edu.unju.fi.tracking.utils;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,14 +37,16 @@ public class ConsultaRegistro implements Serializable {
 	/**
 	 * Artibuto que representa la fecha-hora desde donde consultar
 	 */
-	@DateTimeFormat( pattern = "dd/MM/yyyy" )
-	private LocalDate fechaDesde;
+	//@DateTimeFormat( pattern = "dd/MM/yyyy" )
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime fechaDesde;
 	
 	/**
 	 * Atributo que representa la fecha-hora hasta donde consultar
 	 */
-	@DateTimeFormat( pattern = "dd/MM/yyyy" )
-	private LocalDate fechaHasta;
+	//@DateTimeFormat( pattern = "dd/MM/yyyy" )
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	private LocalDateTime fechaHasta;
 
 	//--------------------- CONSTRUCTORES ------------------
 	
@@ -82,28 +84,28 @@ public class ConsultaRegistro implements Serializable {
 	/**
 	 * @return the fechaHoraDesde
 	 */
-	public LocalDate getFechaDesde() {
+	public LocalDateTime getFechaDesde() {
 		return fechaDesde;
 	}
 
 	/**
 	 * @param fechaHoraDesde the fechaHoraDesde to set
 	 */
-	public void setFechaDesde(LocalDate fechaDesde) {
+	public void setFechaDesde(LocalDateTime fechaDesde) {
 		this.fechaDesde = fechaDesde;
 	}
 
 	/**
 	 * @return the fechaHoraHasta
 	 */
-	public LocalDate getFechaHasta() {
+	public LocalDateTime getFechaHasta() {
 		return fechaHasta;
 	}
 
 	/**
 	 * @param fechaHoraHasta the fechaHoraHasta to set
 	 */
-	public void setFechaHasta(LocalDate fechaHasta) {
+	public void setFechaHasta(LocalDateTime fechaHasta) {
 		this.fechaHasta = fechaHasta;
 	}
 

@@ -76,4 +76,10 @@ public class VehiculoServicelmp implements IVehiculoService {
 		return vehiculoDAOImp.findByPatente(patente);
 	}
 
+	@Override
+	public Vehiculo buscarPatentePorNombre(String patente) {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findAllByPatente(patente);
+	}
+
 }

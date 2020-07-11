@@ -14,4 +14,6 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
 public interface IVehiculoDAO extends JpaRepository<Vehiculo, Long>{
 
 	List<Vehiculo> findByPatente(String patente);
+	
+	Vehiculo findAllByPatente(String nombre);
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<title>Consultas</title>
+		<link rel="icon" type="image/png" href="img/logo2.png">
+		
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		
+		<!-- FontAwesome -->
+		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" >
+		
+		<!-- Tempusdominus -->
+		<link th:rel="stylesheet" th:href="@{css/tempusdominus-bootstrap-4.min.css}"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/tempusdominus-bootstrap-4.min.css">
+
+		
+	</head>
+	<body class="body-container-consulta m-0">
+		
+		<!-- Header -->
+		<div th:insert="layout/header :: header-sign-off"></div>
+		
+		<!-- Contenedor principal -->
+		<!-- container-fluid d-flex justify-content-center -->
+		 
+		<div class="container-fluid mx-0 mb-5 mt-3 pt-5 px-0 d-flex justify-content-center align-items-center">
+			<div class="card mt-5" >
+				<div class="card-header container p-4">
+					<div class="row m-0">
+						<h2 class="card-title col-sm-12 text-center text-dark m-0">Seleccione la consulta a realizar</h2>
+					</div>
+  				</div>
+				<div class="card-body container"> 
+					<div class="row mb-3">
+					  	
+					  	<div class="col-sm-12 d-flex justify-content-center">
+					  		<a class="btn btn-outline-info btn-lg col-sm-10 mt-3" th:href="@{/ingresarLocalidadYFecha}" >REGISTROS POR LOCALIDAD Y FECHA</a>
+					  	</div>
+					  	
+					  	<div class="col-sm-12 d-flex justify-content-center">
+					  		<a class="btn btn-outline-info btn-lg col-sm-10 mt-3" th:href="@{/ingresarTripulante}">REGISTROS POR RECORRIDO DE UN TRIPULANTE</a>
+					  	</div>
+					  	
+					  	<div class="col-sm-12 d-flex justify-content-center">
+					  		<a class="btn btn-outline-info btn-lg col-sm-10 mt-3" th:href="@{/ingresarPatente}">REGISTROS POR RECORRIDO DE UNA PATENTE</a>
+					  	</div>
+					  	
+					  	<div class="col-sm-12 d-flex justify-content-center">
+					  		<a class="btn btn-outline-info btn-lg col-sm-10 mt-3" th:href="@{/verRegistros}">VER TODOS LOS REGISTROS</a>
+					  	</div>
+					</div>
+			  	</div>
+			</div>
+		</div> 
+		
+		<!-- Footer -->
+		<div th:insert="layout/footer :: footer"></div>
+		
+		
+		<!-- Script Bootstrap -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+	</body>
+</html>

@@ -21,13 +21,15 @@ public interface IVehiculoService {
 	public void eliminarVehiculo(Long id);
 	
 	//metodo que permite crear datos de tipo Vehiculo
-		public void crear(Vehiculo vehiculo);
+	public void crear(Vehiculo vehiculo);
 		
-		public void guardar(Vehiculo vehiculo);
+	public void guardar(Vehiculo vehiculo);
 		
-		Iterable<Vehiculo> listarTodos();
+	Iterable<Vehiculo> listarTodos();
 		
-		//busqueda correcta
-		List<Vehiculo> buscarPatente(String patente) throws Exception ;
+	//busqueda correcta
+	List<Vehiculo> buscarPatente(String patente) throws Exception ;
+	
+	public Vehiculo buscarPatentePorNombre(String patente);
 		
 }

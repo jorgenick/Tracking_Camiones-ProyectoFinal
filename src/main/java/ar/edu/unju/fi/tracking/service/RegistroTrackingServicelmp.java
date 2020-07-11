@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.tracking.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
+import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IRegistroTrackingDAO;
 
 /**
@@ -57,7 +57,7 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 	}
 
 	@Override
-	public List<RegistroTracking> buscarRegistrosRangoFechasYLocalidad(LocalDate fechaDesde, LocalDate fechaHasta,
+	public List<RegistroTracking> buscarRegistrosRangoFechasYLocalidad(LocalDateTime fechaDesde, LocalDateTime fechaHasta,
 			Localidad localidad) {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findAllByFechaBetweenAndLocalidadOrderByFecha(fechaDesde, fechaHasta, localidad);
@@ -74,6 +74,12 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 	public Iterable<RegistroTracking> listarTodos() {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findAll();
+	}
+
+	@Override
+	public List<RegistroTracking> buscarPorPatenteOrdenFecha(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		return registroTrackingImp.findAllByVehiculoOrderByFecha(vehiculo);
 	}
 	
 	
