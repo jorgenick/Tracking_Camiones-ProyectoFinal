@@ -26,4 +26,7 @@ public interface ILocalidadService {
 	
 	
 	public Iterable<Localidad> listarTodos();
+
+
+	public Localidad encontrarUnaLocalidad(Long id);
 }

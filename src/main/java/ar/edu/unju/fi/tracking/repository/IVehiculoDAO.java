@@ -1,9 +1,11 @@
 package ar.edu.unju.fi.tracking.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 
 /**
@@ -13,7 +15,10 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
  */
 public interface IVehiculoDAO extends JpaRepository<Vehiculo, Long>{
 
-	List<Vehiculo> findByPatente(String patente);
+//	List<Vehiculo> findByPatente(String patente);
 	
 	Vehiculo findAllByPatente(String nombre);
+	
+	//para la busqueda de patente
+	public Optional<Vehiculo> findByPatente(String patente);
 }

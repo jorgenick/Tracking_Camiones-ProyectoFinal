@@ -1,11 +1,13 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IVehiculoDAO;
 
@@ -24,6 +26,8 @@ public class VehiculoServicelmp implements IVehiculoService {
 	 */
 	@Autowired
 	private IVehiculoDAO vehiculoDAOImp;
+	
+	private List<Vehiculo>listaAuxTri =new ArrayList<Vehiculo>();
 
 	@Autowired
 	private Vehiculo unicoVehiculo;
@@ -52,6 +56,7 @@ public class VehiculoServicelmp implements IVehiculoService {
 		vehiculoDAOImp.deleteById(id);
 	}
 
+	//
 	@Override
 	public void crear(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
@@ -73,7 +78,8 @@ public class VehiculoServicelmp implements IVehiculoService {
 	@Override
 	public List<Vehiculo> buscarPatente(String patente) throws Exception {
 		// TODO Auto-generated method stub
-		return vehiculoDAOImp.findByPatente(patente);
+		//return vehiculoDAOImp.findByPatente(patente);
+		return null;
 	}
 
 	@Override
@@ -81,5 +87,18 @@ public class VehiculoServicelmp implements IVehiculoService {
 		// TODO Auto-generated method stub
 		return vehiculoDAOImp.findAllByPatente(patente);
 	}
+
+	@Override
+	public Vehiculo encontrarPatente(String patente) throws Exception {
+		// TODO Auto-generated method stub
+		return vehiculoDAOImp.findByPatente(patente).orElseThrow(()-> new Exception("La patente no existe la base"));
+	}
+
+	@Override
+	public void guardarPatEncontrado(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		listaAuxTri.add(vehiculo);
+	}
+
 
 }

@@ -1,6 +1,9 @@
 package ar.edu.unju.fi.tracking.controller;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -123,6 +126,68 @@ public class AltaController {
 	}
 	
 	
+	//probando la busqueda del dni con el modal
+		@PostMapping("/buscarDocumento")
+		public String buscarDoc(@ModelAttribute("tripulante") Tripulante tripulante,  Model model) throws Exception {	
+		try {
+			Tripulante dniEncontrado = itripulanteservice.encontrarDni(tripulante.getDocumento());
+			model.addAttribute("vehiculo", vehiculo);
+			model.addAttribute("registro", registro);
+				try {			
+					itripulanteservice.guardarDNIEncontrado(dniEncontrado);
+					model.addAttribute("vehiculo", vehiculo);
+					model.addAttribute("registro", registro);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block				 
+					model.addAttribute("formDNIErrorMessage", e.getMessage());
+					model.addAttribute("vehiculo", vehiculo);
+					model.addAttribute("registro", registro);
+				}
+			}catch(Exception e) {			
+				model.addAttribute("formDNIErrorMessage", e.getMessage());
+				model.addAttribute("vehiculo", vehiculo);
+				model.addAttribute("registro", registro);
+			}			
+		return "Tripulante";
+		//return "redirect:/tripulante";
+	}
+	
+		//probando la busqueda de la patente con el modal
+				@PostMapping("/buscarPat")
+				public String buscarPat(@ModelAttribute("vehiculo") Vehiculo vehiculo,  Model model) throws Exception {	
+				try {
+					Vehiculo patenteEncontrada=iVehiculo.encontrarPatente(vehiculo.getPatente());
+					model.addAttribute("vehiculo", vehiculo);
+					model.addAttribute("registro", registro);
+					model.addAttribute("tripulante", tripulante);
+						try {			
+							iVehiculo.guardarPatEncontrado(patenteEncontrada);
+							model.addAttribute("vehiculo", vehiculo);
+							model.addAttribute("registro", registro);
+							model.addAttribute("tripulante", tripulante);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block				 
+							model.addAttribute("formPATErrorMessage", e.getMessage());
+							model.addAttribute("vehiculo", vehiculo);
+							model.addAttribute("registro", registro);
+							model.addAttribute("tripulante", tripulante);
+						}
+					}catch(Exception e) {			
+						model.addAttribute("formPATErrorMessage", e.getMessage());
+						model.addAttribute("vehiculo", vehiculo);
+						model.addAttribute("registro", registro);
+						model.addAttribute("tripulante", tripulante);
+					}			
+				return "Vehiculo";
+				//return "redirect:/tripulante";
+			}
+	
+		
+		
+		
+		
+	
+	
 	//busqueda correcta
 	@GetMapping("/patente")
 	public String buscarPorPatente(@RequestParam String patente, Model model, @ModelAttribute("vehiculo") Vehiculo vehiculo) throws Exception {
@@ -209,6 +274,7 @@ public class AltaController {
 		  model.addAttribute("userForm", tripulante);
 		  model.addAttribute("formTab", "active");
 	  }else {
+		 // System.out.println("se agrega un tripulante a la lista: "+tripulante.toString());
 		try {
 			itripulanteservice.guardarTripulante(tripulante);
 	    	unTripulante=tripulante;
@@ -247,13 +313,34 @@ public class AltaController {
 	  }else {		
 		try {	
 			iVehiculo.crear(unVehiculo);
+			
+			registro.setVehiculo(unVehiculo);
+			registro.setFecha(LocalDateTime.now());
 			model.addAttribute("unVehiculo", new Vehiculo());
 			
+			List<Tripulante> tripulantesAgregados = new ArrayList<Tripulante>();
+			tripulantesAgregados = itripulanteservice.listarTripulantesAgregados();
+			System.out.println(" tamaño lista recuperada: "+tripulantesAgregados.size());
+			for(Tripulante tripu : tripulantesAgregados) {
+				
+					System.out.println("El tripulante a guardar es: "+tripu.toString());
+					itripulanteservice.crearTri(tripu);
+				
+			}
+			System.out.println("la localidad seleccionada es: "+registro.getLocalidad().getId());
+//			Localidad localidad = localidadservice.obtenerLocalidadPorId(registro.getLocalidad().getId());
+		//	Localidad localidad=localidadservice.obtenerUnaLocalidad(registro.getLocalidad().getId());
+				
+			registro.setLocalidad(localidad);
+//			System.out.println("el nombre de la loc seleccionada es: "+registro.getLocalidad().getNombre());
+			
+			
+			model.addAttribute("unTripulante", new Tripulante());
+			registro.setTripulantes(tripulantesAgregados);
+			//guarda todo el registr tracking
+			System.out.println("registroTracking: "+registro);
 			registroservice.guardar(registro);
 			model.addAttribute("registro", new RegistroTracking());
-			
-			itripulanteservice.crearTri(unTripulante);
-			model.addAttribute("unTripulante", new Tripulante());
 			
 			model.addAttribute("listTab", "active");
 		}catch (Exception d) {

@@ -26,18 +26,25 @@ public class TripulanteServicelmp implements ITripulanteService {
 	@Autowired
 	private ITripulanteDAO tripulanteDAOImp;
 
-	@Autowired
-	private List<Tripulante>listaAuxTri =new ArrayList<>(); 
+	private List<Tripulante>listaAuxTri =new ArrayList<Tripulante>(); 
 	
 	private Tripulante untripulante;
 	
 	@Override
 	public void guardarTripulante(Tripulante tripulante) {
 		// TODO Auto-generated method stub
+		listaAuxTri.add(tripulante);
+		System.out.println("tamaño de la lista: "+listaAuxTri.size()+ "  tripulante:"+tripulante.toString());
 		untripulante=tripulante;
-		tripulanteDAOImp.save(tripulante);
+	//	tripulanteDAOImp.save(tripulante);
 	}
 
+	@Override
+	public void crearTri(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		tripulanteDAOImp.save(tripulante);
+	}
+		
 	@Override
 	public List<Tripulante> obtenerTripulantes() {
 		// TODO Auto-generated method stub
@@ -56,11 +63,6 @@ public class TripulanteServicelmp implements ITripulanteService {
 		tripulanteDAOImp.deleteById(id);
 	}
 
-	@Override
-	public void crearTri(Tripulante tripulante) {
-		// TODO Auto-generated method stub
-		tripulanteDAOImp.save(tripulante);
-	}
 
 	@Override
 	public Iterable<Tripulante> listarTodos() {
@@ -72,12 +74,31 @@ public class TripulanteServicelmp implements ITripulanteService {
 	@Override
 	public List<Tripulante> buscarDocumento(String documento) throws Exception {
 		// TODO Auto-generated method stub
-		return tripulanteDAOImp.findByDocumento(documento);
+	//	return tripulanteDAOImp.findByDocumento(documento);
+	return null;
 	}
 
 	@Override
 	public Tripulante buscarTripulanteDNI(String documento) {
 		return tripulanteDAOImp.findAllByDocumento(documento);
+	}
+
+	@Override
+	public List<Tripulante> listarTripulantesAgregados() {
+		// TODO Auto-generated method stub
+		return listaAuxTri;
+	}
+
+	@Override
+	public Tripulante encontrarDni(String documento) throws Exception {
+		// TODO Auto-generated method stub
+	 return tripulanteDAOImp.findByDocumento(documento).orElseThrow(()-> new Exception("El dni no existe la base"));
+	}
+
+	@Override
+	public void guardarDNIEncontrado(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		listaAuxTri.add(tripulante);
 	}
 
 }

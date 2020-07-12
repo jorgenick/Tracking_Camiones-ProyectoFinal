@@ -2,9 +2,11 @@ package ar.edu.unju.fi.tracking.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -40,6 +42,8 @@ public class Localidad {
 	// @OneToMany(mappedBy = "localidad", fetch = FetchType.LAZY)
 	// private RegistroTracking registro;
 
+	@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
+	private RegistroTracking registro;
 	// ------------METODOS CONSTRUCTORES--------------
 	/**
 	 * Constructor sin parametros
@@ -91,9 +95,27 @@ public class Localidad {
 			 * public void setRegistro(RegistroTracking registro) { this.registro =
 			 * registro; }
 			 */
+	
+	
 	// ------------METODO TO STRING-------------
+
 	@Override
 	public String toString() {
-		return "Localidad [nombre=" + nombre + "]";
+		return "Localidad [id=" + id + ", nombre=" + nombre + "]";
 	}
+
+	/**
+	 * @return the registro
+	 */
+	public RegistroTracking getRegistro() {
+		return registro;
+	}
+
+	/**
+	 * @param registro the registro to set
+	 */
+	public void setRegistro(RegistroTracking registro) {
+		this.registro = registro;
+	}
+
 }

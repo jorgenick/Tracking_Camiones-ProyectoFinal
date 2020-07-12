@@ -92,5 +92,11 @@ public class LocalidadServicelmp implements ILocalidadService {
 		// TODO Auto-generated method stub
 		return localidadDAOimp.findAll();
 	}
+
+	@Override
+	public Localidad encontrarUnaLocalidad(Long id) {
+		// TODO Auto-generated method stub
+		return localidadDAOimp.findByNombre(id);
+	}
 	
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 //import java.util.List;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -38,7 +40,7 @@ public class RegistroTracking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
-	private Long id;
+	private long id;
 	
 	/**
 	 * Atributo que representa la fecha y hora del Registro
@@ -85,9 +87,14 @@ public class RegistroTracking {
 	 * dependencias
 	 */
 //	@Autowired
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@ManyToOne(fetch = FetchType.LAZY)//manytoone
+//	@JoinColumn(name="LOCALIDAD_ID")
+//	private Localidad localidad;
+	@OneToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="LOCALIDAD_ID")
 	private Localidad localidad;
+	
+	
 	
 	/**
 	 * Atributo que representa el detalle del Lugar del registro
@@ -186,11 +193,13 @@ public class RegistroTracking {
 		public void setId(Long id) {
 			this.id = id;
 		}
+		@Override
+		public String toString() {
+			return "RegistroTracking [id=" + id + ", fecha=" + fecha + ", vehiculo=" + vehiculo + ", tripulantes="
+					+ tripulantes + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
+		}
 		
 		
 		//*********METODO TO STRING*****************
-		@Override
-		public String toString() {
-			return "RegistroTracking [fechaHora=" + fecha + ", vehiculo=" + vehiculo + ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
-		}
+		
 }

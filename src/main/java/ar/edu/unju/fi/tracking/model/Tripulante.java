@@ -182,10 +182,12 @@ public class Tripulante implements Serializable {
 		this.registroTracking = registroTracking;
 	}
 
-	//*********METODO TO STRING*************
 	@Override
 	public String toString() {
-		return "Tripulante [documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
-				+ ", nacionalidad=" + nacionalidad + "]";
+		return "Tripulante [id=" + id + ", documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
+				+ ", nacionalidad=" + nacionalidad + ", registroTracking=" + registroTracking + "]";
 	}
+
+	//*********METODO TO STRING*************
+	
 }

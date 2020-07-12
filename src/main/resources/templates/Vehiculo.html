@@ -26,10 +26,7 @@
   <body>
  		
 	<div class="container">
-			
-		<!-- abrir la plantilla del header 
-		<div th:insert="layout/header :: header"></div>-->			
-		  
+					  
 		  <div class="card-deck mt-4">
 			
 			<div class="col">
@@ -294,14 +291,14 @@
 		</div>				
 		
 				
-									     		<!--busqueda correcta  -->					
+									     		<!--busqueda correcta  					
 					  <div class="table-responsive">				
 				  				<form th:action="@{/patente}" th:object="${vehiculo}" method="get">
 									<input type="text" th:field="*{patente}" class="col-sm-4 col-form-label">
 									<div class="invalid-feedback">Ingrese una patente</div>
 									<button type="submit" class="btn btn-success mt-4 mb-6">Buscar Patente</button>
 								</form>
-							
+						-->	
 		<!--  			<div class="alert-danger text-center" th:if="${vehiculoPatente}" th:text="${formUsuarioErrorMessage}">Name Error</div>-->  
 					<!--  
 					<div class="alert-danger text-center"
@@ -315,6 +312,52 @@
 							<button type="submit" class="btn btn-success mt-4 mb-4">Buscar DNI</button>
 						</form>-->
 				</div>	
+			
+			
+				<!-- mensaje de error de dni no encontrado -->
+						<div class="alert-danger text-center" th:if="${formPATErrorMessage}" th:text="${formPATErrorMessage}">Name Error</div>
+		    		  
+		    		  <div class="table-responsive">
+		    			<!-- con modal la busqueda de la patente-->
+						<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#modalBuscarPAT">Buscar Patente</button>
+					</div>							
+							<!-- modal de busqueda del dni -->					
+							 <div class="modal fade" id="modalBuscarPAT" tabindex="-1" role="dialog"
+									aria-labelledby="agregarAutorModal" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+										<form id="formBuscarPAT" th:object="${vehiculo}" th:action="@{/buscarPat}" method="post">
+											<div class="modal-header">
+												<h5 class="modal-title" id="agregarAutorModal">Buscar Patente</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">						
+													<div class="form-group">
+														<label for="patente">Patente del Vehiculo:</label>
+														 <input
+															class="form-control" id="patente"
+															th:field="${vehiculo.patente}"
+															placeholder="Ingresar la patente del Vehiculo"></input>								
+													</div>					
+											</div>				
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary" value="Buscar Patente" >						
+											</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+						
+			
+			
+			
 			
 		  				    <div class="card-header text-center">	
 				  						<h4 >DATOS VEHICULO ENCONTRADO</h4>
@@ -334,7 +377,7 @@
 				    				    </tr>
 				  				  </thead>
 				  			  <tbody>
-				  			  		<tr th:each = "patenteEncontrada:${vehiculoPatente}">
+				  			  		<tr th:each = "patenteEncontrada:${vehiculo}">
 				      				<td th:text = "${patenteEncontrada.patente}" ></td>
 				      				<td th:text = "${patenteEncontrada.titular}" ></td>
 				      				<td th:text = "${patenteEncontrada.tipo}" ></td>

@@ -25,15 +25,12 @@
 	
 <body>
 	<div class="container">
-			
-		<!-- abrir la plantilla del header 
-		<div th:insert="layout/header :: header"></div>-->			
-		  
+					
 		  <div class="card-deck mt-4">
 			
 			<div class="col">
 
-               <form class="form" role="form" autocomplete="off" th:object=${vehiculo} th:action="@{/formularioVehiculo}" method="post" >  
+               <form class="form" role="form" autocomplete="off" th:object=${vehiculo} th:action="@{/formulario}" method="post" >  
              
                 <div class="card ">
  
@@ -208,7 +205,7 @@
 						  		<!-- Boton cancelar/guardar -->
 					   			<div class="form-group row mt-5">
 					   				<button type="reset" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-					   				<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >OTRO TRIPULANTE</button>
+					  				<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >OTRO TRIPULANTE</button> 
 						      		<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >SIGUIENTE-></button>
 					  				
 					  			 </div>
@@ -245,18 +242,20 @@
 						    					 
 						    					<div class="row"> 
 						    						<label class="col-lg-12 col-form-label form-control-label">Localidad:</label>
-						    						<select class="custom-select col-sm-12" id="" required>
-												
-												        <option selected disabled value="" >Seleccione una localidad</option>
+						<!--    						<select th:field="${registro.localidad.id}" class="custom-select col-sm-12" id="localidad" name="localidad" required>-->	
+						  				      		<select th:field="${registro.localidad.id}" class="custom-select col-sm-12" id="" required>
+						  				      		  <option selected disabled value="0" >Seleccione una localidad</option>		
 												        <option th:each="localidad : ${localidades}"
 												        	th:text="${localidad.nombre}"
-												        	th:value="${localidad.nombre}"
-												        	th:selected th:field="${registro.localidad}"
+												        	th:value="${localidad.id}"
+												        	th:selected th:field="${registro.localidad.id}" 
 												        ></option>
-												        
 											     	</select>
 						    					</div>
 						    				</div>
+<!-- <select th:field="${registro.localidad.id}" class="custom-select col-sm-12" id="" required>va reemplazado al select -->						    				
+<!--  	th:selected th:field="${registro.localidad.id}"   va en ese lugar en blanco-->
+
 
 					  	 <div class="form-group row">
 							<div class="card-header text-center">

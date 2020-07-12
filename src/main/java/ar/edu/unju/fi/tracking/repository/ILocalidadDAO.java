@@ -20,4 +20,7 @@ public interface ILocalidadDAO extends JpaRepository<Localidad, Long> {
 	
 	public Optional<Localidad> findByNombre (String nombre);
 	
+	
+	public Localidad findByNombre(Long id);
+	
 }

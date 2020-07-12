@@ -25,10 +25,6 @@
 </head>
 	
  <body class="container">
-
-		
-		   <!-- abrir la plantilla del header 
-		   <div th:insert="layout/header :: header"></div>-->
 		
 				<br>
 					<a th:href="@{/nuevoRegistro}" class="btn btn-primary">Nuevo Registro</a>
@@ -179,7 +175,8 @@
   		      								<td th:text = "${registro.id}" ></td>  
   		      								<td th:text = "${registro.detalleLugarRegistro}" ></td>
   		      								<td th:text = "${registro.fecha}" ></td>
-  		      							
+  		      								<td th:text = "${registro.vehiculo}" ></td>
+  		      								<td th:text = "${registro.localidad}" ></td>
 	<!--  	      								<td th:text = "${registro.vehiculo.id}" ></td> -->		
 		    							</tr>
    												

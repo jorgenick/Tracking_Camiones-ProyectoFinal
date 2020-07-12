@@ -26,15 +26,12 @@
   <body>
  		
 	<div class="container">
-			
-		<!-- abrir la plantilla del header 
-		<div th:insert="layout/header :: header"></div>-->			
-		  
+				  
 		  <div class="card-deck mt-4">
 			
 			<div class="col">
 
-               <form class="form" role="form" autocomplete="off" th:object=${vehiculo} th:action="@{/formularioVehiculo}" method="post" >  
+               <form class="form" role="form" autocomplete="off" th:object=${vehiculo} th:action="@{/formulario}" method="post" >  
              
                 <div class="card ">
  
@@ -205,7 +202,7 @@
 						  		<!-- Boton cancelar/guardar -->
 					   			<div class="form-group row mt-5">
 					   				<button type="reset" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-					  				<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >OTRO TRIPULANTE</button>
+					  				<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >OTRO TRIPULANTE</button>  
 					  				<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >SIGUIENTE-></button>
 					  			 </div>
 						</div>		   
@@ -288,14 +285,62 @@
 	     		  </div>	  
 			    </form>		
 		    </div>				
-		    
+		    <!--  
 		    <div class="table-responsive">
-		    		<!--busqueda correcta --> 					
+		    		<!--busqueda correcta 					
 				  		<form th:action="@{/documento}" th:object="${tripulante}" method="get">
 							<input type="text" th:field="*{documento}" class="col-sm-4 col-form-label">
 							<button type="submit" class="btn btn-success mt-4 mb-4">Buscar DNI</button>
 						</form>
 			</div>	
+		    --> 
+		    
+		    			<!-- mensaje de error de dni no encontrado -->
+						<div class="alert-danger text-center" th:if="${formDNIErrorMessage}" th:text="${formDNIErrorMessage}">Name Error</div>
+		    		  
+		    		  <div class="table-responsive">
+		    			<!-- con modal la busqueda del dni -->
+						<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#modalBuscarDNI">Buscar DNI</button>
+					</div>							
+							<!-- modal de busqueda del dni -->					
+							 <div class="modal fade" id="modalBuscarDNI" tabindex="-1" role="dialog"
+									aria-labelledby="agregarAutorModal" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+										<form id="formBuscarDNI" th:object="${tripulante}" th:action="@{/buscarDocumento}" method="post">
+											<div class="modal-header">
+												<h5 class="modal-title" id="agregarAutorModal">Buscar Documento</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">						
+													<div class="form-group">
+														<label for="documento">Documento del Tripulante:</label>
+														 <input
+															class="form-control" id="documento"
+															th:field="${tripulante.documento}"
+															placeholder="Ingresar el documento del tripulante"></input>								
+													</div>					
+											</div>				
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary" value="Buscar DNI" >						
+											</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+						
+		    
+		    
+		    
+		    
+		    
 		    
 									<div class="card-header text-center">	
 				  						<h4 >DATOS TRIPULANTE ENCONTRADO</h4>
@@ -311,7 +356,7 @@
 						    							</tr>
 						  							</thead>
 						  			  				<tbody>
-						    							<tr th:each = "docEncontrado:${listaDoc}">
+						    							<tr th:each = "docEncontrado:${tripulante}">
 						      								<td th:text = "${docEncontrado.documento}" ></td>
 						      								<td th:text = "${docEncontrado.apellido}" ></td>
 						      								<td th:text = "${docEncontrado.nombres}" ></td>

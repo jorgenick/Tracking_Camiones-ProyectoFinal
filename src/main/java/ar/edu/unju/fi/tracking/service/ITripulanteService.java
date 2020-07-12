@@ -31,5 +31,12 @@ public interface ITripulanteService {
 	
 	public Tripulante buscarTripulanteDNI(String documento);
 
+	public List<Tripulante> listarTripulantesAgregados();
 	
+	/////
+	//probando haber si sale la busqueda con ejemplo
+		public Tripulante encontrarDni(String documento) throws Exception;
+		
+		//probando haber si sale la busqyeda con ejemplp
+		public void guardarDNIEncontrado(Tripulante tripulante);
 }
