@@ -99,4 +99,5 @@ public class LocalidadServicelmp implements ILocalidadService {
 		return localidadDAOimp.findByNombre(id);
 	}
 	
+	
 }

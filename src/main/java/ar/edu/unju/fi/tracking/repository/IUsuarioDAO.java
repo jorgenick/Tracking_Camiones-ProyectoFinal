@@ -12,4 +12,6 @@ public interface IUsuarioDAO extends JpaRepository<Usuario, Long>{
 	@Query("from Usuario e order by e.nombreUsuario")
 	public List<Usuario> obtenerUsuarios();
 	
+	Usuario findByNombreUsuario(String nombre);
+	
 }

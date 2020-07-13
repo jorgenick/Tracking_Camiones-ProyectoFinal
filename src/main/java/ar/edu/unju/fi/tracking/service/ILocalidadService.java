@@ -24,7 +24,6 @@ public interface ILocalidadService {
 	
 	public Localidad buscarLocalidadPorNombre(String nombre);
 	
-	
 	public Iterable<Localidad> listarTodos();
 
 

@@ -35,6 +35,12 @@ public class UsuarioServiceImp implements IUsuarioService {
 	public void eliminarUsuario(Long id) {
 		usuarioDAOimp.deleteById(id);
 	}
+	
+	@Override
+	public Usuario buscarUsuarioPorNombreUsuario(String nombre) {
+		return usuarioDAOimp.findByNombreUsuario(nombre);
+	}
+
 
 
 }

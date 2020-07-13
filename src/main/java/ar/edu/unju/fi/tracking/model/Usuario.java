@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,27 +37,33 @@ public class Usuario implements Serializable {
 	/**
 	 * Atributo que representa el nombre del Usuario
 	 */
-	@Column
+	@Column(name = "nombreUsuario")
+	@NotBlank(message="Ingrese su Usuario!")
 	private String nombreUsuario;
 	/**
 	 * Atributo que representa la contraseña del Usuario
 	 */
 	@Column
+	@NotBlank(message="")
+	@Size(min=5, message="Su contraseña debe tener como mínimo 5 caracteres")
 	private String password;
 	/**
 	 * Atributo que representa el nombre real del Usuario
 	 */
 	@Column
+	@NotBlank(message="Ingrese su Nombre!")
 	private String nombreReal;
 	/**
 	 * Atributo que representa el apellido real del Usuario
 	 */
 	@Column
+	@NotBlank(message="Ingrese su Apellido!")
 	private String apellidoReal;
 	/**
 	 * Atributo que representa el tipo de Usuario
 	 */
 	@Column
+	@NotBlank(message="Seleccione un Tipo de Usuario!")
 	private String tipoUsuario;
 	
 	@Column

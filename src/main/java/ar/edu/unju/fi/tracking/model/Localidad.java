@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.tracking.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
 
@@ -26,7 +29,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "localidad")
-public class Localidad {
+public class Localidad implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +45,7 @@ public class Localidad {
 	 * Atributo que representa el nombre de la localidad
 	 */
 	@Column
+	@NotBlank(message="Debe ingresar una localidad!")
 	private String nombre;
 
 	// @OneToMany(mappedBy = "localidad", fetch = FetchType.LAZY)
