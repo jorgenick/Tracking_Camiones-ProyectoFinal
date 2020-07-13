@@ -80,12 +80,16 @@ public class usuarioBDController {
 //							variable de tipo boolean
 							boolean band=false;
 //							a la variable cadenaIngresada le asigno la cadena ingresada en el input nombre Real
-							String cadenaIngresada= usuario.getNombreReal();
+							String cadenaIngresad= usuario.getNombreReal();
+//							convierto cadena a miniscula y reemplazo acentos y espacios
+							String cadenaIngresada=cadenaIngresad.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+									.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+									.replace("Ú", "u");
 //							recorro la cadena
 							for(int i=0;i<=cadenaIngresada.length()-1;i++)
 							{
 //								verifico que la cadena este entre los rangos correspondientes
-								if(!((cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123)||(cadenaIngresada.charAt(i) > 64 && cadenaIngresada.charAt(i) < 91)||(cadenaIngresada.charAt(i)==32)) )
+								if(!(cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123))
 									band=true;
 							}
 //							si la badera es verdadera emito un nuevo mensaje de error
@@ -106,12 +110,16 @@ public class usuarioBDController {
 	//									variable de tipo boolean
 										boolean band2=false;
 	//									a la variable cadenaIngresada le asigno la cadena ingresada en el input apellido usuario
-										String cadenaIngresada2= usuario.getApellidoReal();
+										String cadenaIngresad2= usuario.getApellidoReal();
+//										convierto cadena a miniscula y reemplazo acentos y espacios
+										String cadenaIngresada2=cadenaIngresad2.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+										.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+										.replace("Ú", "u");
 	//									recorro la cadena
 										for(int i=0;i<=cadenaIngresada2.length()-1;i++)
 										{
 	//										verifico que la cadena este entre los rangos correspondientes
-											if(!((cadenaIngresada2.charAt(i) > 96 && cadenaIngresada2.charAt(i) < 123)||(cadenaIngresada2.charAt(i) > 64 && cadenaIngresada2.charAt(i) < 91)||(cadenaIngresada2.charAt(i)==32)) )
+											if(!(cadenaIngresada2.charAt(i) > 96 && cadenaIngresada2.charAt(i) < 123))
 												band2=true;
 										}
 	//									si la badera es verdadera emito un nuevo mensaje de error
@@ -188,12 +196,16 @@ public class usuarioBDController {
 //							variable de tipo boolean
 							boolean band=false;
 //							a la variable cadenaIngresada le asigno la cadena ingresada en el input nombre Real
-							String cadenaIngresada= usuario.getNombreReal();
+							String cadenaIngresad= usuario.getNombreReal();
+//							convierto cadena a miniscula y reemplazo acentos y espacios
+							String cadenaIngresada=cadenaIngresad.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+									.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+									.replace("Ú", "u");
 //							recorro la cadena
 							for(int i=0;i<=cadenaIngresada.length()-1;i++)
 							{
 //								verifico que la cadena este entre los rangos correspondientes
-								if(!((cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123)||(cadenaIngresada.charAt(i) > 64 && cadenaIngresada.charAt(i) < 91)||(cadenaIngresada.charAt(i)==32)) )
+								if(!(cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123))
 									band=true;
 							}
 //							si la badera es verdadera emito un nuevo mensaje de error
@@ -214,12 +226,16 @@ public class usuarioBDController {
 	//									variable de tipo boolean
 										boolean band2=false;
 	//									a la variable cadenaIngresada le asigno la cadena ingresada en el input apellido usuario
-										String cadenaIngresada2= usuario.getApellidoReal();
+										String cadenaIngresad2= usuario.getApellidoReal();
+//										convierto cadena a miniscula y reemplazo acentos y espacios
+										String cadenaIngresada2=cadenaIngresad2.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+												.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+												.replace("Ú", "u");
 	//									recorro la cadena
 										for(int i=0;i<=cadenaIngresada2.length()-1;i++)
 										{
 	//										verifico que la cadena este entre los rangos correspondientes
-											if(!((cadenaIngresada2.charAt(i) > 96 && cadenaIngresada2.charAt(i) < 123)||(cadenaIngresada2.charAt(i) > 64 && cadenaIngresada2.charAt(i) < 91)||(cadenaIngresada2.charAt(i)==32)) )
+											if(!(cadenaIngresada2.charAt(i) > 96 && cadenaIngresada2.charAt(i) < 123))
 												band2=true;
 										}
 	//									si la badera es verdadera emito un nuevo mensaje de error
@@ -364,12 +380,16 @@ public class usuarioBDController {
 //							variable de tipo boolean
 							boolean band=false;
 //							a la variable cadenaIngresada le asigno la cadena ingresada en el input
-							String cadenaIngresada= unaLocalidad.getNombre();
+							String cadenaIngresad= unaLocalidad.getNombre();
+//							convierto cadena a miniscula y reemplazo acentos y espacios
+							String cadenaIngresada=cadenaIngresad.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+									.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+									.replace("Ú", "u");
 //							recorro la cadena
 							for(int i=0;i<=cadenaIngresada.length()-1;i++)
 							{
 //								verifico que la cadena este entre los rangos correspondientes
-								if(!((cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123)||(cadenaIngresada.charAt(i) > 64 && cadenaIngresada.charAt(i) < 91)||(cadenaIngresada.charAt(i)==32)) )
+								if(!(cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123))
 									band=true;
 							}
 //							si la badera es verdadera emito un nuevo mensaje de error
@@ -452,12 +472,16 @@ public class usuarioBDController {
 //							variable de tipo boolean
 							boolean band=false;
 //							a la variable cadenaIngresada le asigno la cadena ingresada en el input
-							String cadenaIngresada= unaLocalidad.getNombre();
+							String cadenaIngresad= unaLocalidad.getNombre();
+//							convierto cadena a miniscula y reemplazo acentos y espacios
+							String cadenaIngresada=cadenaIngresad.toLowerCase().replace(" ", "").replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+									.replace("ú", "u").replace("Á", "a").replace("É", "e").replace("Í", "i").replace("Ó", "o")
+									.replace("Ú", "u");
 //							recorro la cadena
 							for(int i=0;i<=cadenaIngresada.length()-1;i++)
 							{
 //								verifico que la cadena este entre los rangos correspondientes
-								if(!((cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123)||(cadenaIngresada.charAt(i) > 64 && cadenaIngresada.charAt(i) < 91)||(cadenaIngresada.charAt(i)==32)) )
+								if(!(cadenaIngresada.charAt(i) > 96 && cadenaIngresada.charAt(i) < 123))
 									band=true;
 							}
 //							si la badera es verdadera emito un nuevo mensaje de error
