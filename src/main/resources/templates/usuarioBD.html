@@ -49,6 +49,9 @@
 		btn-danger{
 			background: #ff0000;
 		}
+		#titulos{
+		color: #F1C40F;
+		}
 			</style>
 	</head>
 <!-- 	cuerpo de la pagina -->
@@ -104,7 +107,7 @@
 			<div class="tab-content">
 <!-- 			Listado de usuarios -->
 				<div class="tab-pane fade show " id="usuario" th:classappend="${usuariosTab}" role="tabpanel" aria-labelledby="usuario-tab">
-				<h2 class="animated zoomInDown">Usuarios Registrados</h2>
+				<h2 id="titulos" class="animated zoomInDown">Usuarios Registrados</h2>
 					<div class="table-responsive">
 						<table class="table table-striped">
 					  		<thead>
@@ -140,7 +143,7 @@
 				</div>
 <!-- 				Listado de Localidades -->
 				<div class="tab-pane fade show" id="localidad" role="tabpanel" th:classappend="${localidadesTab}" aria-labelledby="localidad-tab">
-				<h2 class="animated zoomInLeft">Localidades Registradas</h2>
+				<h2 id="titulos" class="animated zoomInLeft">Localidades Registradas</h2>
 					<div class="table-responsive">
 						<table class="table table-striped">
 						  <thead>

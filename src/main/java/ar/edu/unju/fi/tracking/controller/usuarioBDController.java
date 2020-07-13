@@ -24,7 +24,7 @@ import ar.edu.unju.fi.tracking.service.IUsuarioService;
 
 @Controller
 @RequestMapping
-public class mController {
+public class usuarioBDController {
 	@Autowired
 	IUsuarioService equipoService;
 	// cambiar equipo service
@@ -43,7 +43,7 @@ public class mController {
 		model.addAttribute("registroLocalidad", unaLocalidad);
 		model.addAttribute("usuarios", equipoService.obtenerUsuarios());
 		model.addAttribute("localidades", localidadService.obtenerLocalidades());	
-		return "m";
+		return "usuarioBD";
 	}
 
 	@PostMapping("/saveUsuario")
@@ -170,7 +170,7 @@ public class mController {
 											}
 									}
 							}
-		return "m";
+		return "usuarioBD";
 	}
 	
 	@PostMapping("/saveUsuarioE")
@@ -273,7 +273,7 @@ public class mController {
 																model.addAttribute("usuarios", equipoService.obtenerUsuarios());
 																model.addAttribute("localidades", localidadService.obtenerLocalidades());
 																model.addAttribute("usuariosTab", "active");
-																return "m";
+																return "usuarioBD";
 															}		
 													}						
 											}
@@ -291,7 +291,7 @@ public class mController {
 		List<Localidad> localidades = localidadService.obtenerLocalidades();
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("localidades", localidades);		
-		return "m";
+		return "usuarioBD";
 	}
 	
 	@RequestMapping("/usuarioBdL")
@@ -304,7 +304,7 @@ public class mController {
 		List<Localidad> localidades = localidadService.obtenerLocalidades();
 		model.addAttribute("usuarios", usuarios);
 		model.addAttribute("localidades", localidades);		
-		return "m";
+		return "usuarioBD";
 	}
 	
 
@@ -414,7 +414,7 @@ public class mController {
 										}
 							}
 					}
-		return "m";
+		return "usuarioBD";
 	}	
 	
 	@PostMapping("/saveLocalidadE")
@@ -496,7 +496,7 @@ public class mController {
 												model.addAttribute("usuarios", equipoService.obtenerUsuarios());
 												model.addAttribute("localidades", localidadService.obtenerLocalidades());
 												model.addAttribute("localidadesTab", "active");
-							return "m";
+							return "usuarioBD";
 												}		
 							
 										}
