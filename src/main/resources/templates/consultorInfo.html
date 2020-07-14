@@ -5,9 +5,9 @@
 		<meta name="author" content="Gonzalez Brian Leonel">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
-		<link rel="icon" type="image/png" href="img/logo2.png">
+		<link rel="icon" type="image/png" th:href="@{/img/logo2.png}">
 		
-		<title>Consultas</title>
+		<title>Bienvenida</title>
 		
 		<!-- Bootstrap -->
 		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
@@ -16,17 +16,18 @@
 		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
 		
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/estilos.css" >
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/estilos.css}" >
+		<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
 	
 	</head>
 	<body class="body-container">
 	
 		<!-- Header -->
-		<div th:insert="layout/header :: header-sign-off"></div>
+		<div th:insert="layout/header :: header-sign-off-consultor"></div>
 		
 		<div class="container-fluid h-100 row m-0 p-0 d-flex justify-content-center align-items-center">
 			  
-			<div class="alert alert-success m-0 p-2 col-sm-5 row" role="alert">
+			<div class="alert alert-success m-0 p-2 col-sm-5 row animated fadeInDown" role="alert">
 				<div class="col-sm-12 row d-flex justify-content-center align-items-center m-0 p-4">
 					<h2 class="alert-heading text-center h1 m-0">Bienvenido Consultor!</h2>
 				</div>

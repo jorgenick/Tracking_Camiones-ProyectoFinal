@@ -46,5 +46,50 @@
        	
        	</div>
        	
+       	<!-- Header Cerrar sesion Consultor -->
+       	<div id="header-sign-off" th:fragment="header-sign-off-consultor">
+       	
+	       	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+	       		<div class="container d-flex justify-content-center align-items-center">
+	       			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	                	<span class="navbar-toggler-icon"></span>
+	            	</button>
+	            	
+	       			<a class="navbar-brand m-auto h1" href="#" style="text-transform: uppercase; font-size: x-large;">
+    					<img th:src="@{/img/logo2.png}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+    					Tracking de Camiones
+  					</a>
+					
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					      <li class="nav-item active">
+					        <a class="nav-link" th:href="@{/bienvenida}">Home</a>
+					      </li>
+					      <li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        	Seleccion de consulta
+					        </a>
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					          <a class="dropdown-item" th:href="@{/ingresarLocalidadYFecha}">Localidad - Rango de fechas</a>
+					          <a class="dropdown-item" th:href="@{/ingresarTripulante}">Recorrido por tripulante</a>
+					          <a class="dropdown-item" th:href="@{/ingresarPatente}">Recorrido por patente</a>
+					          <a class="dropdown-item" th:href="@{/verRegistros}">Todos los registros</a>
+					        </div>
+					      </li>
+					    </ul>
+					    
+					    <form class="form-inline my-2 my-lg-0">
+					      	<button class="btn btn-danger col-sm-12" type="button">
+		                		<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar Sesión
+		                	</button>
+					    </form>
+					</div>
+  					
+  					
+	       		</div>
+			</nav>
+       	
+       	</div>
+       	
 	</body>
 </html>

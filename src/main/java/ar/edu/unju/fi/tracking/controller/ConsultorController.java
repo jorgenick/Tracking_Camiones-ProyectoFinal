@@ -5,6 +5,7 @@ package ar.edu.unju.fi.tracking.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -241,6 +243,42 @@ public class ConsultorController {
 		}
 
 		return "buscarLocalidad";
+	}
+	
+	/**
+	 * Permite mostrar el registro y sus tripulantes
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/mostrarTripulante/{id}")
+	public String mostrarTripulantes(@PathVariable(name = "id") Long id, Model model) {
+		
+		//model.addAttribute("activarMostrarTripus", true);
+		
+		Optional<RegistroTracking> registroEnc = registroTrackingServiceImp.obtenerUnRegistro(id);
+		
+		//verificar que se haya encontrado el registro
+		if(registroEnc.isEmpty()) {
+			
+			model.addAttribute("activo", true);
+			model.addAttribute("noEncontrado", "No se encontraron los registros...");
+			
+		} else {
+			
+			RegistroTracking registro = new RegistroTracking();
+			
+			registro = registroEnc.get();
+			
+			model.addAttribute("activarTripus", true);
+			//enviar registro
+			model.addAttribute("registro", registro);
+			
+			model.addAttribute("tripulantes", registro.getTripulantes());
+			
+		}
+		
+		return "mostrarTripulantes";
 	}
 	
 	/*

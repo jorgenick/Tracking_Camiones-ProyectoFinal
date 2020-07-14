@@ -7,7 +7,7 @@
 		
 		<title>Seleccionar Consulta</title>
 		
-		<link rel="icon" type="image/png" href="img/logo2.png">
+		<link rel="icon" type="image/png" th:href="@{/img/logo2.png}">
 		
 		<!-- Bootstrap -->
 		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
@@ -16,7 +16,7 @@
 		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
 		
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/estilos.css" >
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/estilos.css}" >
 		
 		<!-- Tempusdominus -->
 		<link th:rel="stylesheet" th:href="@{css/tempusdominus-bootstrap-4.min.css}"/>
@@ -28,12 +28,12 @@
 	<body class="body-container-consulta m-0">
 		
 		<!-- Header -->
-		<div th:insert="layout/header :: header-sign-off"></div>
+		<div th:insert="layout/header :: header-sign-off-consultor"></div>
 		
 		<!-- Contenedor principal -->
 		<!-- container-fluid d-flex justify-content-center -->
 		 
-		<div class="container-fluid mx-0 mb-5 mt-3 pt-5 px-0 d-flex justify-content-center align-items-center">
+		<div class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
 			<div class="card mt-5" >
 				<div class="card-header container p-4">
 					<div class="row m-0">
@@ -62,6 +62,14 @@
 			  	</div>
 			</div>
 		</div> 
+		
+		<button class="btn btn-primary btn-flotante" th:onclick="'javascript:back();'"><i class="fas fa-reply"></i> &nbsp; Volver</button>
+			
+		<script type="text/javascript">
+	  		function back(){
+	    		history.back();
+	  		}
+		</script>
 		
 		<!-- Footer -->
 		<div th:insert="layout/footer :: footer"></div>
