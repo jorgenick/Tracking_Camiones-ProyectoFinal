@@ -130,7 +130,9 @@
 						  	<!-- Boton cancelar/guardar -->	
 					   			<div class="form-group row mt-5">
 					   				<button type="reset" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-						      		<button type="submit" id="vehiculo" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">SIGUIENTE-></button>  				
+				<!--  				<button type="reset" th:if="${GUARDAR}" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">SIGUIENTE-></button>-->	   		
+	<!--th:if="${siguiente}"   	-->			   		 	<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">GUARDAR</button>    
+ 			
 					  			 </div>	
 					  	</div>
 					 </div> 	   	
@@ -198,7 +200,9 @@
 						  		<!-- Boton cancelar/guardar -->
 					   			<div class="form-group row mt-5">
 					   				<button type="reset" disabled="disabled" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-						      		<button type="submit" disabled="disabled" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >GUARDAR</button>
+					   				
+							  		<button type="submit" disabled="disabled" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >GUARDAR</button>    
+						      		     			
 					  			 </div>
 						</div>		   
 					</div>  	
@@ -289,40 +293,42 @@
 	     		</div>	  
 			</form>		
 		</div>				
-		
-				
-									     		<!--busqueda correcta  					
-					  <div class="table-responsive">				
-				  				<form th:action="@{/patente}" th:object="${vehiculo}" method="get">
-									<input type="text" th:field="*{patente}" class="col-sm-4 col-form-label">
-									<div class="invalid-feedback">Ingrese una patente</div>
-									<button type="submit" class="btn btn-success mt-4 mb-6">Buscar Patente</button>
-								</form>
-						-->	
-		<!--  			<div class="alert-danger text-center" th:if="${vehiculoPatente}" th:text="${formUsuarioErrorMessage}">Name Error</div>-->  
-					<!--  
-					<div class="alert-danger text-center"
-								th:if="${formUsuarioErrorMessage}"
-								th:text="${formUsuarioErrorMessage}">Name Error</div>
-					-->
-				
-					<!--busqueda correcta  					
-				  		<form th:action="@{/documento}" th:object="${tripulante}" method="get">
-							<input type="text" th:field="*{documento}" class="col-sm-4 col-form-label">
-							<button type="submit" class="btn btn-success mt-4 mb-4">Buscar DNI</button>
-						</form>-->
-				</div>	
-			
-			
-				<!-- mensaje de error de dni no encontrado -->
-						<div class="alert-danger text-center" th:if="${formPATErrorMessage}" th:text="${formPATErrorMessage}">Name Error</div>
-		    		  
-		    		  <div class="table-responsive">
-		    			<!-- con modal la busqueda de la patente-->
-						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#modalBuscarPAT">Buscar Patente</button>
-					</div>							
+												
 							<!-- modal de busqueda del dni -->					
+							 <div class="modal fade" id="modalBuscarDNI" tabindex="-1" role="dialog"
+									aria-labelledby="agregarAutorModal" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+										<form id="formBuscarDNI" th:object="${tripulante}" th:action="@{/buscarDocumento}" method="post">
+											<div class="modal-header">
+												<h5 class="modal-title" id="agregarAutorModal">Buscar Documento</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">						
+													<div class="form-group">
+														<label for="documento">Documento del Tripulante:</label>
+														 <input
+															class="form-control" id="documento"
+															th:field="${tripulante.documento}"
+															placeholder="Ingresar el documento del tripulante"></input>								
+													</div>					
+											</div>				
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary" value="Buscar DNI" >						
+											</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+						
+		    		 						
+							<!-- modal de busqueda de la patente -->					
 							 <div class="modal fade" id="modalBuscarPAT" tabindex="-1" role="dialog"
 									aria-labelledby="agregarAutorModal" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered" role="document">
@@ -355,43 +361,12 @@
 									</div>
 								</div>
 						
+			</div>
 			
-			
-			
-			
-		  				    <div class="card-header text-center">	
-				  						<h4 >DATOS VEHICULO ENCONTRADO</h4>
-							</div>
-							<div class="table-responsive">
-				  				<table class="table table-bordered table-hover table-striped">					
-		  							<thead class="thead-dark">
-		    							<tr>
-			      								<th scope="col">PATENTE</th>
-			      								<th scope="col">TITULAR</th>
-			      								<th scope="col">TIPO</th>
-			      								<th scope="col">MARCA</th>
-						      					<th scope="col">MODELO</th>
-						      					<th scope="col">COLOR</th>
-						      					<th scope="col">NRO DE CHASIS</th>
-						      					<th scope="col">NRO DE MOTOR</th>
-				    				    </tr>
-				  				  </thead>
-				  			  <tbody>
-				  			  		<tr th:each = "patenteEncontrada:${vehiculo}">
-				      				<td th:text = "${patenteEncontrada.patente}" ></td>
-				      				<td th:text = "${patenteEncontrada.titular}" ></td>
-				      				<td th:text = "${patenteEncontrada.tipo}" ></td>
-				      				<td th:text = "${patenteEncontrada.marca}" ></td>
-				      				<td th:text = "${patenteEncontrada.modelo}" ></td>
-				      				<td th:text = "${patenteEncontrada.color}" ></td>
-				      				<td th:text = "${patenteEncontrada.numeroChasis}" ></td>
-				      				<td th:text = "${patenteEncontrada.numeroMotor}" ></td>	
-				    			 </tr>
-				  			 </tbody> 				
-						  </table>
-					   </div>
-				    </div>	
-			    					      					
+				<!-- mensaje de error de dni no encontrado -->
+						<div class="alert-danger text-center" th:if="${formPATErrorMessage}" th:text="${formPATErrorMessage}">Name Error</div>
+		    		  
+ 			    				    					      					
 						  	<script>
 								// Example starter JavaScript for disabling form submissions if there are invalid fields
 								(function() {
@@ -412,9 +387,7 @@
 								  }, false);
 								})();
 							</script>
-								 	
-					
-   </div>				  
-</div>		
+								 					
+   </div>				  		
 </body>
 </html>

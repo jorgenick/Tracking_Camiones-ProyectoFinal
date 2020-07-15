@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<meta name="author" content="Toconas Ulises Daniel">
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	
+    	<!-- Bootstrap -->
+    	<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    	
+    	<!-- CSS 
+    	<link th:rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    	-->
+    	
+    	<!-- FontAwesome -->
+    	<link href="fontawesome-5.13.1/css/all.css" rel="stylesheet">
+    	
+    	<!-- Scripts de bootstrap -->
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    	
+		<title>Tracking de Camiones</title>
+</head>
+
+<body class="container">
+		
+				<br>
+					<a th:href="@{/home}" class="btn btn-primary">Nuevo Registro</a>
+				<br>
+				
+		<div class="tab-content">	
+			
+			 <h1>DATOS DEL REGISTRO</h1>    
+			  <div class="col">		
+				<div class="table-responsive">
+				  <table class="table table-bordered table-hover table-striped">					
+		  				<thead class="thead-dark">
+		    				<tr>
+		      					<th scope="col">ID</th>
+		      					<th scope="col">VEHICULO</th>
+		      					<th scope="col">TRIPULANTES</th>
+		      					<th scope="col">LOCALIDAD</th>
+		      					<th scope="col">FECHA</th>
+		      					<th scope="col">DETALLE</th>
+		      					
+		    				</tr>
+		  				</thead>
+		  			  <tbody>
+		  			   		<tr th:each = "reg:${todo}">
+		      				<td th:text = "${reg.id}" ></td>
+		      				<td th:text = "${reg.getVehiculo()}" ></td>
+		      				<td th:text = "${reg.tripulantes}" ></td>
+		      				<td th:text = "${reg.localidad}" ></td>
+		      				<td th:text = "${fechaRegistro}" ></td>
+		      				<td th:text = "${reg.detalle}" ></td>
+		      				
+		    			</tr>
+		  			 </tbody> 				
+				    </table>
+			      </div>
+		        </div>	
+	        </div>
+  </body>
+</html>				
+				

@@ -76,13 +76,6 @@ public class VehiculoServicelmp implements IVehiculoService {
 	}
 
 	@Override
-	public List<Vehiculo> buscarPatente(String patente) throws Exception {
-		// TODO Auto-generated method stub
-		//return vehiculoDAOImp.findByPatente(patente);
-		return null;
-	}
-
-	@Override
 	public Vehiculo buscarPatentePorNombre(String patente) {
 		// TODO Auto-generated method stub
 		return vehiculoDAOImp.findAllByPatente(patente);

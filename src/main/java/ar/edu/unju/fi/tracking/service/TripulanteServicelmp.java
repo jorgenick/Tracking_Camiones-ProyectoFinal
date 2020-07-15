@@ -36,7 +36,6 @@ public class TripulanteServicelmp implements ITripulanteService {
 		listaAuxTri.add(tripulante);
 		System.out.println("tamaño de la lista: "+listaAuxTri.size()+ "  tripulante:"+tripulante.toString());
 		untripulante=tripulante;
-	//	tripulanteDAOImp.save(tripulante);
 	}
 
 	@Override
@@ -70,13 +69,6 @@ public class TripulanteServicelmp implements ITripulanteService {
 		return tripulanteDAOImp.findAll();
 	}
 
-	//busqueda correcta
-	@Override
-	public List<Tripulante> buscarDocumento(String documento) throws Exception {
-		// TODO Auto-generated method stub
-	//	return tripulanteDAOImp.findByDocumento(documento);
-	return null;
-	}
 
 	@Override
 	public Tripulante buscarTripulanteDNI(String documento) {

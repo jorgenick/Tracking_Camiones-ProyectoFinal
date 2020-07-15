@@ -21,10 +21,6 @@ public interface ITripulanteService {
 	
 	public Iterable<Tripulante> listarTodos();
 	
-	
-	//busqueda correcta
-	List<Tripulante> buscarDocumento(String documento) throws Exception ;
-	
 	public Optional<Tripulante> obtenerUnTripulante(Long id);
 	
 	public void eliminarTripulante(Long id);

@@ -26,6 +26,7 @@ import ar.edu.unju.fi.tracking.model.RegistroTracking;
 import ar.edu.unju.fi.tracking.model.Tripulante;
 
 import ar.edu.unju.fi.tracking.model.Vehiculo;
+import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
 import ar.edu.unju.fi.tracking.service.ILocalidadService;
 import ar.edu.unju.fi.tracking.service.IRegistroTrackingService;
 import ar.edu.unju.fi.tracking.service.ITripulanteService;
@@ -43,7 +44,7 @@ public class AltaController {
 	IVehiculoService iVehiculo; 
 	
 	@Autowired
-	private Vehiculo vehiculo;
+	private Vehiculo vehiculo, vehRecuperado;
 	
 	private Vehiculo unVehiculo, patenteEncontrada;
 	
@@ -53,10 +54,12 @@ public class AltaController {
 	@Autowired
 	private Tripulante tripulante;
 	
-	private Tripulante unTripulante, docEncotrado;
-	
 	@Autowired
-	private List<Tripulante> losTripulantes;
+	private Tripulante  docEncontrado;
+	
+	private List<Tripulante> losTripulantes=new ArrayList<Tripulante>();
+	
+	List<Tripulante> tripulantesAgregados = new ArrayList<Tripulante>();//del for
 	
 	@Autowired
 	ILocalidadService localidadservice;
@@ -65,10 +68,16 @@ public class AltaController {
 	private Localidad localidad;
 	
 	@Autowired
+	ILocalidadDAO local;//del repositorio
+	
+	@Autowired
 	IRegistroTrackingService registroservice;
 	
 	@Autowired
 	private RegistroTracking registro;
+	
+	@Autowired
+	private RegistroTracking unregistro;
 	
 	
 	@RequestMapping("/home")
@@ -89,9 +98,6 @@ public class AltaController {
 		model.addAttribute("tripulante", tripulante);
 		model.addAttribute("registro", registro);
 		model.addAttribute("localidades", localidadservice.listarTodos());
-		
-		model.addAttribute("vehiculoPatente", vehiculo);//de la busqueda
-		model.addAttribute("tripulante", tripulante);//de las busqueda
 		return "Vehiculo";	
 	}
 	
@@ -115,48 +121,15 @@ public class AltaController {
 	return "Registro";	
 	}
 	
-	
-	@RequestMapping("/encontrado")
-	public String encontrado(Model model) {
-		model.addAttribute("vehiculo", vehiculo);
-		model.addAttribute("tripulante", tripulante);
-		model.addAttribute("registro", registro);
-		model.addAttribute("localidades", localidadservice.listarTodos());
-	return "PatEncontrado";	
-	}
-	
-	
-	//probando la busqueda del dni con el modal
-		@PostMapping("/buscarDocumento")
-		public String buscarDoc(@ModelAttribute("tripulante") Tripulante tripulante,  Model model) throws Exception {	
-		try {
-			Tripulante dniEncontrado = itripulanteservice.encontrarDni(tripulante.getDocumento());
-			model.addAttribute("vehiculo", vehiculo);
-			model.addAttribute("registro", registro);
-				try {			
-					itripulanteservice.guardarDNIEncontrado(dniEncontrado);
-					model.addAttribute("vehiculo", vehiculo);
-					model.addAttribute("registro", registro);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block				 
-					model.addAttribute("formDNIErrorMessage", e.getMessage());
-					model.addAttribute("vehiculo", vehiculo);
-					model.addAttribute("registro", registro);
-				}
-			}catch(Exception e) {			
-				model.addAttribute("formDNIErrorMessage", e.getMessage());
-				model.addAttribute("vehiculo", vehiculo);
-				model.addAttribute("registro", registro);
-			}			
-		return "Tripulante";
-		//return "redirect:/tripulante";
-	}
-	
+
 		//probando la busqueda de la patente con el modal
 				@PostMapping("/buscarPat")
 				public String buscarPat(@ModelAttribute("vehiculo") Vehiculo vehiculo,  Model model) throws Exception {	
 				try {
 					Vehiculo patenteEncontrada=iVehiculo.encontrarPatente(vehiculo.getPatente());
+					vehRecuperado=patenteEncontrada;
+					model.addAttribute("GUARDAR", "true");
+					model.addAttribute("siguiente", "false");
 					model.addAttribute("vehiculo", vehiculo);
 					model.addAttribute("registro", registro);
 					model.addAttribute("tripulante", tripulante);
@@ -165,6 +138,7 @@ public class AltaController {
 							model.addAttribute("vehiculo", vehiculo);
 							model.addAttribute("registro", registro);
 							model.addAttribute("tripulante", tripulante);
+							System.out.println("patente lograda: "+patenteEncontrada.getId());
 						} catch (Exception e) {
 							// TODO Auto-generated catch block				 
 							model.addAttribute("formPATErrorMessage", e.getMessage());
@@ -174,7 +148,7 @@ public class AltaController {
 						}
 					}catch(Exception e) {			
 						model.addAttribute("formPATErrorMessage", e.getMessage());
-						model.addAttribute("vehiculo", vehiculo);
+					//	model.addAttribute("vehiculo", vehiculo);
 						model.addAttribute("registro", registro);
 						model.addAttribute("tripulante", tripulante);
 					}			
@@ -182,37 +156,54 @@ public class AltaController {
 				//return "redirect:/tripulante";
 			}
 	
+				
+				//probando la busqueda del dni con el modal
+				@PostMapping("/buscarDocumento")
+				public String buscarDoc(@ModelAttribute("tripulante") Tripulante tripulante,  Model model) throws Exception {	
+				try {
+					Tripulante dniEncontrado = itripulanteservice.encontrarDni(tripulante.getDocumento());
+					model.addAttribute("vehiculo", vehiculo);
+					model.addAttribute("registro", registro);
+					model.addAttribute("tripulante", dniEncontrado);//con esto mando para que se llene el formulario
+					
+					docEncontrado=dniEncontrado;//variable inyectada
+					
+					losTripulantes.add(dniEncontrado);//lista que contiene los tripulantes encontrados
+					model.addAttribute("guardar", "true");
+					model.addAttribute("agregar", "false");
+					model.addAttribute("cancelar", "true");
+					model.addAttribute("encontrado", docEncontrado);//el primero seria variable iba tripulante
+					model.addAttribute("siguiente", "true");
+					
+					System.out.println("la variable tripuante: "+tripulante.getNombres());
+						try {			
+							itripulanteservice.guardarDNIEncontrado(dniEncontrado);
+							model.addAttribute("vehiculo", vehiculo);
+							model.addAttribute("registro", registro);
+				
+							System.out.println("persona encontrada: "+dniEncontrado.getApellido());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block				 
+							model.addAttribute("formDNIErrorMessage", e.getMessage());
+							model.addAttribute("vehiculo", vehiculo);
+							model.addAttribute("registro", registro);
+							model.addAttribute("guardar", "false");
+							model.addAttribute("agregar", "true");
+						}
+					}catch(Exception e) {			
+						model.addAttribute("formDNIErrorMessage", e.getMessage());
+						model.addAttribute("vehiculo", vehiculo);
+						model.addAttribute("registro", registro);
+						model.addAttribute("guardar", "false");
+						model.addAttribute("agregar", "true");
+				
+					}			
+				//return "otroTripulante";
+				return "Tripulante";
+			}
+				
 		
-		
-		
-		
-	
-	
-	//busqueda correcta
-	@GetMapping("/patente")
-	public String buscarPorPatente(@RequestParam String patente, Model model, @ModelAttribute("vehiculo") Vehiculo vehiculo) throws Exception {
-		
-			model.addAttribute("vehiculoPatente", iVehiculo.buscarPatente(patente));
-			Vehiculo encontrado=iVehiculo.buscarPatente(patente).get(0);
 			
-			model.addAttribute("tripulante", tripulante);
-			model.addAttribute("registro", registro);
-	
-			return "Vehiculo";	
-	}
-	
-	//busqueda correcta
-	@GetMapping("/documento")
-	public String buscarPorDNI(@RequestParam String documento, Model model, @ModelAttribute("tripulante") Tripulante tripulante) throws Exception{
-		model.addAttribute("listaDoc", itripulanteservice.buscarDocumento(documento));
-		
-		model.addAttribute("tripulante", tripulante);
-		model.addAttribute("registro", registro);
-		model.addAttribute("vehiculo", vehiculo);
-	return "Tripulante";	
-	}
-	
-	
 	@GetMapping
 	public String cargarFormulario(Model model) {
 		model.addAttribute("vehiculo", vehiculo);
@@ -235,27 +226,14 @@ public class AltaController {
 	 * @return "redirect:/nuevoRegistro"
 	 */
 	@PostMapping("/formularioVehiculo")
-	public String crearVehiculo(@Valid @ModelAttribute("vehiculo") Vehiculo vehiculo, BindingResult result, ModelMap model) {
-	  if(result.hasErrors()) {
-			model.addAttribute("userForm", vehiculo);
-			model.addAttribute("formTab", "active");
-	  }else {
-		try {
-			iVehiculo.guardar(vehiculo);
-			unVehiculo=vehiculo;
-		//	model.addAttribute("vehiculo", new Vehiculo());
-		//	model.addAttribute("listTab", "active");
-		}catch (Exception d) {
-			//excepciones del html
-			model.addAttribute("formUsuarioErrorMessage",d.getMessage());
-			model.addAttribute("userForm", vehiculo);
-			model.addAttribute("formTab", "active");
-		}
+	public String crearVehiculo( @ModelAttribute("vehiculo") Vehiculo vehiculo, ModelMap model) {
+	 
+		iVehiculo.guardar(vehiculo);
+		unVehiculo=vehiculo;
+		
 		model.addAttribute("listaVehiculos", iVehiculo.listarTodos());
 		model.addAttribute("listaTripulantes", itripulanteservice.listarTodos());
 		model.addAttribute("listaRegistros", registroservice.listarTodos());
-	//	model.addAttribute("listTab", "active");
-	  }
 	
 		return "redirect:/tripulante";
 	}
@@ -269,31 +247,14 @@ public class AltaController {
 	 * @return "redirect:/nuevoRegistro"
 	 */
 	@PostMapping("/formularioTripu")
-	public String crearTripulante(@Valid @ModelAttribute("tripulante") Tripulante tripulante, BindingResult result, ModelMap model) {
-	  if(result.hasErrors()) {
-		  model.addAttribute("userForm", tripulante);
-		  model.addAttribute("formTab", "active");
-	  }else {
-		 // System.out.println("se agrega un tripulante a la lista: "+tripulante.toString());
-		try {
-			itripulanteservice.guardarTripulante(tripulante);
-	    	unTripulante=tripulante;
-			//	list=tripulante;
-		//	losTripulantes.add(tripulante);
-		//	list=(Tripulante) losTripulantes;//habria que probar
-		//	model.addAttribute("tripulante", new Tripulante());
-		//	model.addAttribute("listTab", "active");
-		}catch (Exception d) {
-			//excepciones del html
-			model.addAttribute("formTripulanteErrorMessage",d.getMessage());
-			model.addAttribute("userForm", tripulante);
-			model.addAttribute("formTab", "active");
-		}
+	public String crearTripulante(@ModelAttribute("tripulante") Tripulante tripulante, ModelMap model) {
+	
+		itripulanteservice.guardarTripulante(tripulante);
+	  
 		model.addAttribute("listaTripulantes", itripulanteservice.listarTodos());
 		model.addAttribute("listaVehiculos", iVehiculo.listarTodos());
 		model.addAttribute("listaRegistros", registroservice.listarTodos());
-//		model.addAttribute("listTab", "active");
-	  }	
+
 		return "redirect:/registro";
 	}
 	
@@ -306,57 +267,104 @@ public class AltaController {
 	 * @return
 	 */
 	@PostMapping("/formularioRegistro")
-	public String cargarRegistro(@Valid @ModelAttribute("registro") RegistroTracking registro, BindingResult result, ModelMap model) {
-	  if(result.hasErrors()) {
-			  model.addAttribute("userForm", registro);
-			  model.addAttribute("formTab", "active");
-	  }else {		
-		try {	
-			iVehiculo.crear(unVehiculo);
-			
-			registro.setVehiculo(unVehiculo);
-			registro.setFecha(LocalDateTime.now());
-			model.addAttribute("unVehiculo", new Vehiculo());
-			
-			List<Tripulante> tripulantesAgregados = new ArrayList<Tripulante>();
-			tripulantesAgregados = itripulanteservice.listarTripulantesAgregados();
-			System.out.println(" tamaño lista recuperada: "+tripulantesAgregados.size());
-			for(Tripulante tripu : tripulantesAgregados) {
-				
-					System.out.println("El tripulante a guardar es: "+tripu.toString());
-					itripulanteservice.crearTri(tripu);
-				
-			}
-			System.out.println("la localidad seleccionada es: "+registro.getLocalidad().getId());
-//			Localidad localidad = localidadservice.obtenerLocalidadPorId(registro.getLocalidad().getId());
-		//	Localidad localidad=localidadservice.obtenerUnaLocalidad(registro.getLocalidad().getId());
-				
-			registro.setLocalidad(localidad);
-//			System.out.println("el nombre de la loc seleccionada es: "+registro.getLocalidad().getNombre());
-			
-			
-			model.addAttribute("unTripulante", new Tripulante());
-			registro.setTripulantes(tripulantesAgregados);
-			//guarda todo el registr tracking
-			System.out.println("registroTracking: "+registro);
-			registroservice.guardar(registro);
-			model.addAttribute("registro", new RegistroTracking());
-			
-			model.addAttribute("listTab", "active");
-		}catch (Exception d) {
-			//excepciones del html
-			model.addAttribute("formRTrackingErrorMessage",d.getMessage());
-			model.addAttribute("userForm", registro);
-			model.addAttribute("formTab", "active");
+	public String cargarRegistro(@ModelAttribute("registro") RegistroTracking registro, ModelMap model) {
+	 
+		//<<<<<<VEHICULO>><<<
+		System.out.println("el id del vehiculo encontrado es "+vehRecuperado.getId());
+		if(vehRecuperado.getId()==null)	{
+			iVehiculo.crear(unVehiculo);//se da de alta el vehiculo guardado en la variable
+			registro.setVehiculo(unVehiculo);//se setea con el registro el vehiculo guardado(de marcia)
+		}else {	
+			registro.setVehiculo(vehRecuperado);
 		}
+
+		model.addAttribute("unVehiculo", new Vehiculo());
+		
+		
+		//<<<<<TRIPULANTES<<<<<<<<		
+		System.out.println("el tamaño de encontrados: "+losTripulantes.size());
+		
+		losTripulantes = itripulanteservice.listarTripulantesAgregados();//se lista los tripulantes del registro
+		System.out.println(" tamaño lista recuperada: "+tripulantesAgregados.size());//cantidad de tripulantes en lista
+		
+		List<Tripulante> general= new ArrayList<Tripulante>();
+		boolean enc=false;
+			
+		for(Tripulante tripu : losTripulantes) {
+			enc=false;
+			for(Tripulante base : itripulanteservice.listarTodos()) {
+					if(tripu.getDocumento().equals(base.getDocumento())) {
+							enc=true;
+					}
+				}	
+				 if(enc==false) {
+					 itripulanteservice.crearTri(tripu); 
+					 general.add(tripu);
+				 }
+				 if(enc==true) {
+					 general.add(tripu);
+				 }
+			}
+			
+		registro.setTripulantes(general);		
+		model.addAttribute("unTripulante", new Tripulante());
+		
+		
+		///<<<<<LOCALIDAD<<>>>
+		System.out.println("EL ID de la localidad seleccionada es: "+registro.getLocalidad().getId());//muestra id de la localidad seleccionada
+		Optional<Localidad> unaLocal =local.findById(registro.getLocalidad().getId());//con la varible del repositorio y el findById busco el nombre de localidad
+	
+		unaLocal.ifPresent(localidad -> {//obtengo el nombre de localidad y lo seteo
+		    registro.setLocalidad(localidad);
+		});
+	
+		System.out.println("nombre de la localidad obtenida: "+localidad);
+			
+		
+			
+			///<<<<<<<<<REGISTRO>>><<<<<
+		System.out.println("registroTracking: "+registro);
+		registro.setFecha(LocalDateTime.now());
+		registroservice.guardar(registro);//da de alta el regitro completo
+		
+		model.addAttribute("registro", new RegistroTracking());
+		model.addAttribute("listTab", "active");
+		
+		unregistro=registro;//le asigno el registro entero a una variable
+		
+		//vaciar las listas y variables
+		losTripulantes.clear();
+		System.out.println("ya guardados "+losTripulantes.size());
+		tripulantesAgregados.clear(); 
+		System.out.println("los creados "+tripulantesAgregados.size());
+		
+	//	registro=null;//vacio la variable registro
+	//	vehRecuperado=null;//vehiculo encontrado
+	//	unVehiculo=null;//variable para crear
+					
 		model.addAttribute("listaRegistros", registroservice.listarTodos());
 		model.addAttribute("listaVehiculos", iVehiculo.listarTodos());
 		model.addAttribute("listaTripulantes", itripulanteservice.listarTodos());
 		model.addAttribute("localidades", localidadservice.listarTodos());
 		model.addAttribute("listTab", "active");
-	  }	
-		return "listadoDatos";
+	  
+		return "terminado";
 	}
+	
+	
+	//vista del registro resien cargado
+			@RequestMapping("/cargado")
+			public String registroCargado(Model model) {
+				model.addAttribute("idRegistro", unregistro.getId());
+				model.addAttribute("vehiculoRegistro", unregistro.getVehiculo());
+				model.addAttribute("tripRegistro", unregistro.getTripulantes());
+				model.addAttribute("locRegistro", unregistro.getLocalidad());
+				model.addAttribute("fechaRegistro", unregistro.getFecha());
+				model.addAttribute("detRegistro", unregistro.getDetalleLugarRegistro());
+				model.addAttribute("todo", unregistro);
+			return "terminado";	
+			}
+	
 	
 	//cancela la operacion de registrar con model
 	@GetMapping("/registro/cancelar")

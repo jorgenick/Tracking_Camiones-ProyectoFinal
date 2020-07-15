@@ -45,11 +45,7 @@ public class Localidad implements Serializable{
 	 * Atributo que representa el nombre de la localidad
 	 */
 	@Column
-	@NotBlank(message="Debe ingresar una localidad!")
 	private String nombre;
-
-	// @OneToMany(mappedBy = "localidad", fetch = FetchType.LAZY)
-	// private RegistroTracking registro;
 
 	@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
 	private RegistroTracking registro;

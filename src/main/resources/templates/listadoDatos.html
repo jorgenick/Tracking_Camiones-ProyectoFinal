@@ -26,31 +26,32 @@
 	
  <body class="container">
 		
-				<br>
+		<!--  <br>
 					<a th:href="@{/nuevoRegistro}" class="btn btn-primary">Nuevo Registro</a>
-				<br><br>
+				<br><br>-->		
+			       <div class="table-responsive">
+		    			<!-- con modal la busqueda de la patente-->
+						<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#modalBuscarPAT">Nuevo Registro</button>
+					</div>							
 	
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="nav-item"><a id="formulario-tab" 			
-					class="nav-link active" href="#formulario" data-toggle="tab"
-					role="tab" aria-controls="formulario" aria-selected="true">VEHICULOS</a></li>
+					class="nav-link active" href="#registros" data-toggle="tab"
+					role="tab" aria-controls="registros" aria-selected="true">REGISTROS</a></li>
+				<li class="nav-item"><a id="lista-tab" class="nav-link" 
+					href="#formulario" data-toggle="tab" role="tab" aria-controls="formulario"
+					aria-selected="false">VEHICULOS</a></li>	
 				<li class="nav-item"><a id="lista-tab" class="nav-link" 
 					href="#tripulantes" data-toggle="tab" role="tab" aria-controls="tripulantes"
 					aria-selected="false">TRIPULANTES</a></li>	
 				<li class="nav-item"><a id="lista-tab" class="nav-link" 
 					href="#localidades" data-toggle="tab" role="tab" aria-controls="localidades"
-					aria-selected="false">LOCALIDADES</a></li>	
-				<li class="nav-item"><a id="lista-tab" class="nav-link" 
-					href="#registros" data-toggle="tab" role="tab" aria-controls="registros"
-					aria-selected="false">REGISTROS</a></li>
-				<li class="nav-item"><a id="lista-tab" class="nav-link" 
-					href="#registros_tripu" data-toggle="tab" role="tab" aria-controls="registros_tripu"
-					aria-selected="false">REGISTROS Y TRIPULANTES</a></li>						
+					aria-selected="false">LOCALIDADES</a></li>
+									
 			<!-- COMENTARIO aumentar un li para una nueva pestaña -->				
 			</ul>
-	
-	
-						
+							
 		<div class="tab-content">	
 			
 		   <div class="tab-pane fade show active" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">	
@@ -148,9 +149,7 @@
 			  				</div>
 			       </div>
 		     </div>
-				
-				
-				
+			
 				<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="lista-tab">
 		  		
 					<div class="card-deck mt-4">		  	
@@ -165,60 +164,21 @@
 		      								<th scope="col">FECHA_HORA</th>
 		      								<th scope="col">ID_VEHICULO</th>
 		      								<th scope="col">ID_LOCALIDAD</th>
-		      								<!-- nose donde poner la localidad -->
 		    							</tr>
 		  							</thead>
 		  			  				<tbody>
-		    							
-		    							
-		    							<tr th:each = "registro:${listaRegistros}">
+	    							        <tr th:each = "registro:${listaRegistros}">
   		      								<td th:text = "${registro.id}" ></td>  
   		      								<td th:text = "${registro.detalleLugarRegistro}" ></td>
   		      								<td th:text = "${registro.fecha}" ></td>
   		      								<td th:text = "${registro.vehiculo}" ></td>
-  		      								<td th:text = "${registro.localidad}" ></td>
-	<!--  	      								<td th:text = "${registro.vehiculo.id}" ></td> -->		
-		    							</tr>
-   												
-		    								<!--	no esta bien			 <td th:text = "${registrotracking.localidad_id}" ></td>-->									
-<!--  		      									<tr th:each = "localidad:${listaLocalidades}">
-		      										<td th:text = "${localidad.nombre}" ></td>
-		      									</tr>	<td th:text = "${registro.localidad.nombre}" ></td>	
-	-->	      									
-		      									
+  		      								<td th:text = "${registro.localidad}" ></td>								
 		  			 				</tbody>
 				  				</table>
 			  				</div>	
 					   </div>
 			      </div>
-					
-				<div class="tab-pane fade" id="registros_tripu" role="tabpanel" aria-labelledby="lista-tab">
-		  		
-					<div class="card-deck mt-4">		  	
-						  
-						  <h1>LISTADO DE REGISTROS Y TRIPULANTES</h1>
-							<div class="table-responsive">
-				   				<table class="table table-bordered table-hover table-striped">
-		  							<thead class="thead-dark">
-		    							<tr>
-		      								<th scope="col">ID_REGISTRO</th>
-		      								<th scope="col">ID_TRIPULANTES</th>
-		      								
-		    							</tr>
-		  							</thead>
-		  			  				<tbody>
-		    						<!--error al referenciar los datos de la base   	
-		    							<tr th:each = "registrotracking:${listaRegistros}">
-		      								<td th:text = "${registrotracking.registro_tracking_id}" ></td>
-		      								<td th:text = "${registrotracking.tripulante_id}" ></td>					
-		    							</tr>
-		    						-->
-		  			 				</tbody>
-				  				</table>
-			  				</div>	
-					   </div>
-			      </div>	
-						  	
+				  	
 						  <!--  	
 						  	<script>
 								// Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -242,7 +202,41 @@
 							</script>			
 						-->
 					
-	 
+					<!-- modal de busqueda de la patente -->					
+							 <div class="modal fade" id="modalBuscarPAT" tabindex="-1" role="dialog"
+									aria-labelledby="agregarAutorModal" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+										<form id="formBuscarPAT" th:object="${vehiculo}" th:action="@{/buscarPat}" method="post">
+											<div class="modal-header">
+												<h5 class="modal-title" id="agregarAutorModal">Buscar Patente</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">						
+													<div class="form-group">
+														<label for="patente">Patente del Vehiculo:</label>
+														 <input
+															class="form-control" id="patente"
+															th:field="${vehiculo.patente}"
+															placeholder="Ingresar la patente del Vehiculo"></input>								
+													</div>	
+												
+											</div>				
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary" value="Buscar Patente" >						
+											</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+						
+					
 			<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
 			<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
 			<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>

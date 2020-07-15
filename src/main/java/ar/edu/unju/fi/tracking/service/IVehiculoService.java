@@ -29,9 +29,6 @@ public interface IVehiculoService {
 		
 	Iterable<Vehiculo> listarTodos();
 		
-	//busqueda correcta
-	List<Vehiculo> buscarPatente(String patente) throws Exception ;
-	
 	public Vehiculo buscarPatentePorNombre(String patente);
 	
 /////

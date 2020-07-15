@@ -28,124 +28,7 @@
 	<div class="container">
 				  
 		  <div class="card-deck mt-4">
-			
-			<div class="col">
 
-               <form class="form" role="form" autocomplete="off" th:object=${vehiculo} th:action="@{/formulario}" method="post" >  
-             
-                <div class="card ">
- 
-						<div class="card-header text-center">
-			    			<h4 class="h4 font-weight-bolder">DATOS DEL VEHICULO</h4>
-			    		</div>
-			       		
-				      <div class="card-body">
-				 			
-					  		<!-- PATENTE -->
-						  	<div class="form-group row">	<!--th:if="${editMode==null or editMode==false}">se muestra si la edicion es nula  -->
-						    	<label for="patente" class="col-sm-4 col-form-label">PATENTE</label>
-						    	<div class="col-sm-6">
-	 		<!--  			      		<input th:field="${vehiculo.patente}" type="text" class="form-control" id="patente" required>	-->
-	 					      		<input type="text" class="form-control">
-	 					      		<div class="alert-danger" th:if="${#fields.hasErrors('patente')}" th:errors="*{patente}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>						    	
-						    	</div>    	
-						  	</div>
-					
-					  		<!-- Nombre del titular -->
-						  	<div class="form-group row">
-						    	<label for="nombreTitular" class="col-sm-4 col-form-label">Nombre del Titular</label>
-						    	<div class="col-sm-6">
-		<!--  				      		<input th:field="${vehiculo.titular}" type="text" class="form-control" id="nombreTitular" required/>-->
-									<input type="text" class="form-control">
-						      		<div class="alert-danger" th:if="${#fields.hasErrors('titular')}" th:errors="*{titular}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  	
-						  	<!-- Tipo -->
-						  	<div class="form-group row">
-						    	<label for="tipo" class="col-sm-4 col-form-label">TIPO</label>
-						    	<div class="col-sm-6">
-		<!--  				      		<input th:field="${vehiculo.tipo}" type="text" class="form-control" id="tipo" required/>-->
-									<input type="text" class="form-control">
-						      		<div class="alert-danger" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  				  	
-						  	<!-- Marca -->
-						  	<div class="form-group row">
-						    	<label for="marca" class="col-sm-4 col-form-label">MARCA</label>
-						    	<div class="col-sm-6">
-	<!--  					      		<input th:field="${vehiculo.marca}" type="text" class="form-control" id="marca" required/>-->
-									<input type="text" class="form-control">
-						      		<div class="alert-danger" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-							
-							<!-- Modelo -->
-						  	<div class="form-group row">
-						    	<label for="modelo" class="col-sm-4 col-form-label">MODELO</label>
-						    	<div class="col-sm-6">
-<!--  						      		<input th:field="${vehiculo.modelo}" type="text" class="form-control" id="modelo" required/>-->
-									<input type="text" class="form-control">
-						      		<div class="alert-danger" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-							
-							<!-- Color -->
-						  	<div class="form-group row">
-						    	<label for="color" class="col-sm-4 col-form-label">COLOR</label>
-						    	<div class="col-sm-6">
-<!--  						      		<input th:field="${vehiculo.color}" type="text" class="form-control" id="color" required/>-->
-						      		<input type="text" class="form-control">
-						      		<div class="alert-danger" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Name Error</div>
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  	
-						  	<!-- nro de chasis -->
-						  	<div class="form-group row">
-						    	<label for="chasis" class="col-sm-4 col-form-label">NRO DE CHASIS</label>
-						    	<div class="col-sm-6">
-<!-- 						      		<input th:field="${vehiculo.numeroChasis}" type="number" class="form-control" id="chasis" required/> -->
-									<input type="text" class="form-control">
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  	
-						  	<!-- nro de motor -->
-						  	<div class="form-group row">
-						    	<label for="motor" class="col-sm-4 col-form-label">NRO DE MOTOR</label>
-						    	<div class="col-sm-6">
-<!--  						      		<input th:field="${vehiculo.numeroMotor}" type="number" class="form-control" id="motor" required/>-->
-									<input type="text" class="form-control">
-						      		<div class="valid-feedback">Se vé bien!</div>
-						    		<div class="invalid-feedback">Debe completar este campo.</div>
-						    	</div>
-						  	</div>
-						  	
-						  	<!-- Boton cancelar/guardar -->	
-					   			<div class="form-group row mt-5">
-					   				<button type="reset" disabled="disabled" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-						      		<button type="submit" disabled="disabled" id="vehiculo" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">SIGUIENTE-></button>  				
-					  			 </div>	
-					  	</div>
-					 </div> 	   	
-				</form> 		 
-			</div>
-	<!--  -->	  
-						
 	             <div class="col">							  	
 	                       <!--  	<div class="tab-pane fade" id="tripulantes" role="tabpanel" aria-labelledby="lista-tab">  -->	
 		           <form class="form" role="form" autocomplete="off" th:object=${tripulante} th:action="@{/formularioTripu}" method="post" >					    
@@ -156,6 +39,8 @@
 			    		</div>
 	  			        <div class="card-body">
 					  	
+					  	<!-- aqui va el boton -->
+					  				
 					  		<!-- Dni tripulante -->
 						  	<div class="form-group row">
 						    	<label for="documento" class="col-sm-4 col-form-label">DNI</label> <!-- for="dni" -->
@@ -201,15 +86,31 @@
 						  	
 						  		<!-- Boton cancelar/guardar -->
 					   			<div class="form-group row mt-5">
-					   				<button type="reset" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>
-					  				<button type="submit" id="tripu" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >OTRO TRIPULANTE</button>  
-					  				<button type="submit" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >SIGUIENTE-></button>
+<!-- -->					<button type="reset" th:if="${cancelar}" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">CANCELAR</button>			
+					  			
+<!--  -->	 	 					<button type="submit" th:if="${agregar}" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">AGREGAR</button>
+									<button type="submit" th:if="${guardar}" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0">GUARDAR</button>
+					  <!--  -	 	<button type="button" class="btn btn-success" th:if="${modal}" data-toggle="modal"
+										data-target="#modalBuscarDNI">OTRO TRIPULANTE</button>
+					  		-->		  	 
 					  			 </div>
 						</div>		   
 					</div>  	
 			 </form> 		  	
-  		</div>
-  								
+  		</div>			<!-- comentado para probar si sale la condicion-->
+  		   	 
+				  <div class="card-body">
+  						<button type="button" class="btn btn-success" data-toggle="modal"
+											data-target="#modalBuscarDNI">BUSCAR DNI</button>	
+	    												
+  					<div class="form-group row mt-5">				
+  			<!--  -	<button type="submit" th:if="${guardar}" class="btn btn-outline-primary col-sm-10 col-lg-5 mx-auto my-2 my-sm-0" >GUARDAR</button>		-->
+						<br>
+					<!--  		<a th:href="@{/registro}" th:if="${siguiente}" class="btn btn-primary">SIGUIENTE-></a>-->	
+							<button type="button" th:href="@{/registro}" th:if="${siguiente}" class="btn btn-primary">SIGUIENTE->></button>
+						<br>			
+					</div>  			 					
+  				</div>						  	
   						  	
 		<div class="col">				  	
 			 <form class="form" role="form" autocomplete="off" th:object=${registro} th:action="@{/formularioRegistro}" method="post" >
@@ -280,29 +181,13 @@
 								    </div>			
 							     </div>
 		                      </div>
-					  	  </div>		 			  			 	  			 			 
-	     			  </div>
-	     		  </div>	  
-			    </form>		
-		    </div>				
-		    <!--  
-		    <div class="table-responsive">
-		    		<!--busqueda correcta 					
-				  		<form th:action="@{/documento}" th:object="${tripulante}" method="get">
-							<input type="text" th:field="*{documento}" class="col-sm-4 col-form-label">
-							<button type="submit" class="btn btn-success mt-4 mb-4">Buscar DNI</button>
-						</form>
-			</div>	
-		    --> 
-		    
-		    			<!-- mensaje de error de dni no encontrado -->
-						<div class="alert-danger text-center" th:if="${formDNIErrorMessage}" th:text="${formDNIErrorMessage}">Name Error</div>
-		    		  
-		    		  <div class="table-responsive">
-		    			<!-- con modal la busqueda del dni -->
-						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#modalBuscarDNI">Buscar DNI</button>
-					</div>							
+					  	     </div>		 			  			 	  			 			 
+	     			      </div>
+	     		      </div>	  
+			       </form>		
+		        </div>			
+		    	
+		    			
 							<!-- modal de busqueda del dni -->					
 							 <div class="modal fade" id="modalBuscarDNI" tabindex="-1" role="dialog"
 									aria-labelledby="agregarAutorModal" aria-hidden="true">
@@ -323,7 +208,8 @@
 															class="form-control" id="documento"
 															th:field="${tripulante.documento}"
 															placeholder="Ingresar el documento del tripulante"></input>								
-													</div>					
+													</div>
+													<!-- th:field="${tripulante.documento}" -->					
 											</div>				
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
@@ -335,13 +221,12 @@
 										</div>
 									</div>
 								</div>
-						
-		    
-		    
-		    
-		    
-		    
-		    
+			</div>			
+	    		
+	    					
+		    			<!-- mensaje de error de dni no encontrado -->
+						<div class="alert-danger text-center" th:if="${formDNIErrorMessage}" th:text="${formDNIErrorMessage}">Name Error</div>
+		    		  
 									<div class="card-header text-center">	
 				  						<h4 >DATOS TRIPULANTE ENCONTRADO</h4>
 									</div>
@@ -356,7 +241,7 @@
 						    							</tr>
 						  							</thead>
 						  			  				<tbody>
-						    							<tr th:each = "docEncontrado:${tripulante}">
+						    							<tr th:each = "docEncontrado:${encontrado}">
 						      								<td th:text = "${docEncontrado.documento}" ></td>
 						      								<td th:text = "${docEncontrado.apellido}" ></td>
 						      								<td th:text = "${docEncontrado.nombres}" ></td>
@@ -386,7 +271,7 @@
 								  }, false);
 								})();
 							</script>		
-	   </div>
+	   
     </div>
-  </body> 	
+ </body> 	
 </html>							  				
