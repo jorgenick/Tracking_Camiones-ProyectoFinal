@@ -24,7 +24,7 @@ import ar.edu.unju.fi.tracking.service.IUsuarioService;
 
 @Controller
 @RequestMapping
-public class usuarioBDController {
+public class UsuarioBDController {
 	@Autowired
 	IUsuarioService equipoService;
 	// cambiar equipo service
