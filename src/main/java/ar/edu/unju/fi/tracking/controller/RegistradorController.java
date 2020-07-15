@@ -22,7 +22,7 @@ import ar.edu.unju.fi.tracking.service.VehiculoServicelmp;
 
 /**
  * 
- * @author Brian's
+ * @author Toconas Ulises
  *
  */
 
@@ -72,6 +72,7 @@ public class RegistradorController {
 		model.addAttribute("vehiculoForm", this.unVehiculo);
 		model.addAttribute("localidades", localidades);
 		
+		
 		return "registroTracking";
 	}
 	
@@ -119,6 +120,7 @@ public class RegistradorController {
 	@PostMapping("/agregarTripulante")
 	public String crearTripulante(@ModelAttribute("tripulanteForm") Tripulante tripulante, Model model) throws Exception {
 		
+		model.addAttribute("registro", "true");
 		try {
 			
 			this.tripulanteServiceImp.guardarTripu(tripulante);
@@ -143,11 +145,14 @@ public class RegistradorController {
 		
 		
 		Tripulante tripulanteEncontrado = this.tripulanteServiceImp.buscarTripulanteDNI(tripulante.getDocumento());
-			
+		model.addAttribute("registro", "true");
+	
 		if( tripulanteEncontrado == null) {
 			model.addAttribute("formTripulanteErrorMessage", "No se encontró el tripulante");
+			model.addAttribute("agregarTrip", "true");
 		} else {
 			this.tripulanteServiceImp.guardarTripulanteEncontrado(tripulanteEncontrado);
+			model.addAttribute("registro", "true");
 		}
 		
 		return crearRegistroTracking(model);
@@ -166,15 +171,18 @@ public class RegistradorController {
 		//buscar vehiculo
 		Vehiculo vehiculoEncontrado = new Vehiculo();
 		vehiculoEncontrado = this.vehiculoService.buscarPatentePorNombre(vehiculo.getPatente());
+		model.addAttribute("registro", "true");
 		
 		//verifico si se encontro el vehiculo
 		if(vehiculoEncontrado != null) {
 			
 			this.vehiculoService.guardarVehiculoEncontrado(vehiculoEncontrado);
-			
+			model.addAttribute("buscarTrip","true");
 			
 		} else {
 			model.addAttribute("msgeNoVehiculo", "No se encontró el Vehiculo");
+			model.addAttribute("agregarVeh","true");
+			model.addAttribute("buscarTrip","true");
 		}
 		
 		
@@ -191,8 +199,10 @@ public class RegistradorController {
 	@PostMapping("/agregarVehiculo")
 	public String agregarVehiculo( @ModelAttribute("vehiculoForm") Vehiculo vehiculo, Model model ) {
 	
+		model.addAttribute("buscarTrip","true");
 		//guardo el vehiculo en la lista y en la base de datos
 		this.vehiculoService.guardarVehiculo(vehiculo);
+		
 		
 		return "redirect:/registrar";
 	}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<title>Registro por Tripulante</title>
+		<link rel="icon" type="image/png" th:href="@{/img/logo2.png}">
+		
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		
+		<!-- FontAwesome -->
+		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/estilos.css}" >
+		
+		<!-- Tempusdominus -->
+		<link th:rel="stylesheet" th:href="@{css/tempusdominus-bootstrap-4.min.css}"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/tempusdominus-bootstrap-4.min.css">
+
+		
+	</head>
+	<body class="body-container-consulta m-0">
+		
+		<!-- Header -->
+		<div th:insert="layout/header :: header-sign-off-consultor"></div>
+		
+		<!-- Contenedor principal -->
+		<!-- container-fluid d-flex justify-content-center -->
+		 
+		<div class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
+				<div class="card mt-5" >
+					<div class="card-header container p-4">
+						<div class="row m-0">
+							<h2 class="card-title col-sm-12 text-center text-dark m-0">Listar recorrido por tripulante. Orden: dia-hora</h2>
+						</div>
+  					</div>
+					<div class="card-body container"> 
+						<div class="row">
+					
+						    		<div class=" col-sm-12">
+						    			<div class="container my-4">
+							    			<form class="row justify-content-center" th:action="@{/buscarTripulante}" th:object="${consultTrip}" method="post">
+							    				
+							    				<!-- min="1000000" -->
+							    				<input class="form-control col-sm-4" type="number"  th:field="${consultTrip.dni}" required placeholder="Ingrese DNI de tripulante a buscar...">
+							    				<button type="submit" class="btn btn-success col-sm-2 ml-2">BUSCAR</button>
+							    			</form>
+						    			</div>
+						    		</div>
+						    		
+						    		<div th:if="${activarSinReg==true}" class="col-sm-12 text-center h5 font-weight-lighter mt-2">
+						    			<div th:text="${msgSinTripu}" class="alert alert-danger" role="alert"></div>
+						    		</div>
+						    		
+						    		<div th:if="${activarVerTripuBusc==true}" class=" col-sm-12">
+						    			<div class="container my-2">
+							    			<form class="row justify-content-center" th:object="${tripuEncontrado}" method="post">
+							    			
+							    				<div class="col-sm-12 container mt-1">
+							    					<div class="row d-flex align-items-center">
+							    						<h4 class="col-sm-12">Datos del tripulante:</h4>
+							    					</div>
+							    				</div>
+							    				
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="dni">DNI:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="dni" th:value="*{documento}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="nacionalidad">Nacionalidad:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="nacionalidad" th:value="*{nacionalidad}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="apellido">Apellido:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="apellido" th:value="*{apellido}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    				<div class="col-sm-5 container mt-2">
+							    					<div class="row d-flex align-items-center">
+							    						<label class="col-sm-4 text-center m-0" for="nombre">Nombre:</label>
+							    						<input class="form-control col-sm-8 text-center"  id="nombre" th:value="*{nombres}" disabled>
+							    					</div>
+							    				</div>
+							    				
+							    			</form>
+						    			</div>
+						    		</div>
+						    		
+						    		<div th:if="${activarNoTripu==true}" class="col-sm-12 text-center  h5 font-weight-lighter">
+						    			<div th:text="${noTripu}" class="alert alert-danger" role="alert"></div>
+						    		</div>
+						    		
+						    		<!--  <div th:if="${activarSinReg==true}" class="col-sm-12 text-center h5 font-weight-lighter">
+						    			<div th:text="${sinRegistro}" class="alert alert-danger" role="alert"></div>
+						    		</div> -->
+						    		
+						    		<!-- Tabla de registros encontrados -->
+						    		<div th:if="${activarTabla==true}" class="col-sm-12 text-center mt-4">
+						    			<div class="table-responsive">
+							    			<table class="table table-hover m-auto">
+											    <thead class="bg-dark text-white">
+											    	<tr>
+											    		<th rowspan="2">ID</th>
+											    		<th colspan="7">Vehiculo</th>
+											    		<th rowspan="2">Localidad</th>
+											    		<th colspan="2">Registro</th>
+											    	</tr>
+											    	<tr>
+												        <th>N° Patente</th>
+												        <th>Tipo</th>
+												        <th>N° Chasis</th>
+												        <th>N° Motor</th>
+												        <th>Modelo</th>
+												        <th>Marca</th>
+												        <th>Color</th>
+												        <th>Fecha-Hora</th>
+												        <th>Detalles</th>
+											      	</tr>
+											    </thead>
+											    <tbody>
+											      	<tr th:each="registro : ${registrosTrip}">
+												        <td th:text="${registro.id}"></td>
+												        <td th:text="${registro.vehiculo.patente}"></td>
+												        <td th:text="${registro.vehiculo.tipo}"></td>
+												        <td th:text="${registro.vehiculo.numeroChasis}"></td>
+												        <td th:text="${registro.vehiculo.numeroMotor}"></td>
+												        <td th:text="${registro.vehiculo.modelo}"></td>
+												        <td th:text="${registro.vehiculo.marca}"></td>
+												        <td th:text="${registro.vehiculo.color}"></td>
+												        <td th:text="${registro.localidad.nombre}"></td>
+												        <td th:text="${registro.fecha}"></td>
+												        <td th:text="${registro.detalleLugarRegistro}"></td>
+											      	</tr>
+											    </tbody>
+										  	</table>
+									  	</div>
+						    		</div>
+						    	</div>
+						    
+			  		</div>
+				</div>
+			
+		</div> 
+		
+		<button class="btn btn-primary btn-flotante" th:onclick="'javascript:back();'"><i class="fas fa-reply"></i> &nbsp; Volver</button>
+			
+		<script type="text/javascript">
+	  		function back(){
+	    		history.back();
+	  		}
+		</script>
+		
+		<!-- Footer -->
+		<div th:insert="layout/footer :: footer"></div>
+		
+		
+		<!-- Script Bootstrap -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+	</body>
+</html>

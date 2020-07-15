@@ -89,7 +89,7 @@ public class AltaController {
 		model.addAttribute("listaTripulantes", itripulanteservice.listarTodos());
 		model.addAttribute("listaRegistros", registroservice.listarTodos());
 		model.addAttribute("localidades", localidadservice.listarTodos());
-		return "listadoDatos";
+		return "registrador";
 	}
 		
 	@RequestMapping("/nuevoRegistro")

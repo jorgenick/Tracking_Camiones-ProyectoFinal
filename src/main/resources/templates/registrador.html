@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		
+		<title>Usuario Registrador</title>
+
+<style>
+		h1{
+			color:White;
+		}
+		
+		.centro{
+	background-image: url(../img/camm.jpg);
+    background-blend-mode: soft-light;
+	background-color: rgb(30, 50, 30);
+    background-size: 80%;
+    background-position:top;
+    background-repeat: no-repeat;
+    text-align: center;
+ 
+		}
+		#titulos{
+				color: #5CDC18;
+				text-align: center;
+				font-size:25px;
+				margin:7%;
+	
+		}
+	
+		
+			</style>
+
+</head>
+
+	
+<body class="centro"  >
+	<div th:insert="layout/headerReg :: header"></div>
+					
+				<div id="titulos">	
+					<h1>!Bienvenido Usuario Registrador!</h1>
+				
+					<p></p>
+						<p>ACCIONES POSIBLES </p>
+						<p></p>
+						<p>#REALIZAR ALTA UN REGISTRO TRACKING</p>
+							<p>*Vehiculos</p>
+							<p>*Tripulantes</p>
+							<p></p>
+				</div>
+			<div class="col text-center">			
+			<!--  <a class="btn btn-danger" href="#" th:href="@{/logout}">
+		                		<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar Sesión
+		 		</a>-->	-->	
+		 		 <br>
+					<a th:href="@{/registrar}" class="btn btn-primary">SIGUIENTE-></a>
+				<br>
+			</div>
+				
+	<div th:insert="layout/footerReg :: footer"></div>
+</body>
+</html>
+	

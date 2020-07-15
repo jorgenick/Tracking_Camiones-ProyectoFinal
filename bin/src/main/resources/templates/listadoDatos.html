@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+		<meta name="author" content="Gonzalez, Brian Leonel">
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	
+    	<!-- Bootstrap -->
+    	<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    	
+    	<!-- CSS 
+    	<link th:rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+    	-->
+    	
+    	<!-- FontAwesome -->
+    	<link href="fontawesome-5.13.1/css/all.css" rel="stylesheet">
+    	
+    	<!-- Scripts de bootstrap -->
+    	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    	
+		<title>Tracking de Camiones</title>
+</head>
+	
+ <body class="container">
+<!--  							Boton de cerrar sesion -->
+							<a class="btn btn-danger" href="#" th:href="@{/logout}">
+		                	<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar Sesión
+		                	</a>
+		                	</br>
+		<!--  <br>
+					<a th:href="@{/nuevoRegistro}" class="btn btn-primary">Nuevo Registro</a>
+				<br><br>-->		
+			       <div class="table-responsive">
+		    			<!-- con modal la busqueda de la patente-->
+						<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#modalBuscarPAT">Nuevo Registro</button>
+					</div>							
+	
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item"><a id="formulario-tab" 			
+					class="nav-link active" href="#registros" data-toggle="tab"
+					role="tab" aria-controls="registros" aria-selected="true">REGISTROS</a></li>
+				<li class="nav-item"><a id="lista-tab" class="nav-link" 
+					href="#formulario" data-toggle="tab" role="tab" aria-controls="formulario"
+					aria-selected="false">VEHICULOS</a></li>	
+				<li class="nav-item"><a id="lista-tab" class="nav-link" 
+					href="#tripulantes" data-toggle="tab" role="tab" aria-controls="tripulantes"
+					aria-selected="false">TRIPULANTES</a></li>	
+				<li class="nav-item"><a id="lista-tab" class="nav-link" 
+					href="#localidades" data-toggle="tab" role="tab" aria-controls="localidades"
+					aria-selected="false">LOCALIDADES</a></li>
+									
+			<!-- COMENTARIO aumentar un li para una nueva pestaña -->				
+			</ul>
+							
+		<div class="tab-content">	
+			
+		   <div class="tab-pane fade show active" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">	
+			
+			 <h1>LISTADO DE VEHICULOS</h1>    
+			  <div class="col">		
+				<div class="table-responsive">
+				  <table class="table table-bordered table-hover table-striped">					
+		  				<thead class="thead-dark">
+		    				<tr>
+		      					<th scope="col">ID</th>
+		      					<th scope="col">PATENTE</th>
+		      					<th scope="col">TITULAR</th>
+		      					<th scope="col">TIPO</th>
+		      					<th scope="col">MARCA</th>
+		      					<th scope="col">MODELO</th>
+		      					<th scope="col">COLOR</th>
+		      					<th scope="col">NRO DE CHASIS</th>
+		      					<th scope="col">NRO DE MOTOR</th>
+		    				</tr>
+		  				</thead>
+		  			  <tbody>
+		  			  		<tr th:each = "vehiculo:${listaVehiculos}">
+		      				<td th:text = "${vehiculo.id}" ></td>
+		      				<td th:text = "${vehiculo.patente}" ></td>
+		      				<td th:text = "${vehiculo.titular}" ></td>
+		      				<td th:text = "${vehiculo.tipo}" ></td>
+		      				<td th:text = "${vehiculo.marca}" ></td>
+		      				<td th:text = "${vehiculo.modelo}" ></td>
+		      				<td th:text = "${vehiculo.color}" ></td>
+		      				<td th:text = "${vehiculo.numeroChasis}" ></td>
+		      				<td th:text = "${vehiculo.numeroMotor}" ></td>
+		    			</tr>
+		  			 </tbody> 				
+				    </table>
+			      </div>
+		        </div>	
+	          </div>
+	       
+			
+		   <div class="tab-pane fade" id="localidades" role="tabpanel" aria-labelledby="lista-tab">
+		  		
+			     <div class="card-deck mt-4">
+					    
+						<h1>LISTADO DE LOCALIDADES</h1>
+							<div class="table-responsive">
+				   				<table class="table table-bordered table-hover table-striped">
+		  							<thead class="thead-dark">
+		    							<tr>     
+		      								<th scope="col">ID</th>
+		      								<th scope="col">NOMBRE</th>
+		    							</tr>
+		  							</thead>
+		  			  				<tbody>
+		    							<tr th:each = "localidad:${localidades}">
+		      								<td th:text = "${localidad.id}" ></td>
+		      								<td th:text = "${localidad.nombre}" ></td>
+		    							</tr>
+		  			 				</tbody>
+				  				</table>
+			  				</div>
+			       </div>
+		     </div>
+		
+	
+			  <div class="tab-pane fade" id="tripulantes" role="tabpanel" aria-labelledby="lista-tab">
+		  		
+			      <div class="card-deck mt-4">
+					    
+						<h1>LISTADO DE TRIPULANTES</h1>
+							<div class="table-responsive">
+				   				<table class="table table-bordered table-hover table-striped">
+		  							<thead class="thead-dark">
+		    							<tr>
+	<!--  								<th scope="col">ID_VEHICULO</th>-->	      
+		      								<th scope="col">ID</th>
+		      								<th scope="col">DNI</th>
+		      								<th scope="col">APELLIDO</th>
+		      								<th scope="col">NOMBRES</th>
+		      								<th scope="col">NACIONALIDAD</th>
+		    							</tr>
+		  							</thead>
+		  			  				<tbody>
+		    							<tr th:each = "tripulante:${listaTripulantes}">
+	<!--  	      								<td th:text = "${vehiculo.id}" ></td>-->
+		      								<td th:text = "${tripulante.id}" ></td>
+		      								<td th:text = "${tripulante.documento}" ></td>
+		      								<td th:text = "${tripulante.apellido}" ></td>
+		      								<td th:text = "${tripulante.nombres}" ></td>
+		      								<td th:text = "${tripulante.nacionalidad}" ></td>	
+		    							</tr>
+		    
+		  			 				</tbody>
+				  				</table>
+			  				</div>
+			       </div>
+		     </div>
+			
+				<div class="tab-pane fade" id="registros" role="tabpanel" aria-labelledby="lista-tab">
+		  		
+					<div class="card-deck mt-4">		  	
+						  
+						  <h1>LISTADO DE REGISTROS</h1>
+							<div class="table-responsive">
+				   				<table class="table table-bordered table-hover table-striped">
+		  							<thead class="thead-dark">
+		    							<tr>
+		      								<th scope="col">ID</th>
+		      								<th scope="col">DETALLES_REGISTRO</th>
+		      								<th scope="col">FECHA_HORA</th>
+		      								<th scope="col">ID_VEHICULO</th>
+		      								<th scope="col">ID_LOCALIDAD</th>
+		    							</tr>
+		  							</thead>
+		  			  				<tbody>
+	    							        <tr th:each = "registro:${listaRegistros}">
+  		      								<td th:text = "${registro.id}" ></td>  
+  		      								<td th:text = "${registro.detalleLugarRegistro}" ></td>
+  		      								<td th:text = "${registro.fecha}" ></td>
+  		      								<td th:text = "${registro.vehiculo}" ></td>
+  		      								<td th:text = "${registro.localidad}" ></td>								
+		  			 				</tbody>
+				  				</table>
+			  				</div>	
+					   </div>
+			      </div>
+				  	
+						  <!--  	
+						  	<script>
+								// Example starter JavaScript for disabling form submissions if there are invalid fields
+								(function() {
+								  'use strict';
+								  window.addEventListener('load', function() {
+								    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+								    var forms = document.getElementsByClassName('needs-validation');
+								    // Loop over them and prevent submission
+								    var validation = Array.prototype.filter.call(forms, function(form) {
+								      form.addEventListener('submit', function(event) {
+								        if (form.checkValidity() === false) {
+								          event.preventDefault();
+								          event.stopPropagation();
+								        }
+								        form.classList.add('was-validated');
+								      }, false);
+								    });
+								  }, false);
+								})();
+							</script>			
+						-->
+					
+					<!-- modal de busqueda de la patente -->					
+							 <div class="modal fade" id="modalBuscarPAT" tabindex="-1" role="dialog"
+									aria-labelledby="agregarAutorModal" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+										<form id="formBuscarPAT" th:object="${vehiculo}" th:action="@{/buscarPat}" method="post">
+											<div class="modal-header">
+												<h5 class="modal-title" id="agregarAutorModal">Buscar Patente</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">						
+													<div class="form-group">
+														<label for="patente">Patente del Vehiculo:</label>
+														 <input
+															class="form-control" id="patente"
+															th:field="${vehiculo.patente}"
+															placeholder="Ingresar la patente del Vehiculo"></input>								
+													</div>	
+												
+											</div>				
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">Close</button>
+												<input type="submit" class="btn btn-primary" value="Buscar Patente" >						
+											</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+						
+					
+			<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+			<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+			<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	</div>
+</body>
+</html>

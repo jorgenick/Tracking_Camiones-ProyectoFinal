@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<title>Nuevo Registro</title>
+		<link rel="icon" type="image/png" th:href="@{/img/logo2.png}">
+		
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		
+		<!-- FontAwesome -->
+		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css"  th:href="@{/css/estilos.css}" >
+		
+		<!-- Tempusdominus -->
+		<link th:rel="stylesheet" th:href="@{css/tempusdominus-bootstrap-4.min.css}"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/tempusdominus-bootstrap-4.min.css">
+
+		
+	</head>
+	<body class="container">
+	
+		<div class="row">
+		
+			<!-- Boton para buscar tripulante -->
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalBuscarTripulante">Buscar Tripulante</button>
+			
+			<!-- Boton para agregar un tripulante -->
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalAgregarTripulante">Agregar Tripulante</button>
+			
+			<!-- Boton para buscar Vehiculo -->
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalBuscarVehiculo">Buscar Vehiculo</button>
+			
+			<!-- Boton para agregar Vehiculo -->
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalAgregarVehiculo">Agregar Vehiculo</button>
+			
+			
+			<form id="formRegistro" th:object="${registroForm}" th:action="@{/agregarRegistro}" method="post">
+			
+				<div class="form-group">
+					
+					<label for="detalleRegistro">Detalles del registro:</label>
+					<input id="detalleRegistro" class="form-control" type="text" th:field="${registroForm.detalleLugarRegistro}">
+				
+				</div>
+				
+				<div class="form-group">
+					
+					<label for="localidad">Localidad</label>
+					<select class="custom-select col-sm-12" id="localidad" th:field="${registroForm.localidad.nombre}" required>
+						<option selected disabled value="">Seleccione una localidad</option>
+						<option th:each="localidad : ${localidades}"
+							th:text="${localidad.nombre}"
+							th:value="${localidad.nombre}"
+						></option>
+					</select>
+				
+				</div>
+				
+				<a th:href="@{/cancelar}" class="btn btn-danger">Cancelar</a>
+				<button type="submit" class="btn btn-primary">Agregar registro</button>
+			
+			</form>
+			
+			<!-- Mostrar Tripulantes -->
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive">
+					
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th>ID</th>
+									<th>Documento</th>
+									<th>Apellido</th>
+									<th>Nombre</th>
+									<th>Nacionalidad</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="tripu : ${tripulantes}">
+									<td th:text="${tripu.id}"></td>
+									<td th:text="${tripu.documento}"></td>
+									<td th:text="${tripu.apellido}"></td>
+									<td th:text="${tripu.nombres}"></td>
+									<td th:text="${tripu.nacionalidad}"></td>
+								</tr>
+							</tbody>
+						</table>
+					
+					</div>
+				
+				</div>
+			</div>
+			
+			
+			<div class="alert-danger text-center" th:if="${formTripulanteErrorMessage}" th:text="${formTripulanteErrorMessage}">Name Error</div>
+			
+			<div class="alert-danger text-center" th:if="${msgeNoVehiculo}" th:text="${msgeNoVehiculo}">Name Error</div>
+			
+			<!-- Mostrar vehiculo -->
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive">
+					
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th>ID</th>
+									<th>Patente</th>
+									<th>Tipo</th>
+									<th>Marca</th>
+									<th>Modelo</th>
+									<th>Color</th>
+									<th>Titular</th>
+									<th>N° Chasis</th>
+									<th>N° Motor</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="vehiculo : ${vehiculos}">
+									<td th:text="${vehiculo.id}"></td>
+									<td th:text="${vehiculo.patente}"></td>
+									<td th:text="${vehiculo.tipo}"></td>
+									<td th:text="${vehiculo.marca}"></td>
+									<td th:text="${vehiculo.modelo}"></td>
+									<td th:text="${vehiculo.color}"></td>
+									<td th:text="${vehiculo.titular}"></td>
+									<td th:text="${vehiculo.numeroChasis}"></td>
+									<td th:text="${vehiculo.numeroMotor}"></td>
+								</tr>
+							</tbody>
+						</table>
+					
+					</div>
+				
+				</div>
+			</div>
+			
+			
+				
+			<!-- Modal Agregar Tripulante -->
+				<div class="modal fade" id="modalAgregarTripulante" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTripulanteLabel" aria-hidden="true">
+				 	<div class="modal-dialog modal-dialog-centered">
+				   		<div class="modal-content">
+				   			<form id="formTripulante" th:object="${tripulanteForm}" th:action="@{/agregarTripulante}" method="post">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title" id="modalAgregarTripulanteLabel">Agregar Tripulante</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					      
+					        		<div class="form-group">
+					        			<label for="dni">DNI:</label>
+					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese su DNI">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="nacionalidad">Nacionalidad:</label>
+					        			<input class="form-control" id="nacionalidad" th:field="${tripulanteForm.nacionalidad}" placeholder="Ingrese su nacionalidad">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="apellido">Apellido:</label>
+					        			<input class="form-control" id="apellido" th:field="${tripulanteForm.apellido}" placeholder="Ingrese su apellido">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="nombre">Nombre:</label>
+					        			<input class="form-control" id="nombre" th:field="${tripulanteForm.nombres}" placeholder="Ingrese su nombre">
+					        		</div>
+					        	
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button type="submit" class="btn btn-primary">Agregar</button>
+					      		</div>
+					      	</form>
+				    	</div>
+				  	</div>
+				</div>
+				
+				
+				<!-- Modal Buscar Tripulante -->
+				<div class="modal fade" id="modalBuscarTripulante" tabindex="-1" role="dialog" aria-labelledby="modalBuscarTripulanteLabel" aria-hidden="true">
+				 	<div class="modal-dialog modal-dialog-centered">
+				   		<div class="modal-content">
+				   			<form id="formTripulante" th:object="${tripulanteForm}" th:action="@{/buscarTripulanteRegistrado}" method="post">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title" id="modalBuscarTripulanteLabel">Buscar Tripulante</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					      
+					        		<div class="form-group">
+					        			<label for="dni">DNI:</label>
+					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese DNI">
+					        		</div>
+					        	
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button type="submit" class="btn btn-primary">Buscar</button>
+					      		</div>
+					      	</form>
+				    	</div>
+				  	</div>
+				</div>
+				
+				<!-- Modal Buscar Vehiculo -->
+				<div class="modal fade" id="modalBuscarVehiculo" tabindex="-1" role="dialog" aria-labelledby="modalBuscarVehiculoLabel" aria-hidden="true">
+				 	<div class="modal-dialog modal-dialog-centered">
+				   		<div class="modal-content">
+				   			<form id="formTripulante" th:object="${vehiculoForm}" th:action="@{/buscarVehiculo}" method="post">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title" id="modalBuscarVehiculoLabel">Buscar Tripulante</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					      
+					        		<div class="form-group">
+					        			<label for="patente">Patente:</label>
+					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente">
+					        		</div>
+					        	
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button type="submit" class="btn btn-primary">Buscar</button>
+					      		</div>
+					      	</form>
+				    	</div>
+				  	</div>
+				</div>
+				
+				<!-- Modal Agregar Vehiculo -->
+				<div class="modal fade" id="modalAgregarVehiculo" tabindex="-1" role="dialog" aria-labelledby="modalAgregarVehiculoLabel" aria-hidden="true">
+				 	<div class="modal-dialog modal-dialog-centered">
+				   		<div class="modal-content">
+				   			<form id="formTripulante" th:object="${vehiculoForm}" th:action="@{/agregarVehiculo}" method="post">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title" id="modalAgregarVehiculoLabel">Buscar Tripulante</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					      
+					        		<div class="form-group">
+					        			<label for="patente">Patente:</label>
+					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="tipo">Tipo:</label>
+					        			<input class="form-control" id="tipo" th:field="${vehiculoForm.tipo}" placeholder="Ingrese tipo">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="marca">Marca:</label>
+					        			<input class="form-control" id="marca" th:field="${vehiculoForm.marca}" placeholder="Ingrese marca">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="modelo">Modelo:</label>
+					        			<input class="form-control" id="modelo" th:field="${vehiculoForm.modelo}" placeholder="Ingrese modelo">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="color">Color:</label>
+					        			<input class="form-control" id="color" th:field="${vehiculoForm.color}" placeholder="Ingrese color">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="numChasis">N° Chasis:</label>
+					        			<input class="form-control" id="numChasis" th:field="${vehiculoForm.numeroChasis}" placeholder="Ingrese numero chasis">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="numMotor">N° Motor:</label>
+					        			<input class="form-control" id="numMotor" th:field="${vehiculoForm.numeroMotor}" placeholder="Ingrese numero motor">
+					        		</div>
+					        		
+					        		<div class="form-group">
+					        			<label for="titular">Titular:</label>
+					        			<input class="form-control" id="titular" th:field="${vehiculoForm.titular}" placeholder="Ingrese nombre titular">
+					        		</div>
+					        	
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button type="submit" class="btn btn-primary">Buscar</button>
+					      		</div>
+					      	</form>
+				    	</div>
+				  	</div>
+				</div>
+				
+				<!-- Modal Buscar Localidad -->
+				<!-- <div class="modal fade" id="modalBuscarVehiculo" tabindex="-1" role="dialog" aria-labelledby="modalBuscarVehiculoLabel" aria-hidden="true">
+				 	<div class="modal-dialog modal-dialog-centered">
+				   		<div class="modal-content">
+				   			<form id="formTripulante" th:object="${vehiculoForm}" th:action="@{/buscarVehiculo}" method="post">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title" id="modalBuscarVehiculoLabel">Buscar Tripulante</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					      
+					        		<div class="form-group">
+					        			<label for="patente">Patente:</label>
+					        			<input class="form-control" id="patente" th:field="${vehiculoForm}" placeholder="Ingrese patente">
+					        		</div>
+					        	
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button type="submit" class="btn btn-primary">Buscar</button>
+					      		</div>
+					      	</form>
+				    	</div>
+				  	</div> 
+				</div> -->
+				
+		
+		</div>
+		
+		
+		
+		
+		<!-- Script Bootstrap -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Gonzalez Brian Leonel">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<link rel="icon" type="image/png" href="img/logo2.png">
+		
+		<title>Iniciar Sesión</title>
+		
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		
+		<!-- FontAwesome -->
+		<link th:rel="stylesheet" th:href="@{webjars/font-awesome/css/all.css}">
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/estilos.css" >
+	
+	</head>
+	<body class="body-container">
+	
+		<!-- Header -->
+		<div th:insert="layout/header :: header-login"></div>
+		
+		<!-- Formulario de Logeo -->
+		<div class="d-flex justify-content-center align-items-center container-fluid h-100 row m-0 ">
+			<div class="col-sm-8 col-lg-4">
+				<div class="card border-secondary row contenedor-login">
+					<div class="card-header h3 text-center text-uppercase font-weight-bolder text-card">Iniciar Sesión</div>
+				  	<div class="card-body text-secondary d-flex justify-content-center align-items-center row">
+				    	
+				    	<form th:object="${registroUsuario}" th:action="@{/login}" class="col-sm-12 col-lg-12 my-3 row d-flex justify-content-center align-items-center" method="post">
+				    	
+				    	<form class="form" th:object="${usuarioDelForm}" th:action="@{/login}"
+			method="post">
+				    	
+				    	
+				    		<!-- Ingreso de nombre de usuario -->
+				    		<div class="col-sm-10">
+				    			<label class="sr-only" for="nombreUsuario">Nombre de usuario</label>
+			  					<div class="input-group mb-2 mr-sm-2">
+							    	<div class="input-group-prepend">
+							      		<div class="input-group-text">
+							      			<i class="fa fa-user" aria-hidden="true"></i>
+							      		</div>
+							    	</div>
+							    	<input type="text" class="form-control" id="nombreUsuario" placeholder="Tu nombre de usuario" name="nombreUsuario">
+							  	</div>
+				    		</div>
+				    	
+						  	<!-- Ingreso de password -->
+						  	<div class="col-sm-10">
+						  		<label class="sr-only" for="password">Contraseña</label>
+			  					<div class="input-group mb-2 mr-sm-2 mt-4">
+							    	<div class="input-group-prepend">
+							      		<div class="input-group-text">
+							      			<i class="fa fa-lock" aria-hidden="true"></i>
+							      		</div>
+							    	</div>
+							    	<input type="password" class="form-control" id="password" placeholder="Tu contraseña" name="password">
+							  	</div>
+						  	</div>
+						  	
+						  	<div class="mt-4 col-sm-10 row">
+						  		<button type="submit" class="btn btn-outline-success col-sm-12">
+									<i class="fas fa-sign-in-alt"></i>&nbsp; Ingresar 
+						  		</button>
+						  	</div>
+						  	
+				    	</form>
+				    	<div th:if="${param.error}" class="alert alert-danger" role="alert">
+						Nombre de usuario o contraseña no válidos</div>
+						<div th:if="${param.logout}" class="alert alert-success" role="alert">
+						Ha cerrado sesion con exito. Vuelva pronto!</div>
+				    			    	
+				  	</div>
+				</div>
+			</div>
+		</div>
+			
+		
+		<!-- Footer -->
+		<div th:insert="layout/footer :: footer"></div>
+		
+		<!-- Script Bootstrap -->
+		<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+		<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+	</body>
+</html>

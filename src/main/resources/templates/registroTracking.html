@@ -21,38 +21,38 @@
 		<link th:rel="stylesheet" th:href="@{css/tempusdominus-bootstrap-4.min.css}"/>
 		
 		<link rel="stylesheet" type="text/css" href="css/tempusdominus-bootstrap-4.min.css">
-
 		
-	</head>
+
+	
 	<body class="container">
 	
 		<div class="row">
 		
 			<!-- Boton para buscar tripulante -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalBuscarTripulante">Buscar Tripulante</button>
+			<button class="btn btn-success" type="button"  data-toggle="modal" data-target="#modalBuscarTripulante">Buscar Tripulante</button>
 			
 			<!-- Boton para agregar un tripulante -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalAgregarTripulante">Agregar Tripulante</button>
+			<button class="btn btn-success" type="button"  th:if="${agregarTrip}" data-toggle="modal" data-target="#modalAgregarTripulante">Agregar Tripulante</button>
 			
 			<!-- Boton para buscar Vehiculo -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalBuscarVehiculo">Buscar Vehiculo</button>
+			<button class="btn btn-success" type="button"  data-toggle="modal" data-target="#modalBuscarVehiculo">Buscar Vehiculo</button>
 			
 			<!-- Boton para agregar Vehiculo -->
-			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalAgregarVehiculo">Agregar Vehiculo</button>
+			<button class="btn btn-success" type="button"  th:if="${agregarVeh}" data-toggle="modal" data-target="#modalAgregarVehiculo">Agregar Vehiculo</button>
 			
 			
 			<form id="formRegistro" th:object="${registroForm}" th:action="@{/agregarRegistro}" method="post">
 			
 				<div class="form-group">
-					
-					<label for="detalleRegistro">Detalles del registro:</label>
+						
+					<h1>	<label for="detalleRegistro">Detalles del registro:</label></h1>
 					<input id="detalleRegistro" class="form-control" type="text" th:field="${registroForm.detalleLugarRegistro}">
 				
 				</div>
 				
 				<div class="form-group">
 					
-					<label for="localidad">Localidad</label>
+					<h1>	<label for="localidad">Localidad</label></h1>
 					<select class="custom-select col-sm-12" id="localidad" th:field="${registroForm.localidad.nombre}" required>
 						<option selected disabled value="">Seleccione una localidad</option>
 						<option th:each="localidad : ${localidades}"
@@ -225,7 +225,7 @@
 				   		<div class="modal-content">
 				   			<form id="formTripulante" th:object="${vehiculoForm}" th:action="@{/buscarVehiculo}" method="post">
 					      		<div class="modal-header">
-					        		<h5 class="modal-title" id="modalBuscarVehiculoLabel">Buscar Tripulante</h5>
+					        		<h5 class="modal-title" id="modalBuscarVehiculoLabel">Buscar Vehiculo</h5>
 					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					          			<span aria-hidden="true">&times;</span>
 					        		</button>
@@ -303,7 +303,7 @@
 					      		</div>
 					      		<div class="modal-footer">
 					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					        		<button type="submit" class="btn btn-primary">Buscar</button>
+					        		<button type="submit" class="btn btn-primary">Agregar</button>
 					      		</div>
 					      	</form>
 				    	</div>
@@ -350,4 +350,5 @@
 		<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		
 	</body>
+
 </html>
