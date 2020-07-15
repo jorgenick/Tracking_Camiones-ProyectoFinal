@@ -15,11 +15,25 @@ import ar.edu.unju.fi.tracking.model.Localidad;
  */
 public interface ILocalidadDAO extends JpaRepository<Localidad, Long> {
 
+	/**
+	 * Metodo que permite obtener todas las localidades de la base de datos, ordenados por nombre
+	 * @return lista con localidades
+	 */
 	@Query("from Localidad e order by e.nombre")
 	public List<Localidad> obtenerLocalidades();
 	
+	/**
+	 * Permite buscar en la BD una localidad por su nombre
+	 * @param nombre nombre de la localidad a buscar
+	 * @return Optional, podria haberse encontrado o no.
+	 */
 	public Optional<Localidad> findByNombre (String nombre);
 		
+	/**
+	 * Permite buscar en la BD de acuerdo al ID
+	 * @param id id de la localidad a buscar
+	 * @return la localidad con id encontrada
+	 */
 	public Localidad findByNombre(Long id);
 	
 }

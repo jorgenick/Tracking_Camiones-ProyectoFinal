@@ -25,7 +25,8 @@
 
 	
 	<body class="container">
-	
+		<!-- Header -->
+		<div th:insert="layout/headerReg :: header"></div>
 		<div class="row">
 		
 			<!-- Boton para buscar tripulante -->
@@ -46,7 +47,7 @@
 				<div class="form-group">
 						
 					<h1>	<label for="detalleRegistro">Detalles del registro:</label></h1>
-					<input id="detalleRegistro" class="form-control" type="text" th:field="${registroForm.detalleLugarRegistro}">
+					<input id="detalleRegistro" class="form-control" type="text" th:field="${registroForm.detalleLugarRegistro}" required="required">
 				
 				</div>
 				
@@ -162,22 +163,22 @@
 					      
 					        		<div class="form-group">
 					        			<label for="dni">DNI:</label>
-					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese su DNI">
+					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese su DNI" required="required">
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="nacionalidad">Nacionalidad:</label>
-					        			<input class="form-control" id="nacionalidad" th:field="${tripulanteForm.nacionalidad}" placeholder="Ingrese su nacionalidad">
+					        			<input class="form-control" id="nacionalidad" th:field="${tripulanteForm.nacionalidad}" placeholder="Ingrese su nacionalidad" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="apellido">Apellido:</label>
-					        			<input class="form-control" id="apellido" th:field="${tripulanteForm.apellido}" placeholder="Ingrese su apellido">
+					        			<input class="form-control" id="apellido" th:field="${tripulanteForm.apellido}" placeholder="Ingrese su apellido" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="nombre">Nombre:</label>
-					        			<input class="form-control" id="nombre" th:field="${tripulanteForm.nombres}" placeholder="Ingrese su nombre">
+					        			<input class="form-control" id="nombre" th:field="${tripulanteForm.nombres}" placeholder="Ingrese su nombre" required>
 					        		</div>
 					        	
 					      		</div>
@@ -206,7 +207,7 @@
 					      
 					        		<div class="form-group">
 					        			<label for="dni">DNI:</label>
-					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese DNI">
+					        			<input class="form-control" id="dni" th:field="${tripulanteForm.documento}" placeholder="Ingrese DNI" required>
 					        		</div>
 					        	
 					      		</div>
@@ -234,7 +235,7 @@
 					      
 					        		<div class="form-group">
 					        			<label for="patente">Patente:</label>
-					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente">
+					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente" required>
 					        		</div>
 					        	
 					      		</div>
@@ -262,42 +263,42 @@
 					      
 					        		<div class="form-group">
 					        			<label for="patente">Patente:</label>
-					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente">
+					        			<input class="form-control" id="patente" th:field="${vehiculoForm.patente}" placeholder="Ingrese patente" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="tipo">Tipo:</label>
-					        			<input class="form-control" id="tipo" th:field="${vehiculoForm.tipo}" placeholder="Ingrese tipo">
+					        			<input class="form-control" id="tipo" th:field="${vehiculoForm.tipo}" placeholder="Ingrese tipo" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="marca">Marca:</label>
-					        			<input class="form-control" id="marca" th:field="${vehiculoForm.marca}" placeholder="Ingrese marca">
+					        			<input class="form-control" id="marca" th:field="${vehiculoForm.marca}" placeholder="Ingrese marca" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="modelo">Modelo:</label>
-					        			<input class="form-control" id="modelo" th:field="${vehiculoForm.modelo}" placeholder="Ingrese modelo">
+					        			<input class="form-control" id="modelo" th:field="${vehiculoForm.modelo}" placeholder="Ingrese modelo" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="color">Color:</label>
-					        			<input class="form-control" id="color" th:field="${vehiculoForm.color}" placeholder="Ingrese color">
+					        			<input class="form-control" id="color" th:field="${vehiculoForm.color}" placeholder="Ingrese color" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="numChasis">N° Chasis:</label>
-					        			<input class="form-control" id="numChasis" th:field="${vehiculoForm.numeroChasis}" placeholder="Ingrese numero chasis">
+					        			<input class="form-control" id="numChasis" th:field="${vehiculoForm.numeroChasis}" placeholder="Ingrese numero chasis" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="numMotor">N° Motor:</label>
-					        			<input class="form-control" id="numMotor" th:field="${vehiculoForm.numeroMotor}" placeholder="Ingrese numero motor">
+					        			<input class="form-control" id="numMotor" th:field="${vehiculoForm.numeroMotor}" placeholder="Ingrese numero motor" required>
 					        		</div>
 					        		
 					        		<div class="form-group">
 					        			<label for="titular">Titular:</label>
-					        			<input class="form-control" id="titular" th:field="${vehiculoForm.titular}" placeholder="Ingrese nombre titular">
+					        			<input class="form-control" id="titular" th:field="${vehiculoForm.titular}" placeholder="Ingrese nombre titular" required>
 					        		</div>
 					        	
 					      		</div>
@@ -340,6 +341,8 @@
 				
 		
 		</div>
+		
+		<div th:insert="layout/footerReg :: footers"></div>
 		
 		
 		

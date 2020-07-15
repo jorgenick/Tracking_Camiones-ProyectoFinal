@@ -18,6 +18,9 @@ import ar.edu.unju.fi.tracking.repository.ILocalidadDAO;
 @Repository
 public class LocalidadServicelmp implements ILocalidadService {
 
+	/**
+	 * Inyeccion de ILocalidadDAO
+	 */
 	@Autowired
 	ILocalidadDAO localidadDAOimp;
 

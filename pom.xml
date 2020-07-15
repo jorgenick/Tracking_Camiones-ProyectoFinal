@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.20</version>
+			<!--  <version>8.0.20</version> -->
 		</dependency>
 <!-- 	*************************************************************    -->
 		<!-- Dependencias para trabajar la vista -->
@@ -81,6 +81,11 @@
 					<groupId>org.springframework.security</groupId>
 					<artifactId>spring-security-test</artifactId>
 					<scope>test</scope>
+				</dependency>
+				<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+				<dependency>
+					<groupId>org.thymeleaf.extras</groupId>
+					<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 				</dependency>
 		<!-- 	*************************************************************    -->
 		

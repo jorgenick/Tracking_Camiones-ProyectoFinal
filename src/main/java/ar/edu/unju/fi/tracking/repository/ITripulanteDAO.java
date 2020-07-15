@@ -14,7 +14,17 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
  */
 public interface ITripulanteDAO extends JpaRepository<Tripulante, Long> {
 	
+	/**
+	 * Permite buscar en la BD a un tripulante, de acuerdo a su documento
+	 * @param documento numero de documento a buscar
+	 * @return tripulante encontrado
+	 */
 	Tripulante findAllByDocumento(String documento);
 	
+	/**
+	 * Permite buscar en la BD a un tripulante, de acuerdo a su documento
+	 * @param documento numero de documento a buscar
+	 * @return tripulante encontrado
+	 */
 	public Optional<Tripulante> findByDocumento(String documento);
 }
