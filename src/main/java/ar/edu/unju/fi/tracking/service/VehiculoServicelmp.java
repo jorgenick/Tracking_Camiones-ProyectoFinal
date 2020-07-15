@@ -19,6 +19,8 @@ import ar.edu.unju.fi.tracking.repository.IVehiculoDAO;
  */
 @Service
 public class VehiculoServicelmp implements IVehiculoService {
+	
+	private List<Vehiculo> listadoVehiculo = new ArrayList<Vehiculo>();
 
 	/**
 	 * se implementa un atributo de tipo IVehiculo 
@@ -93,5 +95,33 @@ public class VehiculoServicelmp implements IVehiculoService {
 		listaAuxTri.add(vehiculo);
 	}
 
+	//BRIAN
+
+	@Override
+	public void guardarVehiculoEncontrado(Vehiculo vehiculo) {
+		
+		listadoVehiculo.add(vehiculo);
+		
+	}
+
+	@Override
+	public void guardarVehiculo(Vehiculo vehiculo) {
+		
+		vehiculoDAOImp.save(vehiculo);
+		listadoVehiculo.add(vehiculo);
+	}
+
+	@Override
+	public List<Vehiculo> buscarVehiculoSeleccionado() {
+		// TODO Auto-generated method stub
+		return this.listadoVehiculo;
+	}
+
+	@Override
+	public void borrarElVehiculoSeleccionado() {
+		
+		this.listadoVehiculo = new ArrayList<Vehiculo>();
+		
+	}
 
 }

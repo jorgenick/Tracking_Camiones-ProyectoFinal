@@ -18,6 +18,8 @@ import ar.edu.unju.fi.tracking.repository.ITripulanteDAO;
  */
 @Repository
 public class TripulanteServicelmp implements ITripulanteService {
+	
+	private List<Tripulante> listadoAuxiliar = new ArrayList<Tripulante>();
 
 	/**
 	 * se implementa un atributo de tipo ITripulante
@@ -92,5 +94,35 @@ public class TripulanteServicelmp implements ITripulanteService {
 		// TODO Auto-generated method stub
 		listaAuxTri.add(tripulante);
 	}
+	
+	//BRIAN
+
+			@Override
+			public void guardarTripulanteEncontrado(Tripulante tripulante) {
+				
+				listadoAuxiliar.add(tripulante);
+				
+			}
+
+			@Override
+			public void guardarTripu(Tripulante tripulante) {
+				
+				tripulanteDAOImp.save(tripulante);
+				listadoAuxiliar.add(tripulante);
+				
+			}
+
+			@Override
+			public List<Tripulante> buscarTodosTripulantes() {
+				// TODO Auto-generated method stub
+				return this.listadoAuxiliar;
+			}
+
+			@Override
+			public void borrarTodosTripulantes() {
+				
+				listadoAuxiliar = new ArrayList<Tripulante>();
+				
+			}
 
 }

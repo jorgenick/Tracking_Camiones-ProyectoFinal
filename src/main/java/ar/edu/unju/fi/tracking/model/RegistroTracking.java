@@ -87,12 +87,12 @@ public class RegistroTracking {
 	 * dependencias
 	 */
 //	@Autowired
-//	@ManyToOne(fetch = FetchType.LAZY)//manytoone
-//	@JoinColumn(name="LOCALIDAD_ID")
-//	private Localidad localidad;
-	@OneToOne(cascade= {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY)//manytoone
 	@JoinColumn(name="LOCALIDAD_ID")
 	private Localidad localidad;
+	//@OneToOne(cascade= {CascadeType.ALL})
+	//@JoinColumn(name="LOCALIDAD_ID")
+	//private Localidad localidad;
 	
 	
 	

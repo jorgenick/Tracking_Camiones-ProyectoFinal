@@ -47,8 +47,8 @@ public class Localidad implements Serializable{
 	@Column
 	private String nombre;
 
-	@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
-	private RegistroTracking registro;
+	//@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
+	//private RegistroTracking registro;
 	// ------------METODOS CONSTRUCTORES--------------
 	/**
 	 * Constructor sin parametros
@@ -112,15 +112,15 @@ public class Localidad implements Serializable{
 	/**
 	 * @return the registro
 	 */
-	public RegistroTracking getRegistro() {
+/*	public RegistroTracking getRegistro() {
 		return registro;
-	}
+	} */
 
 	/**
 	 * @param registro the registro to set
 	 */
-	public void setRegistro(RegistroTracking registro) {
+/*	public void setRegistro(RegistroTracking registro) {
 		this.registro = registro;
-	}
+	} */
 
 }

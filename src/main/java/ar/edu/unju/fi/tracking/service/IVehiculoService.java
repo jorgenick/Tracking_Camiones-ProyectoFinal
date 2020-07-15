@@ -38,4 +38,14 @@ public interface IVehiculoService {
 		//probando haber si sale la busqyeda con ejemplp
 		public void guardarPatEncontrado(Vehiculo vehiculo);
 		
+	//BRIAN
+		
+	public void guardarVehiculoEncontrado(Vehiculo vehiculo);
+		
+	public void guardarVehiculo(Vehiculo vehiculo);
+		
+	public List<Vehiculo> buscarVehiculoSeleccionado();
+		
+	public void borrarElVehiculoSeleccionado();
+		
 }

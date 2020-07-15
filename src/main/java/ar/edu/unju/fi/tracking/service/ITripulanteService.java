@@ -35,4 +35,13 @@ public interface ITripulanteService {
 		
 		//probando haber si sale la busqyeda con ejemplp
 		public void guardarDNIEncontrado(Tripulante tripulante);
+		
+		//BRIAN
+		public void guardarTripulanteEncontrado(Tripulante tripulante);
+				
+		public void guardarTripu(Tripulante tripulante);
+				
+		public List<Tripulante> buscarTodosTripulantes();
+				
+		public void borrarTodosTripulantes();
 }
