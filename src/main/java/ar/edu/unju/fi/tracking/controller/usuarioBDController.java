@@ -168,7 +168,7 @@ public class usuarioBDController {
 														} else{
 				//												finalmente si pasa todas las validaciones recien se podria estar en condiciones de guardar el usuario
 																equipoService.guardarUsuario(usuario);
-																model.addAttribute("registroUsuario", unUsuario);
+																model.addAttribute("registroUsuario", new Usuario());
 																model.addAttribute("registroLocalidad", unaLocalidad);
 																model.addAttribute("usuarios", equipoService.obtenerUsuarios());
 																model.addAttribute("localidades", localidadService.obtenerLocalidades());
@@ -423,7 +423,7 @@ public class usuarioBDController {
 									} else{
 //											finalmente si pasa todas las validaciones recien se podria estar en condiciones de guardar la localidad
 												localidadService.guardarLocalidad(unaLocalidad);
-												model.addAttribute("registroUsuario", unUsuario);
+												model.addAttribute("registroUsuario", new Usuario());
 												model.addAttribute("registroLocalidad", new Localidad());
 												model.addAttribute("usuarios", equipoService.obtenerUsuarios());
 												model.addAttribute("localidades", localidadService.obtenerLocalidades());

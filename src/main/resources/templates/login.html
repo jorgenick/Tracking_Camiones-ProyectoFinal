@@ -31,7 +31,11 @@
 					<div class="card-header h3 text-center text-uppercase font-weight-bolder text-card">Iniciar Sesión</div>
 				  	<div class="card-body text-secondary d-flex justify-content-center align-items-center row">
 				    	
-				    	<form class="col-sm-12 col-lg-12 my-3 row d-flex justify-content-center align-items-center">
+				    	<form th:object="${registroUsuario}" th:action="@{/login}" class="col-sm-12 col-lg-12 my-3 row d-flex justify-content-center align-items-center" method="post">
+				    	
+				    	<form class="form" th:object="${usuarioDelForm}" th:action="@{/login}"
+			method="post">
+				    	
 				    	
 				    		<!-- Ingreso de nombre de usuario -->
 				    		<div class="col-sm-10">
@@ -42,7 +46,7 @@
 							      			<i class="fa fa-user" aria-hidden="true"></i>
 							      		</div>
 							    	</div>
-							    	<input type="text" class="form-control" id="nombreUsuario" placeholder="Tu nombre de usuario">
+							    	<input type="text" class="form-control" id="nombreUsuario" placeholder="Tu nombre de usuario" name="nombreUsuario">
 							  	</div>
 				    		</div>
 				    	
@@ -55,7 +59,7 @@
 							      			<i class="fa fa-lock" aria-hidden="true"></i>
 							      		</div>
 							    	</div>
-							    	<input type="password" class="form-control" id="password" placeholder="Tu contraseña">
+							    	<input type="password" class="form-control" id="password" placeholder="Tu contraseña" name="password">
 							  	</div>
 						  	</div>
 						  	
@@ -66,6 +70,10 @@
 						  	</div>
 						  	
 				    	</form>
+				    	<div th:if="${param.error}" class="alert alert-danger" role="alert">
+						Nombre de usuario o contraseña no válidos</div>
+						<div th:if="${param.logout}" class="alert alert-success" role="alert">
+						Ha cerrado sesion con exito. Vuelva pronto!</div>
 				    			    	
 				  	</div>
 				</div>

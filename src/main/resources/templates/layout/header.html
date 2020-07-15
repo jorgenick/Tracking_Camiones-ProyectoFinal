@@ -36,7 +36,7 @@
   					
   					<div class="collapse navbar-collapse  flex-row-reverse" id="navbarTogglerDemo02">
 		                <form class="form-inline col-sm-12 col-lg-3">
-		                	<button class="btn btn-danger col-sm-12 col-lg-12 my-2 my-sm-0" type="button">
+		                	<button th:href="@{/logout}" class="btn btn-danger col-sm-12 col-lg-12 my-2 my-sm-0" type="button">
 		                		<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar Sesión
 		                	</button>
 		                </form>
@@ -79,9 +79,9 @@
 					    </ul>
 					    
 					    <form class="form-inline my-2 my-lg-0">
-					      	<button class="btn btn-danger col-sm-12" type="button">
+					      	<a class="btn btn-danger" href="#" th:href="@{/logout}">
 		                		<i class="fas fa-sign-out-alt"></i> &nbsp; Cerrar Sesión
-		                	</button>
+		                	</a>
 					    </form>
 					</div>
   					
