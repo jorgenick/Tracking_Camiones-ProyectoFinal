@@ -32,6 +32,10 @@ public class TripulanteServicelmp implements ITripulanteService {
 	
 	private Tripulante untripulante;
 	
+	/**
+	 * permite guardar un tripulante dado en la BD
+	 * @param tripulante a guardar
+	 */
 	@Override
 	public void guardarTripulante(Tripulante tripulante) {
 		// TODO Auto-generated method stub
@@ -40,38 +44,62 @@ public class TripulanteServicelmp implements ITripulanteService {
 		untripulante=tripulante;
 	}
 
+	/**
+	 * Permite guardar un tripulante en la BD
+	 * @param tripulante a guardar
+	 */
 	@Override
 	public void crearTri(Tripulante tripulante) {
 		// TODO Auto-generated method stub
 		tripulanteDAOImp.save(tripulante);
 	}
 		
+	/**
+	 * Permite obtener todos los tripulantes almacenados en la BD
+	 * @return listado de tripulantes 
+	 */
 	@Override
 	public List<Tripulante> obtenerTripulantes() {
 		// TODO Auto-generated method stub
 		return tripulanteDAOImp.findAll();
 	}
 
+	/**
+	 * Permite obtener un tripulante, de acuerdo a un ID dato
+	 * @param id de tripulante a buscar
+	 * @return el tripulante encontrado
+	 */
 	@Override
 	public Optional<Tripulante> obtenerUnTripulante(Long id) {
 		// TODO Auto-generated method stub
 		return tripulanteDAOImp.findById(id);
 	}
 
+	/**
+	 * Permite eliminar un tripulante de la BD, de acuerdo a un ID dado
+	 * @param id de tripulante a elimnar
+	 */
 	@Override
 	public void eliminarTripulante(Long id) {
 		// TODO Auto-generated method stub
 		tripulanteDAOImp.deleteById(id);
 	}
 
-
+	/**
+	 * Permite listar todos los tripulantes alamcenados en la BD
+	 * @return
+	 */
 	@Override
 	public Iterable<Tripulante> listarTodos() {
 		// TODO Auto-generated method stub
 		return tripulanteDAOImp.findAll();
 	}
 
-
+	/**
+	 * Permite buscar los tripulantes de acuerdo a un ndeterminado DNI
+	 * @param documento
+	 * @return
+	 */
 	@Override
 	public Tripulante buscarTripulanteDNI(String documento) {
 		return tripulanteDAOImp.findAllByDocumento(documento);

@@ -27,36 +27,65 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 	@Autowired
 	IRegistroTrackingDAO registroTrackingImp;
 	
+	/**
+	 * permite guardar un registro en la BD
+	 * @param registroTracking registro a guardar
+	 */
 	@Override
 	public void guardarRegistroTracking(RegistroTracking registroTracking) {
 		// TODO Auto-generated method stub
 		registroTrackingImp.save(registroTracking);
 	}
 
+	/**
+	 * Permite obtener todos los registros almcaenados en la BD
+	 * @return listado con los registros
+	 */
 	@Override
 	public List<RegistroTracking> obtenerRegistros() {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findAll();
 	}
 
+	/**
+	 * Permite obtener un determinado registro, de acuerdo a un ID
+	 * @param id de registro a buscar
+	 * @return registro tracking
+	 */
 	@Override
 	public Optional<RegistroTracking> obtenerUnRegistro(Long id) {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findById(id);
 	}
 
+	/**
+	 * Permite eliminar un registro, de acuerdo a un ID dado
+	 * @param id de registro a eliminar
+	 */
 	@Override
 	public void eliminarRegistro(Long id) {
 		// TODO Auto-generated method stub
 		registroTrackingImp.deleteById(id);
 	}
 
+	/**
+	 * permite buscar los registos de un determinado vehiculo-patente ordenado por fecha
+	 * @param vehiculo vehiculo a buscar
+	 * @return listado con registros encontrados
+	 */
 	@Override
 	public List<RegistroTracking> buscarPorVehiculoPatente(String patente) {
 		// TODO Auto-generated method stub
 		return registroTrackingImp.findByVehiculoPatente(patente);
 	}
 
+	/**
+	 * permite buscar registros en la BD, de acuerdo a un rango de fechas y una localidad dada
+	 * @param fechaDesde fecha inicial a buscar
+	 * @param fechaHasta feciha final a buscar
+	 * @param localidad localidad a buscar
+	 * @return listado con los registros encontrados
+	 */
 	@Override
 	public List<RegistroTracking> buscarRegistrosRangoFechasYLocalidad(LocalDateTime fechaDesde, LocalDateTime fechaHasta,
 			Localidad localidad) {
@@ -64,6 +93,11 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 		return registroTrackingImp.findAllByFechaBetweenAndLocalidadOrderByFecha(fechaDesde, fechaHasta, localidad);
 	}
 
+	/**
+	 * Permite buscar los registros de un determinado tripulante, ordenado por fecha
+	 * @param tripulante a buscar
+	 * @return listado con registros encontrados
+	 */
 	@Override
 	public void guardar(RegistroTracking registro) {
 		// TODO Auto-generated method stub
@@ -71,6 +105,7 @@ public class RegistroTrackingServicelmp implements IRegistroTrackingService {
 		registroTrackingImp.save(registro);
 	}
 
+	
 	@Override
 	public Iterable<RegistroTracking> listarTodos() {
 		// TODO Auto-generated method stub

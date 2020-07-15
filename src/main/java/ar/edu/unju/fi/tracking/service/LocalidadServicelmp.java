@@ -24,34 +24,62 @@ public class LocalidadServicelmp implements ILocalidadService {
 	@Autowired
 	ILocalidadDAO localidadDAOimp;
 
+	/**
+	 * Permite guardar una determinada localidad en la BD
+	 * @param localidad localidad a guardar
+	 */
 	@Override
 	public void guardarLocalidad(Localidad localidad) {
 		localidadDAOimp.save(localidad);
 	}
 
+	/**
+	 * Permite obtener todas las localidades almacenadas en la BD
+	 * @return listado de localidades
+	 */
 	@Override
 	public List<Localidad> obtenerLocalidades() {
 		return localidadDAOimp.obtenerLocalidades();
 	}
 
+	/**
+	 * Permite obtener una determinada localidad a traves de su ID
+	 * @param id de localidad a buscar
+	 * @return un Optional, puede o no encontrarse
+	 */
 	@Override
 	public Optional<Localidad> obtenerUnaLocalidad(Long id) {
 		Optional<Localidad> localidad=localidadDAOimp.findById(id);
 		return localidad;
 	}
 
+	/**
+	 * Permite eliminar una determinada localidad de la base de datos
+	 * @param id localidad a eliminar
+	 */
 	@Override
 	public void eliminarLocalidad(Long id) {
 		localidadDAOimp.deleteById(id);;
 		
 	}
 
+	/**
+	 * Permite buscar en la BD una localidad, a gtraves de su nombre
+	 * @param nombre de localidad a buscar
+	 * @return Localidad encontrada
+	 * @throws Exception
+	 */
 	@Override
 	public Localidad buscarNombreLocalidad(String nombre) throws Exception {
 		
 		return localidadDAOimp.findByNombre(nombre).orElseThrow();
 	}
 
+	/**
+	 * Permite buscar en la BD una localidad, a gtraves de su nombre
+	 * @param nombre de localidad a buscar
+	 * @return Localidad encontrada
+	 */
 	@Override
 	public Localidad buscarLocalidadPorNombre(String nombre) {
 		
@@ -90,12 +118,21 @@ public class LocalidadServicelmp implements ILocalidadService {
 		return localidadEncontrada;
 	}
 
+	/**
+	 * Permite listar todas las localidades de la BD
+	 * @return listado de localidades
+	 */
 	@Override
 	public Iterable<Localidad> listarTodos() {
 		// TODO Auto-generated method stub
 		return localidadDAOimp.findAll();
 	}
 
+	/**
+	 * Permite buscar obtener una localidad de la BD buscado por su ID
+	 * @param id de la localidad a buscar
+	 * @return localidad encontrada
+	 */
 	@Override
 	public Localidad encontrarUnaLocalidad(Long id) {
 		// TODO Auto-generated method stub

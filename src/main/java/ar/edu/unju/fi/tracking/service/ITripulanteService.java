@@ -12,19 +12,48 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
  */
 public interface ITripulanteService {
 	
+	/**
+	 * permite guardar un tripulante dado en la BD
+	 * @param tripulante a guardar
+	 */
 	public void guardarTripulante(Tripulante tripulante);
 	
+	/**
+	 * Permite obtener todos los tripulantes almacenados en la BD
+	 * @return listado de tripulantes 
+	 */
 	List<Tripulante> obtenerTripulantes();
 	
-	
+	/**
+	 * Permite guardar un tripulante en la BD
+	 * @param tripulante a guardar
+	 */
 	public void crearTri(Tripulante tripulante);
 	
+	/**
+	 * Permite listar todos los tripulantes alamcenados en la BD
+	 * @return
+	 */
 	public Iterable<Tripulante> listarTodos();
 	
+	/**
+	 * Permite obtener un tripulante, de acuerdo a un ID dato
+	 * @param id de tripulante a buscar
+	 * @return el tripulante encontrado
+	 */
 	public Optional<Tripulante> obtenerUnTripulante(Long id);
 	
+	/**
+	 * Permite eliminar un tripulante de la BD, de acuerdo a un ID dado
+	 * @param id de tripulante a elimnar
+	 */
 	public void eliminarTripulante(Long id);
 	
+	/**
+	 * Permite buscar los tripulantes de acuerdo a un ndeterminado DNI
+	 * @param documento
+	 * @return
+	 */
 	public Tripulante buscarTripulanteDNI(String documento);
 
 	public List<Tripulante> listarTripulantesAgregados();
